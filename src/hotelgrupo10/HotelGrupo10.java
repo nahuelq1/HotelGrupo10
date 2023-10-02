@@ -5,6 +5,9 @@
  */
 package hotelgrupo10;
 
+import hotelgrupo10.accesoADatos.Conexion;
+import java.sql.Connection;
+
 /**
  *
  * @author nahue
@@ -16,6 +19,10 @@ public class HotelGrupo10 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+    
+    
+     Connection con = Conexion.getConexion();
+    
     }
     
 }
