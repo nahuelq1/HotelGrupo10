@@ -1,16 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package hotelgrupo10.entidades;
 
 import java.time.LocalDate;
 
-/**
- *
- * @author nahue
- */
 public class Reserva {
     private int IdReserva;
     private int IdHabitacion;
@@ -21,6 +13,20 @@ public class Reserva {
     private int CantPersonas;
     private boolean Estado;
 
+    public Reserva() {
+    }
+
+    public Reserva(int IdHabitacion, int IdHuesped, LocalDate FechaInicio, LocalDate FechaFin, double PrecioTotal, int CantPersonas, boolean Estado) {
+        this.IdHabitacion = IdHabitacion;
+        this.IdHuesped = IdHuesped;
+        this.FechaInicio = FechaInicio;
+        this.FechaFin = FechaFin;
+        this.PrecioTotal = PrecioTotal;
+        this.CantPersonas = CantPersonas;
+        this.Estado = Estado;
+    }
+
+    
     public Reserva(int IdReserva, int IdHabitacion, int IdHuesped, LocalDate FechaInicio, LocalDate FechaFin, double PrecioTotal, int CantPersonas, boolean Estado) {
         this.IdReserva = IdReserva;
         this.IdHabitacion = IdHabitacion;
