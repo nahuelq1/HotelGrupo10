@@ -1,28 +1,41 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hotelgrupo10;
 
 import hotelgrupo10.accesoADatos.Conexion;
+import hotelgrupo10.accesoADatos.HuespedData;
+import hotelgrupo10.entidades.Huesped;
 import java.sql.Connection;
 
-/**
- *
- * @author nahue
- */
 public class HotelGrupo10 {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
-    
-    
-     Connection con = Conexion.getConexion();
-    
+
+        Connection con = Conexion.getConexion();
+
+//                  ****HUESPED DATA****
+        Huesped juan = new Huesped("tes3", "test2", 955831091, "Bolivia2", "Gonzalo@21.comt",
+                1143564, true);
+        HuespedData huespd = new HuespedData();
+//        huespd.agregarHuesped(juan);
+//        huespd.modificarHuesped(juan);
+//        huespd.eliminarHuesped(95583109);
+
+//        Huesped huespedEncontrado = huespd.buscarHuesped(955831091);
+//        if (huespedEncontrado != null) {
+//            System.out.println("dni:        " + huespedEncontrado.getDNI());
+//            System.out.println("nombre:     " + huespedEncontrado.getNombre());
+//            System.out.println("apellido:   " + huespedEncontrado.getApellido());
+//            System.out.println("domicilio:  " + huespedEncontrado.getDomicilio());
+//            System.out.println("estado:     " + huespedEncontrado.isEstado());
+//            System.out.println("id:         " + huespedEncontrado.getIdHuesped());
+//        }
+//
+        for (Huesped huesped : huespd.listarHuespedes()) {
+            System.out.println("*************");
+            System.out.println(huesped.getNombre());
+            System.out.println(huesped.getApellido());
+            System.out.println(huesped.getIdHuesped());
+        }
+
     }
-    
+
 }
