@@ -1,42 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package hotelgrupo10.entidades;
 
-/**
- *
- * @author nahue
- */
 public class Habitacion {
     
     private int IdHabitacion;
-    private int Idcategoria;
+    private Categoria categoria;
     private int NroHabitacion;
     private int Piso;
     private boolean estado;
 
-    public Habitacion(int Idcategoria, int NroHabitacion, int Piso, boolean estado) {
-        this.Idcategoria = Idcategoria;
+    public Habitacion() {
+    }
+
+    public Habitacion(int IdHabitacion, Categoria categoria, int NroHabitacion, int Piso, boolean estado) {
+        this.IdHabitacion = IdHabitacion;
+        this.categoria = categoria;
         this.NroHabitacion = NroHabitacion;
         this.Piso = Piso;
         this.estado = estado;
     }
 
-    public Habitacion() {
-    }
-    
-    
-    
-    public Habitacion(int IdHabitacion, int Idcategoria, int NroHabitacion, int Piso, boolean estado) {
-        this.IdHabitacion = IdHabitacion;
-        this.Idcategoria = Idcategoria;
+    public Habitacion(Categoria categoria, int NroHabitacion, int Piso, boolean estado) {
+        this.categoria = categoria;
         this.NroHabitacion = NroHabitacion;
         this.Piso = Piso;
         this.estado = estado;
     }
-    
 
     public int getIdHabitacion() {
         return IdHabitacion;
@@ -46,12 +35,12 @@ public class Habitacion {
         this.IdHabitacion = IdHabitacion;
     }
 
-    public int getIdcategoria() {
-        return Idcategoria;
+    public Categoria getCategoria() {
+        return categoria;
     }
 
-    public void setIdcategoria(int Idcategoria) {
-        this.Idcategoria = Idcategoria;
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
     public int getNroHabitacion() {
@@ -70,18 +59,20 @@ public class Habitacion {
         this.Piso = Piso;
     }
 
-    public boolean isestado() {
+    public boolean isEstado() {
         return estado;
     }
 
-    public void setestado(boolean estado) {
+    public void setEstado(boolean estado) {
         this.estado = estado;
     }
 
     @Override
     public String toString() {
-        return "Habitacion{" + "IdHabitacion=" + IdHabitacion + ", Idcategoria=" + Idcategoria + ", NroHabitacion=" + NroHabitacion + ", Piso=" + Piso + ", estado=" + estado + '}';
+        return "Habitacion{" + "IdHabitacion=" + IdHabitacion + ", categoria=" + categoria + ", NroHabitacion=" + NroHabitacion + ", Piso=" + Piso + ", estado=" + estado + '}';
     }
     
+    
+
     
 }

@@ -1,7 +1,9 @@
 package hotelgrupo10;
 
 import hotelgrupo10.accesoADatos.Conexion;
+import hotelgrupo10.accesoADatos.HabitacionData;
 import hotelgrupo10.accesoADatos.HuespedData;
+import hotelgrupo10.entidades.Habitacion;
 import hotelgrupo10.entidades.Huesped;
 import java.sql.Connection;
 
@@ -17,7 +19,7 @@ public class HotelGrupo10 {
         HuespedData huespd = new HuespedData();
 //        huespd.agregarHuesped(juan);
 //        huespd.modificarHuesped(juan);
-        huespd.eliminarHuesped(955831091);
+//        huespd.eliminarHuesped(955831091);
 
 //        Huesped huespedEncontrado = huespd.buscarHuesped(955831091);
 //        if (huespedEncontrado != null) {
@@ -25,7 +27,7 @@ public class HotelGrupo10 {
 //            System.out.println("nombre:     " + huespedEncontrado.getNombre());
 //            System.out.println("apellido:   " + huespedEncontrado.getApellido());
 //            System.out.println("domicilio:  " + huespedEncontrado.getDomicilio());
-//            System.out.println("estado:     " + huespedEncontrado.isEstado());
+//            System.out.println("estado:     " + huespsedEncontrado.isEstado());
 //            System.out.println("id:         " + huespedEncontrado.getIdHuesped());
 //        }
 //
@@ -38,4 +40,10 @@ public class HotelGrupo10 {
 //
 //    }
 
-}}
+//                  ****HABITACION DATA****
+//        Habitacion habi=new Habitacion(1, 1, 1, true);
+//        HabitacionData habiD = new HabitacionData();
+//        habiD.crearHabitacion(habi);
+
+    }
+}
