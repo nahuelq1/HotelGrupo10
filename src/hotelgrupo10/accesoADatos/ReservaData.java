@@ -117,36 +117,6 @@ public class ReservaData {
     }
 
     
-    
-    
-    //    public List<Inscripcion> obtenerInscripcionesPorAlumno(int idAlumno) {
-//
-//        ArrayList<Inscripcion> cursadas = new ArrayList<>();
-//        String sql = "SELECT * FROM inscripcion WHERE idAlumno= ?";
-//        try {
-//            PreparedStatement ps = con.prepareStatement(sql);
-//            ps.setInt(1, idAlumno);
-//            ResultSet rs = ps.executeQuery();
-//            while (rs.next()) {
-//                Inscripcion insc = new Inscripcion();
-//                insc.setIdInscripcion(rs.getInt("idInscripto"));
-//                Alumno alu = ad.buscarAlumno(rs.getInt("idAlumno"));
-//                Materia mat = md.buscarMateria(rs.getInt("idMateria"));
-//                insc.setAlumno(alu);
-//                insc.setMateria(mat);
-//                insc.setNota(rs.getDouble("nota"));
-//                cursadas.add(insc);
-//
-//            }
-//            ps.close();
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion");
-//        }
-//
-//        return cursadas;
-//
-//    }
-    
 public List<Categoria> mostrarHabitaciones(String TipoHabitacion){
 
    ArrayList<Categoria> categorias = new ArrayList<>();  
@@ -158,11 +128,14 @@ public List<Categoria> mostrarHabitaciones(String TipoHabitacion){
             ResultSet rs=ps.executeQuery();
             while (rs.next()) {
             Categoria categoria= new Categoria();
-            
-            
+            categoria.setIdCategoria(rs.getInt("idCategoria"));
+            categoria.setTipoHabitacion(rs.getString("tipoHabitacion"));
+            categoria.setEstado(rs.getBoolean("estado"));
+            categorias.add(categoria);
             }
+            ps.close();
         } catch (SQLException ex) {
-            Logger.getLogger(ReservaData.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "error al acceder a la tabla reserva");
         }
   return categorias;
 }
