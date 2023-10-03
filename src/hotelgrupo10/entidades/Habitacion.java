@@ -17,6 +17,18 @@ public class Habitacion {
     private int Piso;
     private boolean Refaccion;
 
+    public Habitacion(int Idcategoria, int NroHabitacion, int Piso, boolean Refaccion) {
+        this.Idcategoria = Idcategoria;
+        this.NroHabitacion = NroHabitacion;
+        this.Piso = Piso;
+        this.Refaccion = Refaccion;
+    }
+
+    public Habitacion() {
+    }
+    
+    
+    
     public Habitacion(int IdHabitacion, int Idcategoria, int NroHabitacion, int Piso, boolean Refaccion) {
         this.IdHabitacion = IdHabitacion;
         this.Idcategoria = Idcategoria;
@@ -24,6 +36,7 @@ public class Habitacion {
         this.Piso = Piso;
         this.Refaccion = Refaccion;
     }
+    
 
     public int getIdHabitacion() {
         return IdHabitacion;

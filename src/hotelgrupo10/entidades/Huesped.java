@@ -19,6 +19,27 @@ public class Huesped {
     private int Celular;
     private boolean Estado;
 
+    
+    
+    
+    
+    public Huesped(String Nombre, String Apellido, int DNI, String Domicilio, String Correo, int Celular, boolean Estado) {
+        this.Nombre = Nombre;
+        this.Apellido = Apellido;
+        this.DNI = DNI;
+        this.Domicilio = Domicilio;
+        this.Correo = Correo;
+        this.Celular = Celular;
+        this.Estado = Estado;
+    }
+
+    public Huesped() {
+    }
+
+    
+    
+    
+    
     public Huesped(int IdHuesped, String Nombre, String Apellido, int DNI, String Domicilio, String Correo, int Celular, boolean Estado) {
         this.IdHuesped = IdHuesped;
         this.Nombre = Nombre;
