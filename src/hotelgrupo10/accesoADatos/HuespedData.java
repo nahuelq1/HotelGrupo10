@@ -42,7 +42,7 @@ public class HuespedData {
 
     public void modificarHuesped(Huesped huespedExistente) {
         String sql = "UPDATE huesped SET nombre = ?,apellido=?, domicilio = ?,"
-                + " correo = ?, celular = ? WHERE dni = ?";
+                + " correo = ?, celular = ? WHERE dni = ? AND estado=1";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, huespedExistente.getNombre());
