@@ -12,12 +12,12 @@ public class HotelGrupo10 {
         Connection con = Conexion.getConexion();
 
 //                  ****HUESPED DATA****
-        Huesped juan = new Huesped("tes3", "test2", 955831091, "Bolivia2", "Gonzalo@21.comt",
+        Huesped juan = new Huesped("tes7", "test2", 955831091, "Bolivia2", "Gonzalo@21.comt",
                 1143564, true);
         HuespedData huespd = new HuespedData();
 //        huespd.agregarHuesped(juan);
 //        huespd.modificarHuesped(juan);
-//        huespd.eliminarHuesped(95583109);
+        huespd.eliminarHuesped(955831091);
 
 //        Huesped huespedEncontrado = huespd.buscarHuesped(955831091);
 //        if (huespedEncontrado != null) {
@@ -29,13 +29,13 @@ public class HotelGrupo10 {
 //            System.out.println("id:         " + huespedEncontrado.getIdHuesped());
 //        }
 //
-        for (Huesped huesped : huespd.listarHuespedes()) {
-            System.out.println("*************");
-            System.out.println(huesped.getNombre());
-            System.out.println(huesped.getApellido());
-            System.out.println(huesped.getIdHuesped());
-        }
+//        for (Huesped huesped : huespd.listarHuespedes()) {
+//            System.out.println("*************");
+//            System.out.println(huesped.getNombre());
+//            System.out.println(huesped.getApellido());
+//            System.out.println(huesped.getIdHuesped());
+//        }
+//
+//    }
 
-    }
-
-}
+}}
