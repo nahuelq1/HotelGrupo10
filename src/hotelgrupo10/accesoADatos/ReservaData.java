@@ -28,18 +28,20 @@ public class ReservaData {
 
     }
 
-//public void crearReserva(Reserva resv){
-//
-//String sql="INSERT INTO reserva(IdHabitacion,IdHuesped,FechaInicio,FechaFin,PrecioTotal,CantPersonas,Estado)"
-//        + "VALUES (?,?,?,?,?,?,?)";
-//        try {
-//            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-//            ps.setInt(1,resv.getIdHabitacion().getidHabitacion);
-//        
-//        
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ReservaData.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+public void crearReserva(Reserva resv){
+
+String sql="INSERT INTO reserva(IdHabitacion,IdHuesped,FechaInicio,FechaFin,PrecioTotal,CantPersonas,Estado)"
+        + "VALUES (?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1,resv.getHabitacion().getIdHabitacion());
+            
+        
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(ReservaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}
 }
 
 

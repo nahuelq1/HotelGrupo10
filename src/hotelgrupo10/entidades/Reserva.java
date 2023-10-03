@@ -5,20 +5,18 @@ import java.time.LocalDate;
 
 public class Reserva {
     private int IdReserva;
-    private int IdHabitacion;
-    private int IdHuesped;
+    private Habitacion habitacion;
+    private Huesped huesped;
     private LocalDate FechaInicio;
     private LocalDate FechaFin;
     private double PrecioTotal;
     private int CantPersonas;
     private boolean Estado;
 
-    public Reserva() {
-    }
-
-    public Reserva(int IdHabitacion, int IdHuesped, LocalDate FechaInicio, LocalDate FechaFin, double PrecioTotal, int CantPersonas, boolean Estado) {
-        this.IdHabitacion = IdHabitacion;
-        this.IdHuesped = IdHuesped;
+    public Reserva(int IdReserva, Habitacion habitacion, Huesped huesped, LocalDate FechaInicio, LocalDate FechaFin, double PrecioTotal, int CantPersonas, boolean Estado) {
+        this.IdReserva = IdReserva;
+        this.habitacion = habitacion;
+        this.huesped = huesped;
         this.FechaInicio = FechaInicio;
         this.FechaFin = FechaFin;
         this.PrecioTotal = PrecioTotal;
@@ -26,11 +24,13 @@ public class Reserva {
         this.Estado = Estado;
     }
 
-    
-    public Reserva(int IdReserva, int IdHabitacion, int IdHuesped, LocalDate FechaInicio, LocalDate FechaFin, double PrecioTotal, int CantPersonas, boolean Estado) {
-        this.IdReserva = IdReserva;
-        this.IdHabitacion = IdHabitacion;
-        this.IdHuesped = IdHuesped;
+    public Reserva() {
+
+    }
+
+    public Reserva(Habitacion habitacion, Huesped huesped, LocalDate FechaInicio, LocalDate FechaFin, double PrecioTotal, int CantPersonas, boolean Estado) {
+        this.habitacion = habitacion;
+        this.huesped = huesped;
         this.FechaInicio = FechaInicio;
         this.FechaFin = FechaFin;
         this.PrecioTotal = PrecioTotal;
@@ -46,20 +46,20 @@ public class Reserva {
         this.IdReserva = IdReserva;
     }
 
-    public int getIdHabitacion() {
-        return IdHabitacion;
+    public Habitacion getHabitacion() {
+        return habitacion;
     }
 
-    public void setIdHabitacion(int IdHabitacion) {
-        this.IdHabitacion = IdHabitacion;
+    public void setHabitacion(Habitacion habitacion) {
+        this.habitacion = habitacion;
     }
 
-    public int getIdHuesped() {
-        return IdHuesped;
+    public Huesped getHuesped() {
+        return huesped;
     }
 
-    public void setIdHuesped(int IdHuesped) {
-        this.IdHuesped = IdHuesped;
+    public void setHuesped(Huesped huesped) {
+        this.huesped = huesped;
     }
 
     public LocalDate getFechaInicio() {
@@ -104,9 +104,10 @@ public class Reserva {
 
     @Override
     public String toString() {
-        return "Reserva{" + "IdReserva=" + IdReserva + ", IdHabitacion=" + IdHabitacion + ", IdHuesped=" + IdHuesped + ", FechaInicio=" + FechaInicio + ", FechaFin=" + FechaFin + ", PrecioTotal=" + PrecioTotal + ", CantPersonas=" + CantPersonas + ", Estado=" + Estado + '}';
+        return "Reserva{" + "IdReserva=" + IdReserva + ", habitacion=" + habitacion + ", huesped=" + huesped + ", FechaInicio=" + FechaInicio + ", FechaFin=" + FechaFin + ", PrecioTotal=" + PrecioTotal + ", CantPersonas=" + CantPersonas + ", Estado=" + Estado + '}';
     }
+
     
     
-    
+   
 }
