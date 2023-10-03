@@ -15,13 +15,13 @@ public class Habitacion {
     private int Idcategoria;
     private int NroHabitacion;
     private int Piso;
-    private boolean Refaccion;
+    private boolean estado;
 
-    public Habitacion(int Idcategoria, int NroHabitacion, int Piso, boolean Refaccion) {
+    public Habitacion(int Idcategoria, int NroHabitacion, int Piso, boolean estado) {
         this.Idcategoria = Idcategoria;
         this.NroHabitacion = NroHabitacion;
         this.Piso = Piso;
-        this.Refaccion = Refaccion;
+        this.estado = estado;
     }
 
     public Habitacion() {
@@ -29,12 +29,12 @@ public class Habitacion {
     
     
     
-    public Habitacion(int IdHabitacion, int Idcategoria, int NroHabitacion, int Piso, boolean Refaccion) {
+    public Habitacion(int IdHabitacion, int Idcategoria, int NroHabitacion, int Piso, boolean estado) {
         this.IdHabitacion = IdHabitacion;
         this.Idcategoria = Idcategoria;
         this.NroHabitacion = NroHabitacion;
         this.Piso = Piso;
-        this.Refaccion = Refaccion;
+        this.estado = estado;
     }
     
 
@@ -70,17 +70,17 @@ public class Habitacion {
         this.Piso = Piso;
     }
 
-    public boolean isRefaccion() {
-        return Refaccion;
+    public boolean isestado() {
+        return estado;
     }
 
-    public void setRefaccion(boolean Refaccion) {
-        this.Refaccion = Refaccion;
+    public void setestado(boolean estado) {
+        this.estado = estado;
     }
 
     @Override
     public String toString() {
-        return "Habitacion{" + "IdHabitacion=" + IdHabitacion + ", Idcategoria=" + Idcategoria + ", NroHabitacion=" + NroHabitacion + ", Piso=" + Piso + ", Refaccion=" + Refaccion + '}';
+        return "Habitacion{" + "IdHabitacion=" + IdHabitacion + ", Idcategoria=" + Idcategoria + ", NroHabitacion=" + NroHabitacion + ", Piso=" + Piso + ", estado=" + estado + '}';
     }
     
     

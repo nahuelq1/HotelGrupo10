@@ -7,16 +7,18 @@ public class Reserva {
     private int IdReserva;
     private Habitacion habitacion;
     private Huesped huesped;
+    private Categoria categoria;
     private LocalDate FechaInicio;
     private LocalDate FechaFin;
     private double PrecioTotal;
     private int CantPersonas;
     private boolean Estado;
 
-    public Reserva(int IdReserva, Habitacion habitacion, Huesped huesped, LocalDate FechaInicio, LocalDate FechaFin, double PrecioTotal, int CantPersonas, boolean Estado) {
+    public Reserva(int IdReserva, Habitacion habitacion, Huesped huesped, Categoria categoria, LocalDate FechaInicio, LocalDate FechaFin, double PrecioTotal, int CantPersonas, boolean Estado) {
         this.IdReserva = IdReserva;
         this.habitacion = habitacion;
         this.huesped = huesped;
+        this.categoria= categoria;
         this.FechaInicio = FechaInicio;
         this.FechaFin = FechaFin;
         this.PrecioTotal = PrecioTotal;
@@ -28,9 +30,10 @@ public class Reserva {
 
     }
 
-    public Reserva(Habitacion habitacion, Huesped huesped, LocalDate FechaInicio, LocalDate FechaFin, double PrecioTotal, int CantPersonas, boolean Estado) {
+    public Reserva(Habitacion habitacion, Huesped huesped, Categoria categoria, LocalDate FechaInicio, LocalDate FechaFin, double PrecioTotal, int CantPersonas, boolean Estado) {
         this.habitacion = habitacion;
         this.huesped = huesped;
+        this.categoria= categoria;
         this.FechaInicio = FechaInicio;
         this.FechaFin = FechaFin;
         this.PrecioTotal = PrecioTotal;
@@ -60,6 +63,14 @@ public class Reserva {
 
     public void setHuesped(Huesped huesped) {
         this.huesped = huesped;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
     public LocalDate getFechaInicio() {
@@ -104,9 +115,10 @@ public class Reserva {
 
     @Override
     public String toString() {
-        return "Reserva{" + "IdReserva=" + IdReserva + ", habitacion=" + habitacion + ", huesped=" + huesped + ", FechaInicio=" + FechaInicio + ", FechaFin=" + FechaFin + ", PrecioTotal=" + PrecioTotal + ", CantPersonas=" + CantPersonas + ", Estado=" + Estado + '}';
+        return "Reserva{" + "IdReserva=" + IdReserva + ", habitacion=" + habitacion + ", huesped=" + huesped + ", categoria=" + categoria + ", FechaInicio=" + FechaInicio + ", FechaFin=" + FechaFin + ", PrecioTotal=" + PrecioTotal + ", CantPersonas=" + CantPersonas + ", Estado=" + Estado + '}';
     }
 
+    
     
     
    
