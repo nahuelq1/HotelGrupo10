@@ -128,7 +128,7 @@ public List<Categoria> mostrarHabitaciones(String TipoHabitacion){
             ResultSet rs=ps.executeQuery();
             while (rs.next()) {
             Categoria categoria= new Categoria();
-            categoria.setIdCategoria(rs.getInt("idCategoria"));
+            categoria.setIdCategoria(rs.getInt("idCategoria"));//categoria
             categoria.setTipoHabitacion(rs.getString("tipoHabitacion"));
             categoria.setEstado(rs.getBoolean("estado"));
             categorias.add(categoria);
