@@ -42,13 +42,17 @@ public class HabitacionData {
         String sql = "UPDATE habitacion SET idCategoria=?,nroHabitacion=?,piso=?,estado=? WHERE idHabitacion= ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(2, habit.getCategoria().getIdCategoria());
-            ps.setInt(3, habit.getNroHabitacion());
-            ps.setInt(4, habit.getPiso());
-            ps.setBoolean(5, habit.isEstado());
+            ps.setInt(1, habit.getCategoria().getIdCategoria());
+            ps.setInt(2, habit.getNroHabitacion());
+            ps.setInt(3, habit.getPiso());
+            ps.setBoolean(4, habit.isEstado());
+            ps.setInt(5, habit.getIdHabitacion());
             int exito = ps.executeUpdate();
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Habitacion modificada");
+            }else{
+            
+            JOptionPane.showMessageDialog(null, "no se realizaron cambios");
             }
             
         } catch (SQLException ex) {
