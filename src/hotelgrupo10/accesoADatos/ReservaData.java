@@ -104,14 +104,14 @@ public class ReservaData {
     }
 
     
-public List<Categoria> mostrarHabitaciones(int idCategoria){
+public List<Categoria> mostrarHabitaciones(String tipoHabitacion){
 
    ArrayList<Categoria> categorias = new ArrayList<>();  
-  String sql ="SELECT tipoHabitacion,estado FROM categoria WHERE idCategoria=?";
+  String sql ="SELECT* FROM categoria WHERE tipoHabitacion=?";
   
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, idCategoria);
+            ps.setString(1, tipoHabitacion);
             ResultSet rs=ps.executeQuery();
             while (rs.next()) {
             Categoria categoria= new Categoria();

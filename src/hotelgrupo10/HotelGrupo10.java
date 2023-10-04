@@ -67,14 +67,14 @@ public class HotelGrupo10 {
 //        }
 //                  *****HABITACION DATA*****
         Categoria categoria = new Categoria();
-        categoria.setIdCategoria(4);
-
-        Habitacion hab1 = new Habitacion(1,categoria, 2, 3, false);
-
-        HabitacionData habitacionData = new HabitacionData();
-////        habitacionData.crearHabitacion(habitacion);
-          habitacionData.modificarHabitacion(hab1);
-//ReservaData res= new ReservaData();
+//        categoria.setIdCategoria(4);
+//
+//        Habitacion hab1 = new Habitacion(1,categoria, 2, 3, false);
+//
+//        HabitacionData habitacionData = new HabitacionData();
+//////        habitacionData.crearHabitacion(habitacion);
+//          habitacionData.modificarHabitacion(hab1);
+ReservaData res= new ReservaData();
 //Reserva resv= new Reserva(hab1, juan, categoria, LocalDate.of(2002, 4, 25),LocalDate.of(2002, 4, 26), 5000, 7, true);
 //// res.crearReserva(resv);
 ////Reserva res1= res.buscarReserva(10);
@@ -89,10 +89,10 @@ public class HotelGrupo10 {
 //////            System.out.println("Materia " + inscripcion.getMateria().getNombre());
 //  
 //
-////        for (Reserva reserva: res.mostrarHabitaciones(10)) {
-////            
-////            System.out.println("tipohabitacion"+ reserva.getCategoria().getTipoHabitacion());
-////            
-////        }
+        for (Categoria categoria1: res.mostrarHabitaciones("suit")) {
+            
+            System.out.println("tipohabitacion " + categoria1.getTipoHabitacion());
+            System.out.println("estado " + categoria1.isEstado());
+        }
 }
 }
