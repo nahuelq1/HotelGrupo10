@@ -1,23 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hotelgrupo10.entidades;
 
-/**
- *
- * @author nahue
- */
 public class Categoria {
-    
+
     private int idCategoria;
     private int CantPersonas;
     private int CantCamas;
-    private String TipoCamas;       
+    private String TipoCamas;
     private String TipoHabitacion;
-    private double Precio;       
-    private boolean Estado;       
+    private double Precio;
+    private boolean Estado;
 
     public Categoria(int CantPersonas, int CantCamas, String TipoCamas, String TipoHabitacion, double Precio, boolean Estado) {
         this.CantPersonas = CantPersonas;
@@ -31,10 +22,6 @@ public class Categoria {
     public Categoria() {
     }
 
-    
-    
-    
-    
     public Categoria(int idCategoria, int CantPersonas, int CantCamas, String TipoCamas, String TipoHabitacion, double Precio, boolean Estado) {
         this.idCategoria = idCategoria;
         this.CantPersonas = CantPersonas;
@@ -105,6 +92,5 @@ public class Categoria {
     public String toString() {
         return "Categoria{" + "idCategoria=" + idCategoria + ", CantPersonas=" + CantPersonas + ", CantCamas=" + CantCamas + ", TipoCamas=" + TipoCamas + ", TipoHabitacion=" + TipoHabitacion + ", Precio=" + Precio + ", Estado=" + Estado + '}';
     }
-            
-            
+
 }

@@ -1,10 +1,7 @@
 package hotelgrupo10.accesoADatos;
 
-import hotelgrupo10.entidades.Habitacion;
 import hotelgrupo10.entidades.Huesped;
-import hotelgrupo10.entidades.Reserva;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

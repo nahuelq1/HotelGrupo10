@@ -1,8 +1,10 @@
 package hotelgrupo10;
 
+import hotelgrupo10.accesoADatos.CategoriaData;
 import hotelgrupo10.accesoADatos.Conexion;
 import hotelgrupo10.accesoADatos.HabitacionData;
 import hotelgrupo10.accesoADatos.HuespedData;
+import hotelgrupo10.entidades.Categoria;
 import hotelgrupo10.entidades.Habitacion;
 import hotelgrupo10.entidades.Huesped;
 import java.sql.Connection;
@@ -13,7 +15,7 @@ public class HotelGrupo10 {
 
         Connection con = Conexion.getConexion();
 
-//                  ****HUESPED DATA****
+//                  *****HUESPED DATA*****
         Huesped juan = new Huesped("tes7", "test2", 955831091, "Bolivia2", "Gonzalo@21.comt",
                 1143564, true);
         HuespedData huespd = new HuespedData();
@@ -39,11 +41,32 @@ public class HotelGrupo10 {
 //        }
 //
 //    }
+//                  *****CATEGORIA DATA*****
+        Categoria categ = new Categoria(2, 2, 2, "Premium5", "suit", 1600, true);
+        CategoriaData categD = new CategoriaData();
+//        categD.agregarCategoria(categ);
+//        categD.modificarCategoria(categ);
+//        categD.eliminarCategoria(1);
 
-//                  ****HABITACION DATA****
-//        Habitacion habi=new Habitacion(1, 1, 1, true);
-//        HabitacionData habiD = new HabitacionData();
-//        habiD.crearHabitacion(habi);
+//        Categoria categoriaEncontrada = categD.buscarCategoria(2);
+//        if (categoriaEncontrada != null) {
+//            System.out.println("cant personas:  " + categoriaEncontrada.getCantPersonas());
+//            System.out.println("precio:         " + categoriaEncontrada.getPrecio());
+//            System.out.println("id:             " + categoriaEncontrada.getIdCategoria());
+//        }
+//        for (Categoria categoria : categD.listarCategorias()) {
+//            System.out.println("*************");
+//            System.out.println("cant personas:  " + categoria.getCantPersonas());
+//            System.out.println("precio:         " + categoria.getPrecio());
+//            System.out.println("id:             " + categoria.getIdCategoria());
+//        }
+//                  *****HABITACION DATA*****
+        Categoria categoria = new Categoria();
+        categoria.setIdCategoria(1);
 
+        Habitacion habitacion = new Habitacion(categoria, 1, 1, true);
+
+        HabitacionData habitacionData = new HabitacionData();
+        habitacionData.crearHabitacion(habitacion);
     }
 }
