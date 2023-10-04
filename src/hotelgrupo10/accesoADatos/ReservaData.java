@@ -28,8 +28,7 @@ public class ReservaData {
 
     public void crearReserva(Reserva resv) {
 
-        String sql = "INSERT INTO reserva(IdHabitacion,IdHuesped,FechaInicio,FechaFin,PrecioTotal,CantPersonas,Estado)"
-                + "VALUES (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO reserva(idHabitacion,idHuesped,FechaInicio,FechaFin,PrecioTotal,CantPersonas,Estado) VALUES (?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, resv.getHabitacion().getIdHabitacion());
@@ -52,22 +51,22 @@ public class ReservaData {
         }
     }
 
-    public Reserva buscarReserva(int idreserva, int idHabitacion, int idHuesped) {
+    public Reserva buscarReserva(int id) {
 
         String sql = "SELECT IdHabitacion,IdHuesped,FechaInicio,FechaFin,PrecioTotal,CantPersonas FROM reserva WHERE idReserva= ? AND estado=1";
         Reserva reserva = null;
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(3, idHuesped);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 reserva = new Reserva();
                 Habitacion habitacion = new Habitacion();
                 Huesped huesped = new Huesped();
-                reserva.setIdReserva(idreserva);
-                habitacion.setIdHabitacion(idHabitacion);
-                huesped.setIdHuesped(idHuesped);
+                reserva.setIdReserva(id);
+                habitacion.setIdHabitacion(id);
+                huesped.setIdHuesped(id);
                 reserva.setFechaInicio(rs.getDate("FechaInicio").toLocalDate());
                 reserva.setFechaFin(rs.getDate("FechaFin").toLocalDate());
                 reserva.setPrecioTotal(rs.getDouble("PrecioTotal"));
@@ -87,15 +86,14 @@ public class ReservaData {
         return reserva;
     }
 
-    public void cancelarReserva(Reserva reserva) {
-        String sql = "UPDATE reserva SET estado = ? WHERE idreserva = ?";
+    public void cancelarReserva(int id) {
+        String sql = "UPDATE reserva SET estado = 0 WHERE idreserva = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setBoolean(1, false); // Establece el estado de la reserva como "cancelada" (false)
-            ps.setInt(2, reserva.getIdReserva()); // Suponiendo que tienes una propiedad "idReserva" en la clase Reserva
+            ps.setInt(1, id);
             int filas = ps.executeUpdate();
-            ps.close();
-            if (filas > 0) {
+            
+            if (filas ==1) {
                 JOptionPane.showMessageDialog(null, "Reserva cancelada con éxito");
             } else {
                 JOptionPane.showMessageDialog(null, "La reserva no pudo ser cancelada");
@@ -106,18 +104,17 @@ public class ReservaData {
     }
 
     
-public List<Categoria> mostrarHabitaciones(String TipoHabitacion){
+public List<Categoria> mostrarHabitaciones(int idCategoria){
 
    ArrayList<Categoria> categorias = new ArrayList<>();  
-  String sql = "SELECT reserva.idHabitacion, tipoHabitacion, estado FROM reserva, Categoria WHERE reserva.idHabitacion = habitacion.idHabitacion AND reserva.idHuesped = ?;";
+  String sql ="SELECT tipoHabitacion,estado FROM categoria WHERE idCategoria=?";
   
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, TipoHabitacion);
+            ps.setInt(1, idCategoria);
             ResultSet rs=ps.executeQuery();
             while (rs.next()) {
             Categoria categoria= new Categoria();
-            categoria.setIdCategoria(rs.getInt("idCategoria"));//categoria
             categoria.setTipoHabitacion(rs.getString("tipoHabitacion"));
             categoria.setEstado(rs.getBoolean("estado"));
             categorias.add(categoria);
