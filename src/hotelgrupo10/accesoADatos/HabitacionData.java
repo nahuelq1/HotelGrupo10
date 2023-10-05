@@ -1,21 +1,24 @@
 package hotelgrupo10.accesoADatos;
 
+import hotelgrupo10.entidades.Categoria;
 import java.sql.Connection;
 import hotelgrupo10.entidades.Habitacion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class HabitacionData {
-    
+
     private Connection con = null;
-    
+
     public HabitacionData() {
         con = Conexion.getConexion();
     }
-    
+
     public void crearHabitacion(Habitacion habit) {
         String sql = "INSERT INTO habitacion (idHabitacion, idCategoria, nroHabitacion, piso, estado) VALUES (?,?,?,?,?)";
         try {
@@ -32,14 +35,15 @@ public class HabitacionData {
                 JOptionPane.showMessageDialog(null, "Reserva realizada con exito");
             }
             ps.close();
-            
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al realizar la reserva");
         }
     }
-    
+
     public void modificarHabitacion(Habitacion habit) {
-        String sql = "UPDATE habitacion SET idCategoria=?,nroHabitacion=?,piso=?,estado=? WHERE idHabitacion= ?";
+        String sql = "UPDATE habitacion SET idCategoria=?,nroHabitacion=?,piso=?,estado=? WHERE "
+                + "idHabitacion= ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, habit.getCategoria().getIdCategoria());
@@ -50,16 +54,16 @@ public class HabitacionData {
             int exito = ps.executeUpdate();
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Habitacion modificada");
-            }else{
-            
-            JOptionPane.showMessageDialog(null, "no se realizaron cambios");
+            } else {
+
+                JOptionPane.showMessageDialog(null, "no se realizaron cambios");
             }
-            
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Habitacion");
         }
     }
-    
+
     public void eliminarHabitacion(int IdHabit) {
         String sql = "UPDATE habitacion SET estado=0 WHERE idHabitacion = ?";
         try {
@@ -76,4 +80,73 @@ public class HabitacionData {
             JOptionPane.showMessageDialog(null, "Error al eliminar Habitacion");
         }
     }
+
+    public List<Habitacion> listarHabitaciones() {
+        String sql = "SELECT idHabitacion, idCategoria, NroHabitacion, Piso, estado "
+                + "FROM habitacion WHERE estado = 1";
+        ArrayList<Habitacion> habitaciones = new ArrayList<>();
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Habitacion habitacion = new Habitacion();
+                
+                CategoriaData categD = new CategoriaData();
+                int idCategoria = rs.getInt("idCategoria");
+                Categoria categoria = categD.buscarCategoria(idCategoria);
+
+                habitacion.setCategoria(categoria);
+                habitacion.setNroHabitacion(rs.getInt("NroHabitacion"));
+                habitacion.setPiso(rs.getInt("Piso"));
+                habitacion.setEstado(rs.getBoolean("estado"));
+                habitacion.setIdHabitacion(rs.getInt("IdHabitacion"));
+                
+                habitaciones.add(habitacion);
+            }
+
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla habitación");
+        }
+
+        return habitaciones;
+    }
+
+    public Habitacion buscarHabitacion(int idHabitacion) {
+        String sql = "SELECT idCategoria, NroHabitacion, Piso, estado "
+                + "FROM habitacion WHERE IdHabitacion = ? AND estado = 1";
+        Habitacion habitacionEncontrada = null;
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idHabitacion);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                habitacionEncontrada = new Habitacion();
+
+                CategoriaData categD = new CategoriaData();
+                int idCategoria = rs.getInt("idCategoria");
+                Categoria categoria = categD.buscarCategoria(idCategoria);
+
+                habitacionEncontrada.setCategoria(categoria);
+                habitacionEncontrada.setNroHabitacion(rs.getInt("NroHabitacion"));
+                habitacionEncontrada.setPiso(rs.getInt("Piso"));
+                habitacionEncontrada.setEstado(rs.getBoolean("estado"));
+                habitacionEncontrada.setIdHabitacion(idHabitacion);
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe esa habitación");
+            }
+
+            rs.close();
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al buscar la habitación");
+        }
+
+        return habitacionEncontrada;
+    }
+
 }

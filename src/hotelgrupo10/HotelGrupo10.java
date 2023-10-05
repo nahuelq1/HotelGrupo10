@@ -17,11 +17,11 @@ public class HotelGrupo10 {
     public static void main(String[] args) {
 
         Connection con = Conexion.getConexion();
-
-//                  *****HUESPED DATA*****
-        Huesped juan = new Huesped(1,"tes7", "test2", 955831091, "Bolivia2", "Gonzalo@21.comt",
+//
+//                      *****HUESPED DATA*****
+        Huesped juan = new Huesped(1, "tes7", "test2", 955831091, "Bolivia2", "Gonzalo@21.comt",
                 1143564, true);
-//        HuespedData huespd = new HuespedData();
+        HuespedData huespd = new HuespedData();
 //        huespd.agregarHuesped(juan);
 //        huespd.modificarHuesped(juan);
 //        huespd.eliminarHuesped(955831091);
@@ -44,7 +44,9 @@ public class HotelGrupo10 {
 //        }
 //
 //    }
-//                  *****CATEGORIA DATA*****
+//
+//
+//                      *****CATEGORIA DATA*****
         Categoria categ = new Categoria(2, 2, 2, "Premium5", "suit", 1600, true);
         CategoriaData categD = new CategoriaData();
 //        categD.agregarCategoria(categ);
@@ -57,24 +59,46 @@ public class HotelGrupo10 {
 //            System.out.println("precio:         " + categoriaEncontrada.getPrecio());
 //            System.out.println("id:             " + categoriaEncontrada.getIdCategoria());
 //        }
-        
-            
 //            for (Categoria categoria : res.mostrarHabitaciones("suit")) {
 //            System.out.println("*************");
 //            System.out.println("cant personas:  " + categoria.getTipoHabitacion());
 //            System.out.println("precio:         " + categoria.getPrecio());
 //            System.out.println("id:             " + categoria.getIdCategoria());
 //        }
-//                  *****HABITACION DATA*****
+//
+//
+//                      *****HABITACION DATA*****
         Categoria categoria = new Categoria();
-        categoria.setIdCategoria(1);
+        categoria.setIdCategoria(4);
+//
+        Habitacion hab1 = new Habitacion(1, categoria, 2, 3, false);
+//
+        HabitacionData Datahabitacion = new HabitacionData();
+//        habitacionData.crearHabitacion(habitacion);
+//        habitacionData.modificarHabitacion(hab1);
+//        habitacionData.eliminarHabitacion(12);
 
-        Habitacion hab1 = new Habitacion(1,categoria, 2, 3, false);
-
-//        HabitacionData habitacionData = new HabitacionData();
-//////        habitacionData.crearHabitacion(habitacion);
-//          habitacionData.modificarHabitacion(hab1);
-ReservaData res= new ReservaData();
+//        Habitacion hbEncontrada = hbData.buscarHabitacion(13);
+//        if (hbEncontrada != null) {
+//            System.out.println("Categoria:          " + hbEncontrada.getCategoria().getIdCategoria());
+//            System.out.println("Nro Habitacion:     " + hbEncontrada.getNroHabitacion());
+//            System.out.println("Piso:               " + hbEncontrada.getPiso());
+//            System.out.println("IdHabitacion:       " + hbEncontrada.getIdHabitacion());
+//        }
+//        for (Huesped huesped : huespd.listarHuespedes()) {
+//            System.out.println("*************");}
+//        for (Habitacion habitacion1 : Datahabitacion.listarHabitaciones()) {
+//            System.out.println("*************");
+//            System.out.println("Categoria:          " + habitacion1.getCategoria().getIdCategoria());
+//            System.out.println("Nro Habitacion:     " + habitacion1.getNroHabitacion());
+//            System.out.println("Piso:               " + habitacion1.getPiso());
+//            System.out.println("IdHabitacion:       " + habitacion1.getIdHabitacion());
+//        }
+//
+//
+//
+//                      *****RESERVA DATA*****
+        ReservaData res = new ReservaData();
 //Reserva resv= new Reserva(hab1, juan, categoria, LocalDate.of(2002, 4, 25),LocalDate.of(2002, 4, 26), 5000, 7, true);
 //// res.crearReserva(resv);
 ////Reserva res1= res.buscarReserva(10);
@@ -89,10 +113,10 @@ ReservaData res= new ReservaData();
 //////            System.out.println("Materia " + inscripcion.getMateria().getNombre());
 //  
 //
-        for (Categoria categoria1: res.montoEstadia("suit")) {
-            
-            
-        }
+//        for (Categoria categoria1: res.montoEstadia("suit")) {
+//            
+//            
+//        }
 
-}
+    }
 }
