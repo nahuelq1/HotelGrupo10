@@ -12,6 +12,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class ReservaData {
@@ -124,6 +127,32 @@ public List<Categoria> mostrarHabitaciones(String tipoHabitacion){
             JOptionPane.showMessageDialog(null, "error al acceder a la tabla reserva");
         }
   return categorias;
+}
+public List <Categoria> montoEstadia(String tipoHabitacion){
+
+String sql="SELECT * FROM categoria WHERE tipoHabitacion=?";
+ArrayList<Categoria> categorias = new ArrayList<>();  
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, tipoHabitacion);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+            Categoria categoria=new Categoria();
+            categoria.setTipoHabitacion(rs.getString("tipoHabitacion"));
+            categoria.setPrecio(rs.getDouble("precio"));
+            Scanner leer= new Scanner(System.in);
+                System.out.println("ingrese la cantidad de dias");
+            double dias=leer.nextDouble();
+            dias=dias*categoria.getPrecio();
+                System.out.println("el total a pagar es " + dias);
+            }
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null, "error al acceder a la tabla reserva");
+        }
+
+
+return categorias;
 }
 }
 

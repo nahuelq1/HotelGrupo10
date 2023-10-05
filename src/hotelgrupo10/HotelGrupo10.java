@@ -67,10 +67,10 @@ public class HotelGrupo10 {
 //        }
 //                  *****HABITACION DATA*****
         Categoria categoria = new Categoria();
-//        categoria.setIdCategoria(4);
-//
-//        Habitacion hab1 = new Habitacion(1,categoria, 2, 3, false);
-//
+        categoria.setIdCategoria(1);
+
+        Habitacion hab1 = new Habitacion(1,categoria, 2, 3, false);
+
 //        HabitacionData habitacionData = new HabitacionData();
 //////        habitacionData.crearHabitacion(habitacion);
 //          habitacionData.modificarHabitacion(hab1);
@@ -89,10 +89,10 @@ ReservaData res= new ReservaData();
 //////            System.out.println("Materia " + inscripcion.getMateria().getNombre());
 //  
 //
-        for (Categoria categoria1: res.mostrarHabitaciones("suit")) {
+        for (Categoria categoria1: res.montoEstadia("suit")) {
             
-            System.out.println("tipohabitacion " + categoria1.getTipoHabitacion());
-            System.out.println("estado " + categoria1.isEstado());
+            
         }
+
 }
 }
