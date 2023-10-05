@@ -107,10 +107,11 @@ public class ReservaData {
     }
 
     
-public List<Categoria> mostrarHabitaciones(String tipoHabitacion){
+
+public List<Categoria> mostrarHabitacionesLibres(String tipoHabitacion){
 
    ArrayList<Categoria> categorias = new ArrayList<>();  
-  String sql ="SELECT* FROM categoria WHERE tipoHabitacion=?";
+  String sql ="SELECT* FROM categoria WHERE tipoHabitacion=? AND estado=1";
   
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -154,9 +155,20 @@ ArrayList<Categoria> categorias = new ArrayList<>();
 
 return categorias;
 }
+
+public void finReserva(Huesped huesped){
+    
+    String sql="UPDATE habitacion , reserva  SET estado=0 ";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            
+            
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null, "error al acceder a la tabla reserva");
+        }
 }
 
-
+}
 
 
 
