@@ -13,8 +13,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class ReservaData {
@@ -95,8 +93,8 @@ public class ReservaData {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             int filas = ps.executeUpdate();
-            
-            if (filas ==1) {
+
+            if (filas == 1) {
                 JOptionPane.showMessageDialog(null, "Reserva cancelada con éxito");
             } else {
                 JOptionPane.showMessageDialog(null, "La reserva no pudo ser cancelada");
@@ -106,76 +104,99 @@ public class ReservaData {
         }
     }
 
-    
+    public List<Categoria> mostrarHabitacionesLibres(String tipoHabitacion) {
 
-public List<Categoria> mostrarHabitacionesLibres(String tipoHabitacion){
-
-   ArrayList<Categoria> categorias = new ArrayList<>();  
-  String sql ="SELECT* FROM categoria WHERE tipoHabitacion=? AND estado=1";
-  
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, tipoHabitacion);
-            ResultSet rs=ps.executeQuery();
-            while (rs.next()) {
-            Categoria categoria= new Categoria();
-            categoria.setTipoHabitacion(rs.getString("tipoHabitacion"));
-            categoria.setEstado(rs.getBoolean("estado"));
-            categorias.add(categoria);
-            }
-            ps.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "error al acceder a la tabla reserva");
-        }
-  return categorias;
-}
-public List <Categoria> montoEstadia(String tipoHabitacion){
-
-String sql="SELECT * FROM categoria WHERE tipoHabitacion=?";
-ArrayList<Categoria> categorias = new ArrayList<>();  
+        ArrayList<Categoria> categorias = new ArrayList<>();
+        String sql = "SELECT* FROM categoria WHERE tipoHabitacion=? AND estado=1";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, tipoHabitacion);
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
-            Categoria categoria=new Categoria();
-            categoria.setTipoHabitacion(rs.getString("tipoHabitacion"));
-            categoria.setPrecio(rs.getDouble("precio"));
-            Scanner leer= new Scanner(System.in);
+            while (rs.next()) {
+                Categoria categoria = new Categoria();
+                categoria.setTipoHabitacion(rs.getString("tipoHabitacion"));
+                categoria.setEstado(rs.getBoolean("estado"));
+                categorias.add(categoria);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "error al acceder a la tabla reserva");
+        }
+        return categorias;
+    }
+
+    public List<Categoria> montoEstadia(String tipoHabitacion) {
+
+        String sql = "SELECT * FROM categoria WHERE tipoHabitacion=?";
+        ArrayList<Categoria> categorias = new ArrayList<>();
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, tipoHabitacion);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Categoria categoria = new Categoria();
+                categoria.setTipoHabitacion(rs.getString("tipoHabitacion"));
+                categoria.setPrecio(rs.getDouble("precio"));
+                Scanner leer = new Scanner(System.in);
                 System.out.println("ingrese la cantidad de dias");
-            double dias=leer.nextDouble();
-            dias=dias*categoria.getPrecio();
+                double dias = leer.nextDouble();
+                dias = dias * categoria.getPrecio();
                 System.out.println("el total a pagar es " + dias);
             }
         } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null, "error al acceder a la tabla reserva");
+            JOptionPane.showMessageDialog(null, "error al acceder a la tabla reserva");
         }
 
+        return categorias;
+    }
 
-return categorias;
-}
+    public void finReserva(Huesped huesped) {
+        
+        String sql= "SELECT idReserva, idHabitacion FROM reserva WHERE idHuesped = ? AND Estado = 1";//busca resva
+        Reserva reserva = null;
+        int idHabitacion = 0;
 
-public void finReserva(Huesped huesped){
-    
-    String sql="UPDATE habitacion , reserva  SET estado=0 ";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            
-            
+            ps.setInt(1, huesped.getIdHuesped());
+            ResultSet rsReserva = ps.executeQuery();
+
+            if (rsReserva.next()) {
+                reserva = new Reserva();
+                reserva.setIdReserva(rsReserva.getInt("idReserva"));
+                idHabitacion = rsReserva.getInt("idHabitacion");
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe una reserva activa para este huésped.");
+            }
+
+            ps.close();
         } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null, "error al acceder a la tabla reserva");
+            JOptionPane.showMessageDialog(null, "Error al buscar la reserva del huésped.");
         }
-}
+
+        if (reserva != null) {// Mcr reserva como inactiva
+            String sqlMarcarReserva = "UPDATE reserva SET Estado = 0 WHERE idReserva = ?";
+
+            try {
+                PreparedStatement psMarcarReserva = con.prepareStatement(sqlMarcarReserva);
+                psMarcarReserva.setInt(1, reserva.getIdReserva());
+                int filasActualizadas = psMarcarReserva.executeUpdate();
+
+                if (filasActualizadas == 1) {
+                    JOptionPane.showMessageDialog(null, "Reserva marcada como inactiva.");
+                } else {
+                    JOptionPane.showMessageDialog(null, "La reserva no pudo ser marcada como inactiva.");
+                }
+
+                psMarcarReserva.close();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al marcar la reserva como inactiva.");
+            }
+
+        }
+
+    }
 
 }
-
-
-
-
-
-
-
-
-
-    

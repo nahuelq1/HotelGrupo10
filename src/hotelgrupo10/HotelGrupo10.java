@@ -19,7 +19,7 @@ public class HotelGrupo10 {
         Connection con = Conexion.getConexion();
 //
 //                      *****HUESPED DATA*****
-        Huesped juan = new Huesped(1, "tes7", "test2", 955831091, "Bolivia2", "Gonzalo@21.comt",
+        Huesped juan = new Huesped(9, "tes10", "test12", 95583102, "Lones", "Gonzalo@21.comt",
                 1143564, true);
         HuespedData huespd = new HuespedData();
 //        huespd.agregarHuesped(juan);
@@ -47,7 +47,7 @@ public class HotelGrupo10 {
 //
 //
 //                      *****CATEGORIA DATA*****
-        Categoria categ = new Categoria(2, 2, 2, "Premium5", "suit", 1600, true);
+//        Categoria categ = new Categoria(2, 2, 2, "Premium5", "suit", 1600, true);
         CategoriaData categD = new CategoriaData();
 //        categD.agregarCategoria(categ);
 //        categD.modificarCategoria(categ);
@@ -69,24 +69,23 @@ public class HotelGrupo10 {
 //
 //                      *****HABITACION DATA*****
         Categoria categoria = new Categoria();
-        categoria.setIdCategoria(4);
+        categoria.setIdCategoria(2);
 //
-        Habitacion hab1 = new Habitacion(1, categoria, 2, 3, false);
+        Habitacion hab1 = new Habitacion(14, categoria, 2, 3, true);
 //
         HabitacionData Datahabitacion = new HabitacionData();
-//        habitacionData.crearHabitacion(habitacion);
-//        habitacionData.modificarHabitacion(hab1);
-//        habitacionData.eliminarHabitacion(12);
-
-//        Habitacion hbEncontrada = hbData.buscarHabitacion(13);
+//        Datahabitacion.crearHabitacion(hab1);
+//        Datahabitacion.modificarHabitacion(hab1);
+//        Datahabitacion.eliminarHabitacion(12);
+//
+//        Habitacion hbEncontrada = Datahabitacion.buscarHabitacion(13);
 //        if (hbEncontrada != null) {
 //            System.out.println("Categoria:          " + hbEncontrada.getCategoria().getIdCategoria());
 //            System.out.println("Nro Habitacion:     " + hbEncontrada.getNroHabitacion());
 //            System.out.println("Piso:               " + hbEncontrada.getPiso());
 //            System.out.println("IdHabitacion:       " + hbEncontrada.getIdHabitacion());
 //        }
-//        for (Huesped huesped : huespd.listarHuespedes()) {
-//            System.out.println("*************");}
+//
 //        for (Habitacion habitacion1 : Datahabitacion.listarHabitaciones()) {
 //            System.out.println("*************");
 //            System.out.println("Categoria:          " + habitacion1.getCategoria().getIdCategoria());
@@ -99,24 +98,33 @@ public class HotelGrupo10 {
 //
 //                      *****RESERVA DATA*****
         ReservaData res = new ReservaData();
-//Reserva resv= new Reserva(hab1, juan, categoria, LocalDate.of(2002, 4, 25),LocalDate.of(2002, 4, 26), 5000, 7, true);
-//// res.crearReserva(resv);
-////Reserva res1= res.buscarReserva(10);
-////if (res1 != null) {
-////            System.out.println("precio " + res1.getPrecioTotal());
-////            System.out.println("cantpersonas " + res1.getCantPersonas());
-////       }
-////res.cancelarReserva(10);
-////for (Inscripcion inscripcion : id.obtenerInscripciones()) {
-//////            System.out.println("Id " + inscripcion.getIdInscripcion());
-//////            System.out.println("Apellido " + inscripcion.getAlumno().getApellido());
-//////            System.out.println("Materia " + inscripcion.getMateria().getNombre());
-//  
+        HabitacionData hbD = new HabitacionData();
+
+        Reserva resv = new Reserva(hab1, juan, categoria, LocalDate.of(2002, 4, 25), LocalDate.of(2002, 4, 26), 5000, 7, true);
+
+//        res.crearReserva(resv);
+//        res.cancelarReserva(9);
+//
+//        Reserva res1 = res.buscarReserva(8);
+//        if (res1 != null) {
+//            System.out.println("precio " + res1.getPrecioTotal());
+//            System.out.println("cantpersonas " + res1.getCantPersonas());
+//        }
+//
+//        mostrarHabitacionesLibres(hb1);
+//        for (Reserva reserva : res.mostrarHabitacionesLibres(hab1)) {
+//            System.out.println("Id " + reserva.);
+//            System.out.println("Apellido " + reserva.getAlumno().getApellido());
+//            System.out.println("Materia " + reserva.getMateria().getNombre());
+//        }
+        for (Categoria categoria1 : res.mostrarHabitacionesLibres("suit2")) {
+            System.out.println("tipoHabitacion " + categoria1.getTipoHabitacion());
+        }
+
 //
 //        for (Categoria categoria1: res.montoEstadia("suit")) {
 //            
 //            
 //        }
-
     }
 }
