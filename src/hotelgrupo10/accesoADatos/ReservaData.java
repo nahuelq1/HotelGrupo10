@@ -135,7 +135,7 @@ public class ReservaData {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, tipoHabitacion);
             ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
+            if(rs.next()) {
                 Categoria categoria = new Categoria();
                 categoria.setTipoHabitacion(rs.getString("tipoHabitacion"));
                 categoria.setPrecio(rs.getDouble("precio"));
