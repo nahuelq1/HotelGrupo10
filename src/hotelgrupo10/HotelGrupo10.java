@@ -19,7 +19,7 @@ public class HotelGrupo10 {
         Connection con = Conexion.getConexion();
 //
 //                      *****HUESPED DATA*****
-        Huesped juan = new Huesped(9, "tes10", "test12", 95583102, "Lones", "Gonzalo@21.comt",
+        Huesped juan = new Huesped(4, "tes10", "test12", 95583102, "Lones", "Gonzalo@21.comt",
                 1143564, true);
         HuespedData huespd = new HuespedData();
 //        huespd.agregarHuesped(juan);
@@ -47,8 +47,8 @@ public class HotelGrupo10 {
 //
 //
 //                      *****CATEGORIA DATA*****
-        Categoria categ = new Categoria(2, 2, 2, "Premium5", "suit", 1600, true);
-        CategoriaData categD = new CategoriaData();
+//        Categoria categ = new Categoria(2, 2, 2, "Premium5", "suit", 1600, true);
+//        CategoriaData categD = new CategoriaData();
 //        categD.agregarCategoria(categ);
 //        categD.modificarCategoria(categ);
 //        categD.eliminarCategoria(1);
@@ -67,10 +67,10 @@ public class HotelGrupo10 {
 //
 //
 //                      *****HABITACION DATA*****
-//        Categoria categoria = new Categoria();
-//        categoria.setIdCategoria(2);
+        Categoria categoria = new Categoria();
+        categoria.setIdCategoria(2);
 //
-//        Habitacion hab1 = new Habitacion(14, categoria, 2, 3, true);
+        Habitacion hab1 = new Habitacion(13, categoria, 2, 3, true);
 //
 //        HabitacionData Datahabitacion = new HabitacionData();
 //        Datahabitacion.crearHabitacion(hab1);
@@ -99,7 +99,7 @@ public class HotelGrupo10 {
         ReservaData res = new ReservaData();
         HabitacionData hbD = new HabitacionData();
 //
-//        Reserva resv = new Reserva(hab1, juan, categoria, LocalDate.of(2002, 4, 25), LocalDate.of(2002, 4, 26), 5000, 7, true);
+        Reserva resv = new Reserva(hab1, juan, categoria, LocalDate.of(2002, 4, 25), LocalDate.of(2002, 4, 26), 5000, 7, true);
 //        res.crearReserva(resv);
 //        res.cancelarReserva(9);
 //
@@ -109,16 +109,20 @@ public class HotelGrupo10 {
 //            System.out.println("cantpersonas " + res1.getCantPersonas());
 //        }
 //
-//        for (Categoria categoria1 : res.mostrarHabitacionesLibres("suit2")) {
-//            System.out.println("tipoHabitacion " + categoria1.getTipoHabitacion());
+//        for (Categoria categoria1 : res.mostrarHabitacionesLibres("clasico")) {
+//            System.out.println("Id:             " + categoria1.getIdCategoria());
+//            System.out.println("Tipo Hab:       " + categoria1.getTipoHabitacion());
+//            System.out.println("-");
 //        }
 //
 //        for (Categoria categoria1 : res.montoEstadia("suit2")) {
-//            System.out.println("tipoHabitacion " + categoria1.getTipoHabitacion());
-//            System.out.println("tipoHabitacion " + categoria1.getPrecio());
+//            System.out.println("\nDatos:              ----");
+//            System.out.println("Tipo de Habitacion: " + categoria1.getTipoHabitacion());
+//            System.out.println("Precio base:        " + categoria1.getPrecio());
 //        }
+//
+//        res.montoEstadia("suit2");
+
         res.finReserva(juan);
-
-
     }
 }
