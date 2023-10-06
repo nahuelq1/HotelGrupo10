@@ -19,7 +19,7 @@ public class HotelGrupo10 {
         Connection con = Conexion.getConexion();
 //
 //                      *****HUESPED DATA*****
-        Huesped juan = new Huesped(4, "tes10", "test12", 95583102, "Lones", "Gonzalo@21.comt",
+        Huesped juan = new Huesped(5, "tes10", "test12", 95583102, "Lones", "Gonzalo@21.comt",
                 1143564, true);
         HuespedData huespd = new HuespedData();
 //        huespd.agregarHuesped(juan);
@@ -123,6 +123,11 @@ public class HotelGrupo10 {
 //
 //        res.montoEstadia("suit2");
 
-        res.finReserva(juan);
+//        res.finReserva(juan);
+for (Reserva res1 : res.busquedaDeReservaPorHuesped(juan)) {
+    System.out.println("ID " + res1.getIdReserva());
+    System.out.println("IDHuesped " + res1.getHuesped().getIdHuesped());
+            
+        }
     }
 }

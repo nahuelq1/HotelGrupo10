@@ -242,4 +242,36 @@ public class ReservaData {
         }
 
     }
+    
+    public List<Reserva> busquedaDeReservaPorHuesped(Huesped huesped) {
+
+        String sql = "SELECT * FROM reserva";
+        ArrayList<Reserva> reservas = new ArrayList<>();
+        Reserva res = new Reserva();
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, huesped.getIdHuesped());
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                res.setIdReserva(rs.getInt("idReserva"));
+                Habitacion hab = hd.buscarHabitacion(rs.getInt("idHabitacion"));
+                res.setHabitacion(hab);
+                Huesped hus = hd2.buscarHuespedPorId(rs.getInt("idHuesped"));
+                res.setHuesped(hus);
+                res.setFechaInicio(rs.getDate("fechaInicio").toLocalDate());
+                res.setFechaFin(rs.getDate("fechaFin").toLocalDate());
+                res.setPrecioTotal(rs.getInt("precioTotal"));
+                res.setCantPersonas(rs.getInt("cantPersonas"));
+                res.setEstado(rs.getBoolean("estado"));
+                reservas.add(res);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "error al acceder a la tabla reserva");
+        }
+
+        return reservas;
+
+    }
 }

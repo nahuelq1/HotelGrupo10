@@ -108,7 +108,36 @@ public class HuespedData {
         }
         return huespedEncontrado;
     }
+ public Huesped buscarHuespedPorId(int id) {
+        String sql = "SELECT * FROM huesped WHERE idHuesped = ? AND estado=1";
+        Huesped huespedEncontrado = null;
 
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                huespedEncontrado = new Huesped();
+                huespedEncontrado.setIdHuesped(id);
+                huespedEncontrado.setDNI(rs.getInt("dni"));
+                huespedEncontrado.setNombre(rs.getString("nombre"));
+                huespedEncontrado.setApellido(rs.getString("apellido"));
+                huespedEncontrado.setDomicilio(rs.getString("domicilio"));
+                huespedEncontrado.setCorreo(rs.getString("correo"));
+                huespedEncontrado.setCelular(rs.getInt("celular"));
+                huespedEncontrado.setEstado(rs.getBoolean("estado"));
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe ese huesped");
+            }
+
+            rs.close();
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al buscar el huésped");
+        }
+        return huespedEncontrado;
+    }
     public List<Huesped> listarHuespedes() {
         String sql = "SELECT idHuesped, dni, nombre, apellido, domicilio, correo,"
                 + " celular, estado FROM huesped WHERE estado = 1";
