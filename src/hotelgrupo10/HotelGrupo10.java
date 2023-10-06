@@ -48,11 +48,10 @@ public class HotelGrupo10 {
 //
 //                      *****CATEGORIA DATA*****
 //        Categoria categ = new Categoria(2, 2, 2, "Premium5", "suit", 1600, true);
-        CategoriaData categD = new CategoriaData();
+//        CategoriaData categD = new CategoriaData();
 //        categD.agregarCategoria(categ);
 //        categD.modificarCategoria(categ);
 //        categD.eliminarCategoria(1);
-
 //        Categoria categoriaEncontrada = categD.buscarCategoria(2);
 //        if (categoriaEncontrada != null) {
 //            System.out.println("cant personas:  " + categoriaEncontrada.getCantPersonas());
@@ -68,12 +67,12 @@ public class HotelGrupo10 {
 //
 //
 //                      *****HABITACION DATA*****
-        Categoria categoria = new Categoria();
-        categoria.setIdCategoria(2);
+//        Categoria categoria = new Categoria();
+//        categoria.setIdCategoria(2);
 //
-        Habitacion hab1 = new Habitacion(14, categoria, 2, 3, true);
+//        Habitacion hab1 = new Habitacion(14, categoria, 2, 3, true);
 //
-        HabitacionData Datahabitacion = new HabitacionData();
+//        HabitacionData Datahabitacion = new HabitacionData();
 //        Datahabitacion.crearHabitacion(hab1);
 //        Datahabitacion.modificarHabitacion(hab1);
 //        Datahabitacion.eliminarHabitacion(12);
@@ -97,11 +96,10 @@ public class HotelGrupo10 {
 //
 //
 //                      *****RESERVA DATA*****
-        ReservaData res = new ReservaData();
-        HabitacionData hbD = new HabitacionData();
-
-        Reserva resv = new Reserva(hab1, juan, categoria, LocalDate.of(2002, 4, 25), LocalDate.of(2002, 4, 26), 5000, 7, true);
-
+//        ReservaData res = new ReservaData();
+//        HabitacionData hbD = new HabitacionData();
+//
+//        Reserva resv = new Reserva(hab1, juan, categoria, LocalDate.of(2002, 4, 25), LocalDate.of(2002, 4, 26), 5000, 7, true);
 //        res.crearReserva(resv);
 //        res.cancelarReserva(9);
 //
@@ -111,20 +109,13 @@ public class HotelGrupo10 {
 //            System.out.println("cantpersonas " + res1.getCantPersonas());
 //        }
 //
-//        mostrarHabitacionesLibres(hb1);
-//        for (Reserva reserva : res.mostrarHabitacionesLibres(hab1)) {
-//            System.out.println("Id " + reserva.);
-//            System.out.println("Apellido " + reserva.getAlumno().getApellido());
-//            System.out.println("Materia " + reserva.getMateria().getNombre());
+//        for (Categoria categoria1 : res.mostrarHabitacionesLibres("suit2")) {
+//            System.out.println("tipoHabitacion " + categoria1.getTipoHabitacion());
 //        }
-        for (Categoria categoria1 : res.mostrarHabitacionesLibres("suit2")) {
-            System.out.println("tipoHabitacion " + categoria1.getTipoHabitacion());
-        }
-
 //
-//        for (Categoria categoria1: res.montoEstadia("suit")) {
-//            
-//            
+//        for (Categoria categoria1 : res.montoEstadia("suit2")) {
+//            System.out.println("tipoHabitacion " + categoria1.getTipoHabitacion());
+//            System.out.println("tipoHabitacion " + categoria1.getPrecio());
 //        }
     }
 }
