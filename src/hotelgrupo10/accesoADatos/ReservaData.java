@@ -117,6 +117,8 @@ public class ReservaData {
                 Categoria categoria = new Categoria();
                 categoria.setTipoHabitacion(rs.getString("tipoHabitacion"));
                 categoria.setEstado(rs.getBoolean("estado"));
+                categoria.setIdCategoria(rs.getInt("IdCategoria"));
+
                 categorias.add(categoria);
             }
             ps.close();
@@ -135,7 +137,7 @@ public class ReservaData {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, tipoHabitacion);
             ResultSet rs = ps.executeQuery();
-            if(rs.next()) {
+            if (rs.next()) {
                 Categoria categoria = new Categoria();
                 categoria.setTipoHabitacion(rs.getString("tipoHabitacion"));
                 categoria.setPrecio(rs.getDouble("precio"));
@@ -144,6 +146,7 @@ public class ReservaData {
                 double dias = leer.nextDouble();
                 dias = dias * categoria.getPrecio();
                 System.out.println("el total a pagar es " + dias);
+                categorias.add(categoria);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "error al acceder a la tabla reserva");
@@ -153,8 +156,8 @@ public class ReservaData {
     }
 
     public void finReserva(Huesped huesped) {
-        
-        String sql= "SELECT idReserva, idHabitacion FROM reserva WHERE idHuesped = ? AND Estado = 1";//busca resva
+
+        String sql = "SELECT idReserva, idHabitacion FROM reserva WHERE idHuesped = ? AND Estado = 1";//busca resva
         Reserva reserva = null;
         int idHabitacion = 0;
 

@@ -109,16 +109,20 @@ public class HotelGrupo10 {
 //            System.out.println("cantpersonas " + res1.getCantPersonas());
 //        }
 //
-//        for (Categoria categoria1 : res.mostrarHabitacionesLibres("suit2")) {
-//            System.out.println("tipoHabitacion " + categoria1.getTipoHabitacion());
+//        for (Categoria categoria1 : res.mostrarHabitacionesLibres("clasico")) {
+//            System.out.println("Id:             " + categoria1.getIdCategoria());
+//            System.out.println("Tipo Hab:       " + categoria1.getTipoHabitacion());
+//            System.out.println("-");
 //        }
 //
-//        for (Categoria categoria1 : res.montoEstadia("suit2")) {
-//            System.out.println("tipoHabitacion " + categoria1.getTipoHabitacion());
-//            System.out.println("tipoHabitacion " + categoria1.getPrecio());
-//        }
-        res.finReserva(juan);
+        for (Categoria categoria1 : res.montoEstadia("suit2")) {
+            System.out.println("\nDatos:              ----");
+            System.out.println("Tipo de Habitacion: " + categoria1.getTipoHabitacion());
+            System.out.println("Precio base:        " + categoria1.getPrecio());
+        }
+//
+//        res.montoEstadia("suit2");
 
-
+//        res.finReserva(juan);
     }
 }
