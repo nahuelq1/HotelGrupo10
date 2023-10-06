@@ -47,8 +47,8 @@ public class HotelGrupo10 {
 //
 //
 //                      *****CATEGORIA DATA*****
-//        Categoria categ = new Categoria(2, 2, 2, "Premium5", "suit", 1600, true);
-//        CategoriaData categD = new CategoriaData();
+        Categoria categ = new Categoria(2, 2, 2, "Premium5", "suit", 1600, true);
+        CategoriaData categD = new CategoriaData();
 //        categD.agregarCategoria(categ);
 //        categD.modificarCategoria(categ);
 //        categD.eliminarCategoria(1);
@@ -96,8 +96,8 @@ public class HotelGrupo10 {
 //
 //
 //                      *****RESERVA DATA*****
-//        ReservaData res = new ReservaData();
-//        HabitacionData hbD = new HabitacionData();
+        ReservaData res = new ReservaData();
+        HabitacionData hbD = new HabitacionData();
 //
 //        Reserva resv = new Reserva(hab1, juan, categoria, LocalDate.of(2002, 4, 25), LocalDate.of(2002, 4, 26), 5000, 7, true);
 //        res.crearReserva(resv);
@@ -117,5 +117,8 @@ public class HotelGrupo10 {
 //            System.out.println("tipoHabitacion " + categoria1.getTipoHabitacion());
 //            System.out.println("tipoHabitacion " + categoria1.getPrecio());
 //        }
+        res.finReserva(juan);
+
+
     }
 }

@@ -167,6 +167,7 @@ public class ReservaData {
                 reserva = new Reserva();
                 reserva.setIdReserva(rsReserva.getInt("idReserva"));
                 idHabitacion = rsReserva.getInt("idHabitacion");
+                JOptionPane.showMessageDialog(null, "Reserva existente.");
             } else {
                 JOptionPane.showMessageDialog(null, "No existe una reserva activa para este huésped.");
             }
