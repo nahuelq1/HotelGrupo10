@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -28,7 +30,33 @@ public class ReservaData {
     }
 
     public void crearReserva(Reserva resv) {
+        LocalDate fechaEntrada = resv.getFechaInicio();
+        LocalDate fechaSalida = resv.getFechaFin();
+        int cantPersonas = resv.getCantPersonas();
 
+        CategoriaData categoriaData = new CategoriaData();
+        List<Categoria> categoriasDisponibles = categoriaData.listarCategoriasDisponiblesPorCantidadPersonas(cantPersonas);
+
+//        if (categoriasDisponibles.isEmpty()) { ==null
+//            JOptionPane.showMessageDialog(null, "No se encontró un tipo de habitación adecuado para la cantidad de personas.");
+//            return; 
+//        }
+        Categoria categoriaElegida = categoriasDisponibles.get(0); // Tomar la primera categoría disponible
+
+        //Monto estadia
+        double precioPorNoche = categoriaElegida.getPrecio();
+        long diasEstadia = ChronoUnit.DAYS.between(fechaEntrada, fechaSalida);
+        double montoEstadia = precioPorNoche * diasEstadia;
+
+        // Crear la reserva y marcar la habitación como ocupada.
+        HabitacionData habitacionData = new HabitacionData();
+        Habitacion habitacionDisponible = habitacionData.obtenerHabitacionDisponiblePorCategoria(categoriaElegida.getIdCategoria());
+
+        if (habitacionDisponible == null) {
+            JOptionPane.showMessageDialog(null, "No hay habitaciones disponibles para esta categoría.");
+            return;
+        }
+        
         String sql = "INSERT INTO reserva(idHabitacion,idHuesped,FechaInicio,FechaFin,"
                 + "PrecioTotal,CantPersonas,Estado) VALUES (?,?,?,?,?,?,?)";
         String sqlActulizarHabitacion = "UPDATE habitacion SET estado = 0 WHERE idHabitacion = ?";
@@ -36,10 +64,10 @@ public class ReservaData {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, resv.getHabitacion().getIdHabitacion());
             ps.setInt(2, resv.getHuesped().getIdHuesped());
-            ps.setDate(3, Date.valueOf(resv.getFechaInicio()));
-            ps.setDate(4, Date.valueOf(resv.getFechaFin()));
-            ps.setDouble(5, resv.getPrecioTotal());
-            ps.setInt(6, resv.getCantPersonas());
+            ps.setDate(3, Date.valueOf(fechaEntrada));
+            ps.setDate(4, Date.valueOf(fechaSalida));
+            ps.setDouble(5, montoEstadia);
+            ps.setInt(6, cantPersonas);
             ps.setBoolean(7, resv.isEstado());
             ps.executeUpdate();
 
@@ -62,7 +90,8 @@ public class ReservaData {
 
     public Reserva buscarReserva(int id) {
 
-        String sql = "SELECT IdHabitacion,IdHuesped,FechaInicio,FechaFin,PrecioTotal,CantPersonas FROM reserva WHERE idReserva= ? AND estado=1";
+        String sql = "SELECT IdHabitacion,IdHuesped,FechaInicio,FechaFin,PrecioTotal,"
+                + "CantPersonas FROM reserva WHERE idReserva= ? AND estado=1";
         Reserva reserva = null;
 
         try {
@@ -93,23 +122,6 @@ public class ReservaData {
         }
 
         return reserva;
-    }
-
-    public void cancelarReserva(int id) {
-        String sql = "UPDATE reserva SET estado = 0 WHERE idreserva = ?";
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
-            int filas = ps.executeUpdate();
-
-            if (filas == 1) {
-                JOptionPane.showMessageDialog(null, "Reserva cancelada con éxito");
-            } else {
-                JOptionPane.showMessageDialog(null, "La reserva no pudo ser cancelada");
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al cancelar la reserva");
-        }
     }
 
     public List<Categoria> mostrarHabitacionesLibres(String tipoHabitacion) {

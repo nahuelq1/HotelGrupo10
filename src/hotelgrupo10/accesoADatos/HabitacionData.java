@@ -92,7 +92,7 @@ public class HabitacionData {
 
             while (rs.next()) {
                 Habitacion habitacion = new Habitacion();
-                
+
                 CategoriaData categD = new CategoriaData();
                 int idCategoria = rs.getInt("idCategoria");
                 Categoria categoria = categD.buscarCategoria(idCategoria);
@@ -102,7 +102,7 @@ public class HabitacionData {
                 habitacion.setPiso(rs.getInt("Piso"));
                 habitacion.setEstado(rs.getBoolean("estado"));
                 habitacion.setIdHabitacion(rs.getInt("IdHabitacion"));
-                
+
                 habitaciones.add(habitacion);
             }
 
@@ -149,4 +149,31 @@ public class HabitacionData {
         return habitacionEncontrada;
     }
 
+    public Habitacion obtenerHabitacionDisponiblePorCategoria(int idCategoria) {
+        Habitacion habitacionDisponible = null;
+        String sql = "SELECT * FROM habitacion WHERE idCategoria = ? AND estado = 0 LIMIT 1"; // Limitar a 1 para obtener una habitación disponible.
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idCategoria);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                habitacionDisponible = new Habitacion();
+                habitacionDisponible.setIdHabitacion(rs.getInt("idHabitacion"));
+                CategoriaData categD = new CategoriaData();
+                
+                habitacionDisponible.setCategoria(categD.buscarCategoria(rs.getInt("idCategoria")));
+                habitacionDisponible.setNroHabitacion(rs.getInt("NroHabitacion"));
+                habitacionDisponible.setPiso(rs.getInt("Piso"));
+                habitacionDisponible.setEstado(rs.getBoolean("estado"));
+            }
+
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla habitación");
+        }
+
+        return habitacionDisponible;
+    }
 }
