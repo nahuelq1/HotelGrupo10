@@ -29,7 +29,9 @@ public class ReservaData {
 
     public void crearReserva(Reserva resv) {
 
-        String sql = "INSERT INTO reserva(idHabitacion,idHuesped,FechaInicio,FechaFin,PrecioTotal,CantPersonas,Estado) VALUES (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO reserva(idHabitacion,idHuesped,FechaInicio,FechaFin,"
+                + "PrecioTotal,CantPersonas,Estado) VALUES (?,?,?,?,?,?,?)";
+        String sqlActulizarHabitacion = "UPDATE habitacion SET estado = 0 WHERE idHabitacion = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, resv.getHabitacion().getIdHabitacion());
@@ -40,13 +42,19 @@ public class ReservaData {
             ps.setInt(6, resv.getCantPersonas());
             ps.setBoolean(7, resv.isEstado());
             ps.executeUpdate();
+
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 resv.setIdReserva(rs.getInt(1));
-                JOptionPane.showMessageDialog(null, "reserva guardada");
+                JOptionPane.showMessageDialog(null, "Reserva creada con exito.");
             }
-            ps.close();
+            //Actualiza y Marca habitacion estado=0
+            PreparedStatement psActEstadoHabitacion = con.prepareStatement(sqlActulizarHabitacion);
+            psActEstadoHabitacion.setInt(1, resv.getHabitacion().getIdHabitacion());
+            psActEstadoHabitacion.executeUpdate();
 
+            ps.close();
+            psActEstadoHabitacion.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla reserva");
         }
@@ -199,8 +207,27 @@ public class ReservaData {
                 JOptionPane.showMessageDialog(null, "Error al marcar la reserva como inactiva.");
             }
 
+            if (idHabitacion != 0) {// marca la habitacion como libre
+                String sqlMarcarHabitacion = "UPDATE habitacion SET Estado = 1 WHERE idHabitacion = ?";
+
+                try {
+                    PreparedStatement psMarcarHabitacion = con.prepareStatement(sqlMarcarHabitacion);
+                    psMarcarHabitacion.setInt(1, idHabitacion);
+                    int filasActualizadas = psMarcarHabitacion.executeUpdate();
+
+                    if (filasActualizadas == 1) {
+                        JOptionPane.showMessageDialog(null, "Habitación marcada como libre.");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "La habitación no pudo ser marcada como libre.");
+                    }
+
+                    psMarcarHabitacion.close();
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Error al marcar la habitación como libre.");
+                }
+            }
+
         }
 
     }
-
 }
