@@ -165,7 +165,7 @@ public class HotelGrupo10 {
             System.out.println("No se encontró una categoría de habitación válida.");
             return 0.0; 
         }
-
+//a
 //        Reserva resv = new Reserva(hab1, juan, categoria, LocalDate.of(2002, 4, 25), LocalDate.of(2002, 4, 26), 5000, 7, true);
 //        res.crearReserva(resv);
 //        res.cancelarReserva(9);
