@@ -135,7 +135,7 @@ public class CategoriaData {
         return categorias;
     }
     public List<Categoria> listarCategoriasDisponiblesPorCantidadPersonas(int cantPersonas) {
-    String sql = "SELECT idcategoria, cantpersonas, cantcamas, tipocamas, tipohabitacion, precio, estado FROM categoria WHERE cantpersonas >= ? AND estado = 1";
+    String sql = "SELECT idcategoria, cantpersonas, cantcamas, tipocamas, tipohabitacion, precio, estado FROM categoria WHERE cantpersonas = ? AND estado = 1";
     ArrayList<Categoria> categorias = new ArrayList<>();
 
     try {
@@ -160,7 +160,6 @@ public class CategoriaData {
     } catch (SQLException ex) {
         JOptionPane.showMessageDialog(null, "Error al acceder a la tabla categoría");
     }
-
     return categorias;
 }
 }

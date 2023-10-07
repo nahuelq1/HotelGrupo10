@@ -151,7 +151,7 @@ public class HabitacionData {
 
     public Habitacion obtenerHabitacionDisponiblePorCategoria(int idCategoria) {
         Habitacion habitacionDisponible = null;
-        String sql = "SELECT * FROM habitacion WHERE idCategoria = ? AND estado = 0 LIMIT 1"; // Limitar a 1 para obtener una habitación disponible.
+        String sql = "SELECT * FROM habitacion WHERE idCategoria = ? AND estado = 1 LIMIT 1"; // LIMIT SOLO para una hab
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);

@@ -37,54 +37,60 @@ public class ReservaData {
         CategoriaData categoriaData = new CategoriaData();
         List<Categoria> categoriasDisponibles = categoriaData.listarCategoriasDisponiblesPorCantidadPersonas(cantPersonas);
 
-//        if (categoriasDisponibles.isEmpty()) { ==null
-//            JOptionPane.showMessageDialog(null, "No se encontró un tipo de habitación adecuado para la cantidad de personas.");
-//            return; 
-//        }
-        Categoria categoriaElegida = categoriasDisponibles.get(0); // Tomar la primera categoría disponible
+        if (categoriasDisponibles.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No se encontró un tipo de habitación adecuado para la cantidad de personas.");
+            return;
+        }
 
-        //Monto estadia
+        Categoria categoriaElegida = categoriasDisponibles.get(0); 
+
+        // monto de la estadía.
         double precioPorNoche = categoriaElegida.getPrecio();
         long diasEstadia = ChronoUnit.DAYS.between(fechaEntrada, fechaSalida);
         double montoEstadia = precioPorNoche * diasEstadia;
 
-        // Crear la reserva y marcar la habitación como ocupada.
         HabitacionData habitacionData = new HabitacionData();
         Habitacion habitacionDisponible = habitacionData.obtenerHabitacionDisponiblePorCategoria(categoriaElegida.getIdCategoria());
 
         if (habitacionDisponible == null) {
             JOptionPane.showMessageDialog(null, "No hay habitaciones disponibles para esta categoría.");
-            return;
+            return; // Salir si no hay habitaciones disponibles.
         }
-        
-        String sql = "INSERT INTO reserva(idHabitacion,idHuesped,FechaInicio,FechaFin,"
-                + "PrecioTotal,CantPersonas,Estado) VALUES (?,?,?,?,?,?,?)";
-        String sqlActulizarHabitacion = "UPDATE habitacion SET estado = 0 WHERE idHabitacion = ?";
-        try {
-            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, resv.getHabitacion().getIdHabitacion());
-            ps.setInt(2, resv.getHuesped().getIdHuesped());
-            ps.setDate(3, Date.valueOf(fechaEntrada));
-            ps.setDate(4, Date.valueOf(fechaSalida));
-            ps.setDouble(5, montoEstadia);
-            ps.setInt(6, cantPersonas);
-            ps.setBoolean(7, resv.isEstado());
-            ps.executeUpdate();
 
-            ResultSet rs = ps.getGeneratedKeys();
+        resv.setHabitacion(habitacionDisponible);
+        resv.setPrecioTotal(montoEstadia);
+        resv.setEstado(true); // Estado = 1 (Activa)
+
+        String sqlInsertReserva = "INSERT INTO reserva(idHabitacion, idHuesped, FechaInicio, FechaFin, PrecioTotal, CantPersonas, Estado) VALUES (?,?,?,?,?,?,?)";
+        String sqlUpdateHabitacion = "UPDATE habitacion SET estado = 0 WHERE idHabitacion = ?";
+
+        try {
+            // Crear reserva
+            PreparedStatement psInsert = con.prepareStatement(sqlInsertReserva, Statement.RETURN_GENERATED_KEYS);
+            psInsert.setInt(1, resv.getHabitacion().getIdHabitacion());
+            psInsert.setInt(2, resv.getHuesped().getIdHuesped());
+            psInsert.setDate(3, Date.valueOf(fechaEntrada));
+            psInsert.setDate(4, Date.valueOf(fechaSalida));
+            psInsert.setDouble(5, montoEstadia);
+            psInsert.setInt(6, cantPersonas);
+            psInsert.setBoolean(7, true); // Estado = 1 (Activa)
+            psInsert.executeUpdate();
+
+            ResultSet rs = psInsert.getGeneratedKeys();
             if (rs.next()) {
                 resv.setIdReserva(rs.getInt(1));
-                JOptionPane.showMessageDialog(null, "Reserva creada con exito.");
+                JOptionPane.showMessageDialog(null, "Reserva creada con éxito.");
             }
-            //Actualiza y Marca habitacion estado=0
-            PreparedStatement psActEstadoHabitacion = con.prepareStatement(sqlActulizarHabitacion);
-            psActEstadoHabitacion.setInt(1, resv.getHabitacion().getIdHabitacion());
-            psActEstadoHabitacion.executeUpdate();
 
-            ps.close();
-            psActEstadoHabitacion.close();
+            // Marcar la habitación como ocupada
+            PreparedStatement psUpdateHabitacion = con.prepareStatement(sqlUpdateHabitacion);
+            psUpdateHabitacion.setInt(1, resv.getHabitacion().getIdHabitacion());
+            psUpdateHabitacion.executeUpdate();
+
+            psInsert.close();
+            psUpdateHabitacion.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla reserva");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla reserva o habitación.");
         }
     }
 
