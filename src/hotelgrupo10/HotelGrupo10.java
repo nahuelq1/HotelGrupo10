@@ -130,41 +130,42 @@ public class HotelGrupo10 {
 //        System.out.print("Ingrese la fecha de salida (yyyy-MM-dd): ");
 //        String fechaSalidaStr = scanner.next();
 //        LocalDate fechaSalida = LocalDate.parse(fechaSalidaStr);
-        System.out.print("Ingrese la cantidad de personas: ");
+//        System.out.print("Ingrese la cantidad de personas: ");
+//
+//        int cantidadPersonas = scanner.nextInt();
+//        for (Categoria categoria1 : categD.listarCategoriasDisponiblesPorCantidadPersonas(cantidadPersonas)) {
+//            System.out.println("*************");
+//            System.out.println("cant personas:  " + categoria1.getCantPersonas());
+//            System.out.println("precio:         " + categoria1.getPrecio());
+//            System.out.println("id:             " + categoria1.getIdCategoria());
+//            System.out.println("estado:         " + categoria1.isEstado());
+//        }
 
-        int cantidadPersonas = scanner.nextInt();
-        for (Categoria categoria1 : categD.listarCategoriasDisponiblesPorCantidadPersonas(cantidadPersonas)) {
-            System.out.println("*************");
-            System.out.println("cant personas:  " + categoria1.getCantPersonas());
-            System.out.println("precio:         " + categoria1.getPrecio());
-            System.out.println("id:             " + categoria1.getIdCategoria());
-            System.out.println("estado:         " + categoria1.isEstado());
-        }
+//        Habitacion habitacion = hbD.obtenerHabitacionDisponiblePorCategoria(categoria.getIdCategoria());
+//        if (habitacion != null) {
+//
+//            double precioTotal = calcularPrecioTotal(habitacion.getCategoria(), LocalDate.of(2002, 4, 25), LocalDate.of(2002, 4, 27));
+//
+//            Reserva resv = new Reserva(habitacion, juan, categoria, LocalDate.of(2002, 4, 25), LocalDate.of(2002, 4, 27), precioTotal, cantidadPersonas, true);
+//
+//            res.crearReserva(resv);
+//        } else {
+//            System.out.println("No hay habitaciones disponibles para la categoría seleccionada.");
+//        }
+//
+//        scanner.close();
+    
 
-        Habitacion habitacion = hbD.obtenerHabitacionDisponiblePorCategoria(categoria.getIdCategoria());
-        if (habitacion != null) {
-
-            double precioTotal = calcularPrecioTotal(habitacion.getCategoria(), LocalDate.of(2002, 4, 25), LocalDate.of(2002, 4, 27));
-
-            Reserva resv = new Reserva(habitacion, juan, categoria, LocalDate.of(2002, 4, 25), LocalDate.of(2002, 4, 27), precioTotal, cantidadPersonas, true);
-
-            res.crearReserva(resv);
-        } else {
-            System.out.println("No hay habitaciones disponibles para la categoría seleccionada.");
-        }
-
-        scanner.close();
-    }
-
-    private static double calcularPrecioTotal(Categoria categoria, LocalDate fechaEntrada, LocalDate fechaSalida) {
-        if (categoria != null) {
-            long diasEstadia = ChronoUnit.DAYS.between(fechaEntrada, fechaSalida);
-            double precioTotal = categoria.getPrecio() * diasEstadia;
-            return precioTotal;
-        } else {
-            System.out.println("No se encontró una categoría de habitación válida.");
-            return 0.0; 
-        }
+//    private static double calcularPrecioTotal(Categoria categoria, LocalDate fechaEntrada, LocalDate fechaSalida) {
+//        if (categoria != null) {
+//            long diasEstadia = ChronoUnit.DAYS.between(fechaEntrada, fechaSalida);
+//            double precioTotal = categoria.getPrecio() * diasEstadia;
+//            return precioTotal;
+//        } else {
+//            System.out.println("No se encontró una categoría de habitación válida.");
+//            return 0.0; 
+//        }
+//    }
 //a
 //        Reserva resv = new Reserva(hab1, juan, categoria, LocalDate.of(2002, 4, 25), LocalDate.of(2002, 4, 26), 5000, 7, true);
 //        res.crearReserva(resv);
@@ -190,5 +191,16 @@ public class HotelGrupo10 {
 //
 //        res.montoEstadia("suit2");
 //        res.finReserva(juan);
-    }
+        
+    
+//        for (Reserva res1: res.busquedaDeReservaPorFecha("2002-04-25")) {
+//            System.out.println("idReserva " + res1.getIdReserva());
+//            System.out.println("PrecioTotal " + res1.getPrecioTotal());
+//        }
+//        for(Reserva res2: res.busquedaDeReservaPorHuesped(juan)){
+//             System.out.println("idReserva " + res2.getIdReserva());
+//            System.out.println("PrecioTotal " + res2.getPrecioTotal());
+//        }
+            
+            }
 }
