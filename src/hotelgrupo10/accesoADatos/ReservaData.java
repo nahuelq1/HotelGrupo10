@@ -286,9 +286,10 @@ public class ReservaData {
         String sql = "SELECT * FROM reserva";
         ArrayList<Reserva> reservas = new ArrayList<>();
         Reserva res = new Reserva();
-        LocalDate f= LocalDate.parse(fecha);
+        
         try {
             PreparedStatement ps = con.prepareStatement(sql);
+            LocalDate f= LocalDate.parse(fecha);
             ps.setDate(1, Date.valueOf(fecha));
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -306,7 +307,9 @@ public class ReservaData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "error al acceder a la tabla reserva");
+            
+        }catch(Exception e){
+        JOptionPane.showMessageDialog(null, "error al acceder a la tabla reserva");
         }
 
         return reservas;

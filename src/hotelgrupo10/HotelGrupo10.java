@@ -193,10 +193,10 @@ public class HotelGrupo10 {
 //        res.finReserva(juan);
         
     
-//        for (Reserva res1: res.busquedaDeReservaPorFecha("2002-04-25")) {
-//            System.out.println("idReserva " + res1.getIdReserva());
-//            System.out.println("PrecioTotal " + res1.getPrecioTotal());
-//        }
+        for (Reserva res1: res.busquedaDeReservaPorFecha("2002-04-26")) {
+            System.out.println("idReserva " + res1.getIdReserva());
+            System.out.println("PrecioTotal " + res1.getPrecioTotal());
+        }
 //        for(Reserva res2: res.busquedaDeReservaPorHuesped(juan)){
 //             System.out.println("idReserva " + res2.getIdReserva());
 //            System.out.println("PrecioTotal " + res2.getPrecioTotal());
