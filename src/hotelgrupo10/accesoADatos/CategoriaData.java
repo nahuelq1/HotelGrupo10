@@ -146,7 +146,7 @@ public class CategoriaData {
         while (rs.next()) {
             Categoria categoria = new Categoria();
             categoria.setIdCategoria(rs.getInt("idcategoria"));
-            categoria.setCantPersonas(rs.getInt("cantpersonas"));
+        categoria.setCantPersonas(rs.getInt("cantpersonas"));
             categoria.setCantCamas(rs.getInt("cantcamas"));
             categoria.setTipoCamas(rs.getString("tipocamas"));
             categoria.setTipoHabitacion(rs.getString("tipohabitacion"));
