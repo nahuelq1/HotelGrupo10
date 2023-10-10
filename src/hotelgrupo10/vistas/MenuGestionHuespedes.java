@@ -32,7 +32,7 @@ public class MenuGestionHuespedes extends javax.swing.JInternalFrame {
         JTFingresoDNI = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         JTtablahuespedes = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        JBbuscar = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Gestion huespedes");
@@ -55,7 +55,7 @@ public class MenuGestionHuespedes extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(JTtablahuespedes);
 
-        jButton1.setText("Buscar");
+        JBbuscar.setText("Buscar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -64,7 +64,7 @@ public class MenuGestionHuespedes extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
+                    .addComponent(JBbuscar)
                     .addComponent(jLabel1))
                 .addGap(172, 172, 172))
             .addGroup(layout.createSequentialGroup()
@@ -88,7 +88,7 @@ public class MenuGestionHuespedes extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(JTFingresoDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(JBbuscar))
                 .addGap(29, 29, 29)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(72, Short.MAX_VALUE))
@@ -99,9 +99,9 @@ public class MenuGestionHuespedes extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JBbuscar;
     private javax.swing.JTextField JTFingresoDNI;
     private javax.swing.JTable JTtablahuespedes;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

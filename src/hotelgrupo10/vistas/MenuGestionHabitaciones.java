@@ -42,7 +42,7 @@ public class MenuGestionHabitaciones extends javax.swing.JInternalFrame {
         JBmodificarhabit = new javax.swing.JButton();
         JBbuscar = new javax.swing.JButton();
         JRBestado = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        JBlistadehabit = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Gestion de habitaciones");
@@ -70,7 +70,7 @@ public class MenuGestionHabitaciones extends javax.swing.JInternalFrame {
 
         JBbuscar.setText("Buscar ");
 
-        jButton1.setText("Lista de habitaciones");
+        JBlistadehabit.setText("Lista de habitaciones");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,7 +114,7 @@ public class MenuGestionHabitaciones extends javax.swing.JInternalFrame {
                         .addGap(11, 11, 11)
                         .addComponent(JBmodificarhabit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(JBlistadehabit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
@@ -155,7 +155,7 @@ public class MenuGestionHabitaciones extends javax.swing.JInternalFrame {
                     .addComponent(JBeliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JBcrearhabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JBmodificarhabit, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JBlistadehabit, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
@@ -167,13 +167,13 @@ public class MenuGestionHabitaciones extends javax.swing.JInternalFrame {
     private javax.swing.JButton JBbuscar;
     private javax.swing.JButton JBcrearhabitacion;
     private javax.swing.JButton JBeliminar;
+    private javax.swing.JButton JBlistadehabit;
     private javax.swing.JButton JBmodificarhabit;
     private javax.swing.JRadioButton JRBestado;
     private javax.swing.JTextField JTidCategoria;
     private javax.swing.JTextField JTidHabitacion;
     private javax.swing.JTextField JTnumeroHabit;
     private javax.swing.JTextField JTnumeroPiso;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -68,7 +68,7 @@
                       <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                       <Component id="JBmodificarhabit" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jButton1" max="32767" attributes="0"/>
+                      <Component id="JBlistadehabit" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
@@ -120,7 +120,7 @@
                   <Component id="JBeliminar" alignment="3" min="-2" pref="53" max="-2" attributes="0"/>
                   <Component id="JBcrearhabitacion" alignment="3" min="-2" pref="53" max="-2" attributes="0"/>
                   <Component id="JBmodificarhabit" alignment="3" min="-2" pref="53" max="-2" attributes="0"/>
-                  <Component id="jButton1" alignment="3" min="-2" pref="53" max="-2" attributes="0"/>
+                  <Component id="JBlistadehabit" alignment="3" min="-2" pref="53" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="52" max="32767" attributes="0"/>
           </Group>
@@ -206,7 +206,7 @@
     </Component>
     <Component class="javax.swing.JRadioButton" name="JRBestado">
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="JBlistadehabit">
       <Properties>
         <Property name="text" type="java.lang.String" value="Lista de habitaciones"/>
       </Properties>
