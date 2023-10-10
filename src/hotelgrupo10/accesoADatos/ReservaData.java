@@ -313,4 +313,37 @@ public class ReservaData {
         return reservas;
 
     }
+    
+    public List<Reserva> obtenerHabitacionPorCantpersonas(int cantPersonas) {
+
+        ArrayList<Reserva> reservas = new ArrayList<>();
+        String sql = "SELECT * FROM reserva WHERE estado = 1 AND idHabitacion not in "
+                + "(SELECT idHabitacion FROM habitacion WHERE cantPersonas = ? );";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, cantPersonas);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Reserva res = new Reserva();
+               res.setIdReserva(rs.getInt("idReserva"));
+                Habitacion hab = hd.buscarHabitacion(rs.getInt("idHabitacion"));
+                Huesped hus = hd2.buscarHuespedPorId(rs.getInt("idHuesped"));
+                res.setHabitacion(hab);
+                res.setHuesped(hus);
+                res.setFechaInicio(rs.getDate("fechaInicio").toLocalDate());
+                res.setFechaFin(rs.getDate("fechaFin").toLocalDate());
+                res.setPrecioTotal(rs.getInt("precioTotal"));
+                res.setCantPersonas(rs.getInt("cantPersonas"));
+                res.setEstado(rs.getBoolean("estado"));
+                reservas.add(res);
+
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla reserva");
+        }
+
+        return reservas;
+
+    }
 }
