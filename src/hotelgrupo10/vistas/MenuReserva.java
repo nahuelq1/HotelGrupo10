@@ -5,17 +5,32 @@
  */
 package hotelgrupo10.vistas;
 
+import hotelgrupo10.accesoADatos.CategoriaData;
+import hotelgrupo10.accesoADatos.HabitacionData;
+import hotelgrupo10.accesoADatos.HuespedData;
+import hotelgrupo10.accesoADatos.ReservaData;
+import hotelgrupo10.entidades.Habitacion;
+import java.util.List;
+
 /**
  *
  * @author nahue
  */
 public class MenuReserva extends javax.swing.JInternalFrame {
-
+private CategoriaData cd;
+private HabitacionData hd;
+private HuespedData hd1;
+private ReservaData rd;
     /**
      * Creates new form MenuReserva
      */
-    public MenuReserva() {
+    public MenuReserva( CategoriaData cd, HabitacionData hd, HuespedData hd1, ReservaData rd) {
         initComponents();
+        this.cd= cd;
+        this.hd= hd;
+        this.hd1= hd1;
+        this.rd= rd;
+        cargarCombo();
     }
 
     /**
@@ -27,9 +42,7 @@ public class MenuReserva extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        buttonGroup2 = new javax.swing.ButtonGroup();
-        buttonGroup3 = new javax.swing.ButtonGroup();
+        botones = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         JRB1persona = new javax.swing.JRadioButton();
@@ -60,6 +73,11 @@ public class MenuReserva extends javax.swing.JInternalFrame {
         jLabel2.setText("Ingrese la cantidad de personas a hospedarse");
 
         JRB1persona.setText("1");
+        JRB1persona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JRB1personaActionPerformed(evt);
+            }
+        });
 
         JRB2personas.setText("2");
 
@@ -80,7 +98,7 @@ public class MenuReserva extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Seleccione el tipo de habitacion ");
 
-        JCBtiposhabit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        JCBtiposhabit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Habitacion" }));
 
         JThabitdisp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -209,6 +227,15 @@ public class MenuReserva extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void JRB1personaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JRB1personaActionPerformed
+        botones.add(JRB1persona);
+        botones.add(JRB2personas);
+        botones.add(JRB3personas);
+        botones.add(JRB4personas);
+        botones.add(JRB5personas);
+        botones.add(JRB6personas);
+    }//GEN-LAST:event_JRB1personaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBreserva;
@@ -223,9 +250,7 @@ public class MenuReserva extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton JRB6personas;
     private javax.swing.JTable JThabitdisp;
     private javax.swing.JTextField JTpreciototal;
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.ButtonGroup buttonGroup3;
+    private javax.swing.ButtonGroup botones;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -235,4 +260,20 @@ public class MenuReserva extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+
+private void cargarCombo(){
+
+List<Habitacion> listaHabitacion= hd.listarHabitaciones();
+for(Habitacion habitacion: listaHabitacion){
+
+JCBtiposhabit.addItem(habitacion.getIdHabitacion() + " " + habitacion.getCategoria().getTipoHabitacion());
+
+}
+
+
+
+}
+
+
 }

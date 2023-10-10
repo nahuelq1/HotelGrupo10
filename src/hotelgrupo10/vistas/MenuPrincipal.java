@@ -5,17 +5,30 @@
  */
 package hotelgrupo10.vistas;
 
+import hotelgrupo10.accesoADatos.CategoriaData;
+import hotelgrupo10.accesoADatos.HabitacionData;
+import hotelgrupo10.accesoADatos.HuespedData;
+import hotelgrupo10.accesoADatos.ReservaData;
+
 /**
  *
  * @author nahue
  */
 public class MenuPrincipal extends javax.swing.JFrame {
+private CategoriaData cd;
+private HabitacionData hd;
+private HuespedData hd1;
+private ReservaData rd;
 
     /**
      * Creates new form MenuPrincipal
      */
     public MenuPrincipal() {
         initComponents();
+        this.cd=new CategoriaData();
+        this.hd=new HabitacionData();
+        this.hd1= new HuespedData();
+        this.rd=new ReservaData();
     }
 
     /**
