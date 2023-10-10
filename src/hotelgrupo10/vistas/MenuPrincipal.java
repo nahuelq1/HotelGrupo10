@@ -5,17 +5,30 @@
  */
 package hotelgrupo10.vistas;
 
+import hotelgrupo10.accesoADatos.CategoriaData;
+import hotelgrupo10.accesoADatos.HabitacionData;
+import hotelgrupo10.accesoADatos.HuespedData;
+import hotelgrupo10.accesoADatos.ReservaData;
+
 /**
  *
  * @author nahue
  */
 public class MenuPrincipal extends javax.swing.JFrame {
+private CategoriaData cd;
+private HabitacionData hd;
+private HuespedData hd1;
+private ReservaData rd;
 
     /**
      * Creates new form MenuPrincipal
      */
     public MenuPrincipal() {
         initComponents();
+        this.cd=new CategoriaData();
+        this.hd=new HabitacionData();
+        this.hd1= new HuespedData();
+        this.rd=new ReservaData();
     }
 
     /**
@@ -28,8 +41,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jDesktopPane2 = new javax.swing.JDesktopPane();
+        Escritorio = new javax.swing.JDesktopPane();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         JBMenuCLientes = new javax.swing.JButton();
@@ -37,11 +49,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jLabel3.setText("jLabel3");
 
-        jTextField1.setText("jTextField1");
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jDesktopPane2.setBackground(new java.awt.Color(204, 204, 204));
+        Escritorio.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
@@ -55,40 +65,45 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         JBMenuAdmin.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         JBMenuAdmin.setText("Menu Administracion");
+        JBMenuAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBMenuAdminActionPerformed(evt);
+            }
+        });
 
-        jDesktopPane2.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane2.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane2.setLayer(JBMenuCLientes, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane2.setLayer(JBMenuAdmin, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Escritorio.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Escritorio.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Escritorio.setLayer(JBMenuCLientes, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Escritorio.setLayer(JBMenuAdmin, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout jDesktopPane2Layout = new javax.swing.GroupLayout(jDesktopPane2);
-        jDesktopPane2.setLayout(jDesktopPane2Layout);
-        jDesktopPane2Layout.setHorizontalGroup(
-            jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane2Layout.createSequentialGroup()
+        javax.swing.GroupLayout EscritorioLayout = new javax.swing.GroupLayout(Escritorio);
+        Escritorio.setLayout(EscritorioLayout);
+        EscritorioLayout.setHorizontalGroup(
+            EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EscritorioLayout.createSequentialGroup()
                 .addGap(64, 64, 64)
                 .addComponent(JBMenuCLientes, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(JBMenuAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(64, 64, 64))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EscritorioLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(209, 209, 209))
-            .addGroup(jDesktopPane2Layout.createSequentialGroup()
+            .addGroup(EscritorioLayout.createSequentialGroup()
                 .addGap(87, 87, 87)
                 .addComponent(jLabel2)
                 .addContainerGap(67, Short.MAX_VALUE))
         );
-        jDesktopPane2Layout.setVerticalGroup(
-            jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane2Layout.createSequentialGroup()
+        EscritorioLayout.setVerticalGroup(
+            EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EscritorioLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1)
                 .addGap(63, 63, 63)
                 .addComponent(jLabel2)
                 .addGap(80, 80, 80)
-                .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBMenuAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JBMenuCLientes, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(185, Short.MAX_VALUE))
@@ -100,16 +115,25 @@ public class MenuPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jDesktopPane2)
+                .addComponent(Escritorio)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane2)
+            .addComponent(Escritorio)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JBMenuAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBMenuAdminActionPerformed
+       Escritorio.removeAll();
+        Escritorio.repaint();
+        MenuAdministracion Menua = new MenuAdministracion();
+        Menua.setVisible(true);
+        Escritorio.add(Menua);
+        Escritorio.moveToFront(Menua);
+    }//GEN-LAST:event_JBMenuAdminActionPerformed
 
     /**
      * @param args the command line arguments
@@ -147,12 +171,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane Escritorio;
     private javax.swing.JButton JBMenuAdmin;
     private javax.swing.JButton JBMenuCLientes;
-    private javax.swing.JDesktopPane jDesktopPane2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
