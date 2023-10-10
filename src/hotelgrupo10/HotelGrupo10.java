@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class HotelGrupo10 {
 
@@ -125,16 +126,15 @@ public class HotelGrupo10 {
         HuespedData huespD = new HuespedData();
         ReservaData resD = new ReservaData();
 
-        Categoria categoria = new Categoria();
-        categoria.setIdCategoria(2);
-
+//        Categoria categoria = new Categoria();
+//        categoria.setIdCategoria(2);
         Huesped juan = new Huesped(1, "Christian", "Anaya", 95583109, "Santiago del", "christiananaya2099@gmail.com",
                 1136767691, true);
 
         System.out.print("Ingrese la fecha de entrada (yyyy-MM-dd): ");
         String fechaEntradaStr = scanner.next();
         LocalDate fechaEntrada = LocalDate.parse(fechaEntradaStr);
-        
+
         System.out.print("Ingrese la fecha de salida (yyyy-MM-dd): ");
         String fechaSalidaStr = scanner.next();
         LocalDate fechaSalida = LocalDate.parse(fechaSalidaStr);
@@ -142,18 +142,40 @@ public class HotelGrupo10 {
         System.out.print("Ingrese la cantidad de personas: ");
         int cantidadPersonas = scanner.nextInt();
 
+        List<Categoria> categoriasDisponibles = categD.listarCategoriasDisponiblesPorCantidadPersonas(cantidadPersonas);
 
-        Habitacion habitacion = hbD.obtenerHabitacionDisponiblePorCategoria(categoria.getIdCategoria());
+        if (categoriasDisponibles.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No se encontró un tipo de habitación adecuado para la cantidad de personas.");
+            return;
+        }
+        //categorías disponibles con sus precios
+        System.out.println("Categorías Disponibles:");
+        for (int i = 0; i < categoriasDisponibles.size(); i++) {
+            Categoria categoriaDisponible = categoriasDisponibles.get(i);
+            System.out.println((i + 1) + ". " + categoriaDisponible.getIdCategoria() + " - Precio: " + categoriaDisponible.getPrecio());
+        }
+        
+        System.out.print("Ingrese el número de la categoría deseada: ");
+        int opcionCategoria = scanner.nextInt();
+
+        if (opcionCategoria < 1 || opcionCategoria > categoriasDisponibles.size()) {
+            System.out.println("Opción no válida. Por favor, ingrese un número de categoría válido.");
+            return;
+        }
+
+        Categoria categoriaElegida = categoriasDisponibles.get(opcionCategoria - 1);
+
+        double precioTotal = resD.calcularPrecioTotal(categoriaElegida, fechaEntrada, fechaSalida);
+
+        Habitacion habitacion = hbD.obtenerHabitacionDisponiblePorCategoria(categoriaElegida.getIdCategoria());
         if (habitacion != null) {
-
-            double precioTotal = resD.calcularPrecioTotal(habitacion.getCategoria(), LocalDate.of(2002, 4, 25), LocalDate.of(2002, 4, 27));
-
-            Reserva resv = new Reserva(habitacion, juan, categoria, fechaEntrada, fechaSalida, precioTotal, cantidadPersonas, true);
-
+            Reserva resv = new Reserva(habitacion, juan, categoriaElegida, fechaEntrada, fechaSalida, precioTotal, cantidadPersonas, true);
             resD.crearReserva(resv);
         } else {
             System.out.println("No hay habitaciones disponibles para la categoría seleccionada.");
         }
+
+        scanner.close();
 
 //        Reserva resv = new Reserva(hab1, juan, categoria, LocalDate.of(2002, 4, 25), LocalDate.of(2002, 4, 26), 5000, 7, true);
 //        res.crearReserva(resv);

@@ -29,31 +29,19 @@ public class ReservaData {
 
     }
 
-
-
     public void crearReserva(Reserva resv) {
         LocalDate fechaEntrada = resv.getFechaInicio();
         LocalDate fechaSalida = resv.getFechaFin();
         int cantPersonas = resv.getCantPersonas();
 
-        CategoriaData categoriaData = new CategoriaData();
-        List<Categoria> categoriasDisponibles = categoriaData.listarCategoriasDisponiblesPorCantidadPersonas(cantPersonas);
-
-        if (categoriasDisponibles.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "No se encontró un tipo de habitación adecuado para la cantidad de personas.");
-            return;
-        }
-
-        Categoria categoriaElegida = categoriasDisponibles.get(1);
-
-        double precioTotal = calcularPrecioTotal(categoriaElegida, fechaEntrada, fechaSalida);
+        double precioTotal = calcularPrecioTotal(resv.getCategoria(), fechaEntrada, fechaSalida);
 
         HabitacionData habitacionData = new HabitacionData();
-        Habitacion habitacionDisponible = habitacionData.obtenerHabitacionDisponiblePorCategoria(categoriaElegida.getIdCategoria());
+        Habitacion habitacionDisponible = habitacionData.obtenerHabitacionDisponiblePorCategoria(resv.getCategoria().getIdCategoria());
 
         if (habitacionDisponible == null) {
             JOptionPane.showMessageDialog(null, "No hay habitaciones disponibles para esta categoría.");
-            return; 
+            return;
         }
 
         resv.setHabitacion(habitacionDisponible);
