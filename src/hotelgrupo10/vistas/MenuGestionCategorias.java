@@ -44,9 +44,9 @@ public class MenuGestionCategorias extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         JTFidcategoria = new javax.swing.JTextField();
         JBeliminarcat = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        JBmodificarcat = new javax.swing.JButton();
+        JBcrearcat = new javax.swing.JButton();
+        JBlistacat = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Gestion de categorias");
@@ -76,11 +76,11 @@ public class MenuGestionCategorias extends javax.swing.JInternalFrame {
 
         JBeliminarcat.setText("Eliminar categoria");
 
-        jButton2.setText("Modificar categoria");
+        JBmodificarcat.setText("Modificar categoria");
 
-        jButton3.setText("Crear categoria");
+        JBcrearcat.setText("Crear categoria");
 
-        jButton1.setText("Lista de categorias");
+        JBlistacat.setText("Lista de categorias");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,7 +103,7 @@ public class MenuGestionCategorias extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(JBeliminarcat)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)))
+                        .addComponent(JBmodificarcat)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -123,9 +123,9 @@ public class MenuGestionCategorias extends javax.swing.JInternalFrame {
                                 .addComponent(JRBestado)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton3)
+                                .addComponent(JBcrearcat)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(JBlistacat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -165,9 +165,9 @@ public class MenuGestionCategorias extends javax.swing.JInternalFrame {
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBeliminarcat, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JBmodificarcat, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JBcrearcat, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JBlistacat, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 48, Short.MAX_VALUE))
         );
 
@@ -177,7 +177,10 @@ public class MenuGestionCategorias extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBbuscar;
+    private javax.swing.JButton JBcrearcat;
     private javax.swing.JButton JBeliminarcat;
+    private javax.swing.JButton JBlistacat;
+    private javax.swing.JButton JBmodificarcat;
     private javax.swing.JRadioButton JRBestado;
     private javax.swing.JTextField JTFcantcamas;
     private javax.swing.JTextField JTFcantpersonas;
@@ -185,9 +188,6 @@ public class MenuGestionCategorias extends javax.swing.JInternalFrame {
     private javax.swing.JTextField JTFprecio;
     private javax.swing.JTextField JTFtipodecama;
     private javax.swing.JTextField JTFtipodehabitacion;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
