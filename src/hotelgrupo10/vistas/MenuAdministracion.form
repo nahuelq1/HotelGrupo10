@@ -20,24 +20,22 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Component id="JBgestionR" min="-2" pref="147" max="-2" attributes="0"/>
-              <EmptySpace pref="73" max="32767" attributes="0"/>
-              <Component id="JBgestionH" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
-                      <Component id="JBgestionHU" min="-2" pref="147" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
+              <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="JBgestionR" alignment="0" min="-2" pref="147" max="-2" attributes="0"/>
+                  <Component id="JBgestionHU" alignment="0" min="-2" pref="147" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="73" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="JBgestiondeC" max="32767" attributes="0"/>
+                  <Component id="JBgestionH" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -51,9 +49,12 @@
                   <Component id="JBgestionH" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
                   <Component id="JBgestionR" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-              <Component id="JBgestionHU" min="-2" pref="50" max="-2" attributes="0"/>
-              <EmptySpace pref="84" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="JBgestionHU" pref="50" max="32767" attributes="0"/>
+                  <Component id="JBgestiondeC" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace pref="83" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -83,6 +84,11 @@
     <Component class="javax.swing.JButton" name="JBgestionHU">
       <Properties>
         <Property name="text" type="java.lang.String" value="Gestion de huespedes"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="JBgestiondeC">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Gestion de categorias"/>
       </Properties>
     </Component>
   </SubComponents>
