@@ -29,6 +29,8 @@ public class ReservaData {
 
     }
 
+
+
     public void crearReserva(Reserva resv) {
         LocalDate fechaEntrada = resv.getFechaInicio();
         LocalDate fechaSalida = resv.getFechaFin();
@@ -42,36 +44,33 @@ public class ReservaData {
             return;
         }
 
-        Categoria categoriaElegida = categoriasDisponibles.get(0); 
+        Categoria categoriaElegida = categoriasDisponibles.get(1);
 
-        // monto de la estadía.
-        double precioPorNoche = categoriaElegida.getPrecio();
-        long diasEstadia = ChronoUnit.DAYS.between(fechaEntrada, fechaSalida);
-        double montoEstadia = precioPorNoche * diasEstadia;
+        double precioTotal = calcularPrecioTotal(categoriaElegida, fechaEntrada, fechaSalida);
 
         HabitacionData habitacionData = new HabitacionData();
         Habitacion habitacionDisponible = habitacionData.obtenerHabitacionDisponiblePorCategoria(categoriaElegida.getIdCategoria());
 
         if (habitacionDisponible == null) {
             JOptionPane.showMessageDialog(null, "No hay habitaciones disponibles para esta categoría.");
-            return; // Salir si no hay habitaciones disponibles.
+            return; 
         }
 
         resv.setHabitacion(habitacionDisponible);
-        resv.setPrecioTotal(montoEstadia);
+        resv.setPrecioTotal(precioTotal);
         resv.setEstado(true); // Estado = 1 (Activa)
 
         String sqlInsertReserva = "INSERT INTO reserva(idHabitacion, idHuesped, FechaInicio, FechaFin, PrecioTotal, CantPersonas, Estado) VALUES (?,?,?,?,?,?,?)";
         String sqlUpdateHabitacion = "UPDATE habitacion SET estado = 0 WHERE idHabitacion = ?";
 
         try {
-            // Crear reserva
+
             PreparedStatement psInsert = con.prepareStatement(sqlInsertReserva, Statement.RETURN_GENERATED_KEYS);
             psInsert.setInt(1, resv.getHabitacion().getIdHabitacion());
             psInsert.setInt(2, resv.getHuesped().getIdHuesped());
             psInsert.setDate(3, Date.valueOf(fechaEntrada));
             psInsert.setDate(4, Date.valueOf(fechaSalida));
-            psInsert.setDouble(5, montoEstadia);
+            psInsert.setDouble(5, precioTotal); // Usamos el precioTotal calculado
             psInsert.setInt(6, cantPersonas);
             psInsert.setBoolean(7, true); // Estado = 1 (Activa)
             psInsert.executeUpdate();
@@ -82,7 +81,7 @@ public class ReservaData {
                 JOptionPane.showMessageDialog(null, "Reserva creada con éxito.");
             }
 
-            // Marcar la habitación como ocupada
+            //hab ocupada
             PreparedStatement psUpdateHabitacion = con.prepareStatement(sqlUpdateHabitacion);
             psUpdateHabitacion.setInt(1, resv.getHabitacion().getIdHabitacion());
             psUpdateHabitacion.executeUpdate();
@@ -91,6 +90,17 @@ public class ReservaData {
             psUpdateHabitacion.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla reserva o habitación.");
+        }
+    }
+
+    public static double calcularPrecioTotal(Categoria categoria, LocalDate fechaEntrada, LocalDate fechaSalida) {
+        if (categoria != null) {
+            long diasEstadia = ChronoUnit.DAYS.between(fechaEntrada, fechaSalida);
+            double precioTotal = categoria.getPrecio() * diasEstadia;
+            return precioTotal;
+        } else {
+            System.out.println("No se encontró una categoría de habitación válida.");
+            return 0.0;
         }
     }
 
@@ -248,7 +258,7 @@ public class ReservaData {
         }
 
     }
-    
+
     public List<Reserva> busquedaDeReservaPorHuesped(Huesped huesped) {
 
         String sql = "SELECT * FROM reserva";
@@ -280,16 +290,16 @@ public class ReservaData {
         return reservas;
 
     }
-    
+
     public List<Reserva> busquedaDeReservaPorFecha(String fecha) {
 
         String sql = "SELECT * FROM reserva";
         ArrayList<Reserva> reservas = new ArrayList<>();
         Reserva res = new Reserva();
-        
+
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            LocalDate f= LocalDate.parse(fecha);
+            LocalDate f = LocalDate.parse(fecha);
             ps.setDate(1, Date.valueOf(fecha));
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -307,12 +317,12 @@ public class ReservaData {
             }
             ps.close();
         } catch (SQLException ex) {
-            
-        }catch(Exception e){
-        JOptionPane.showMessageDialog(null, "error al acceder a la tabla reserva");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "error al acceder a la tabla reserva");
         }
 
         return reservas;
 
-    } 
+    }
 }
