@@ -121,7 +121,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void JBMenuAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBMenuAdminActionPerformed
         Escritorio.removeAll();
         Escritorio.repaint();
-        MenuReserva Menua= new MenuReserva(cd, hd, hd1, rd);
+        MenuAdministracion Menua= new MenuAdministracion();
         Menua.setVisible(true);
         Escritorio.add(Menua);
         Escritorio.moveToFront(Menua);

@@ -36,6 +36,7 @@ private ReservaData rd;
         this.hd1= hd1;
         this.rd= rd;
         cargarCombo();
+        
     }
 
     /**
@@ -256,17 +257,24 @@ private ReservaData rd;
 
     private void JCBtiposhabitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBtiposhabitActionPerformed
         // TODO add your handling code here:
-        if(JCBtiposhabit.getSelectedIndex()>0){
-        String selectedItem= JCBtiposhabit.getSelectedItem().toString();
-        int cantPersonas=Integer.parseInt(selectedItem.split(" ")[0]);
-        obtenerReservas(cantPersonas);
+          
+            if(JCBtiposhabit.getSelectedIndex()>0){
             
-        
+             
+                  
+            String selectedItem= JCBtiposhabit.getSelectedItem().toString();
+            String tipoHabitacion= selectedItem.split(" ")[0];
+            
+           
+             obtenerReservas(tipoHabitacion);
+              
+              
         
         }else{
         
         JOptionPane.showMessageDialog(null, "Seleccione Habitacion");
         }
+        
     }//GEN-LAST:event_JCBtiposhabitActionPerformed
 
 
@@ -307,19 +315,29 @@ JCBtiposhabit.addItem(habitacion.getIdHabitacion() + " " + habitacion.getCategor
 
 
 }
- private void obtenerReservas(int cantPersonas) {
+ private void obtenerReservas(String  tipoHabitacion) {
 
         DefaultTableModel model = (DefaultTableModel) JThabitdisp.getModel();
         model.setRowCount(0);
 
-        List<Categoria> categorias = cd.listarCategoriasDisponiblesPorCantidadPersonas(cantPersonas);
-
+        List<Categoria> categorias = rd.mostrarHabitacionesLibres(tipoHabitacion);
+        Reserva res= new Reserva();
+        
         for (Categoria categoria: categorias ) {
-         
-
+         String t=categoria.getTipoHabitacion();
+//         String fechaEntradars="";
+//         LocalDate fechaentrada= LocalDate.parse(fechaEntradars);
+//         String fechasalidars="";
+//         
+//         LocalDate fechasalida=LocalDate.parse(fechasalidars);
+            
             model.addRow(new Object[]{
-               categoria.getTipoHabitacion(),
+            
+            categoria.getTipoHabitacion()
+            
             });
+           
+         
         }
     }
 
