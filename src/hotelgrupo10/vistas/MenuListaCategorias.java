@@ -27,22 +27,27 @@ public class MenuListaCategorias extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        EsclistaCat = new javax.swing.JDesktopPane();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        JRBnro1 = new javax.swing.JRadioButton();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        JTlistaCat = new javax.swing.JTable();
+        JRBnro1 = new javax.swing.JRadioButton();
         JRBnro2 = new javax.swing.JRadioButton();
         JRBnro3 = new javax.swing.JRadioButton();
         JRBnro4 = new javax.swing.JRadioButton();
         JRBnro5 = new javax.swing.JRadioButton();
         JRBnro6 = new javax.swing.JRadioButton();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        EsclistaCat.setBackground(new java.awt.Color(204, 204, 204));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Lista de categorias");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("Seleccione la cantidad de personas para ver las categorias");
+
+        JTlistaCat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -53,80 +58,98 @@ public class MenuListaCategorias extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(JTlistaCat);
 
-        JRBnro1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        JRBnro1.setBackground(new java.awt.Color(204, 204, 204));
+        JRBnro1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         JRBnro1.setText("1");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Para listar por numero de personas seleccionar alguna de las opciones");
-
-        JRBnro2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        JRBnro2.setBackground(new java.awt.Color(204, 204, 204));
+        JRBnro2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         JRBnro2.setText("2");
 
-        JRBnro3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        JRBnro3.setBackground(new java.awt.Color(204, 204, 204));
+        JRBnro3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         JRBnro3.setText("3");
 
-        JRBnro4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        JRBnro4.setBackground(new java.awt.Color(204, 204, 204));
+        JRBnro4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         JRBnro4.setText("4");
 
-        JRBnro5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        JRBnro5.setBackground(new java.awt.Color(204, 204, 204));
+        JRBnro5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         JRBnro5.setText("5");
 
-        JRBnro6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        JRBnro6.setBackground(new java.awt.Color(204, 204, 204));
+        JRBnro6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         JRBnro6.setText("6");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(JRBnro1)
-                        .addGap(34, 34, 34)
-                        .addComponent(JRBnro2)
-                        .addGap(36, 36, 36)
-                        .addComponent(JRBnro3)
-                        .addGap(36, 36, 36)
-                        .addComponent(JRBnro4)
-                        .addGap(36, 36, 36)
-                        .addComponent(JRBnro5)
-                        .addGap(34, 34, 34)
-                        .addComponent(JRBnro6))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+        EsclistaCat.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        EsclistaCat.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        EsclistaCat.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        EsclistaCat.setLayer(JRBnro1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        EsclistaCat.setLayer(JRBnro2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        EsclistaCat.setLayer(JRBnro3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        EsclistaCat.setLayer(JRBnro4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        EsclistaCat.setLayer(JRBnro5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        EsclistaCat.setLayer(JRBnro6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout EsclistaCatLayout = new javax.swing.GroupLayout(EsclistaCat);
+        EsclistaCat.setLayout(EsclistaCatLayout);
+        EsclistaCatLayout.setHorizontalGroup(
+            EsclistaCatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EsclistaCatLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(29, 29, 29))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(141, 141, 141))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(28, 28, 28)
+                .addGap(151, 151, 151))
+            .addGroup(EsclistaCatLayout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addGroup(EsclistaCatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addGroup(EsclistaCatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(EsclistaCatLayout.createSequentialGroup()
+                            .addComponent(JRBnro1)
+                            .addGap(43, 43, 43)
+                            .addComponent(JRBnro2)
+                            .addGap(43, 43, 43)
+                            .addComponent(JRBnro3)
+                            .addGap(46, 46, 46)
+                            .addComponent(JRBnro4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JRBnro5)
+                            .addGap(42, 42, 42)
+                            .addComponent(JRBnro6))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(63, Short.MAX_VALUE))
+        );
+        EsclistaCatLayout.setVerticalGroup(
+            EsclistaCatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EsclistaCatLayout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(32, 32, 32)
                 .addComponent(jLabel2)
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(26, 26, 26)
+                .addGroup(EsclistaCatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JRBnro1)
                     .addComponent(JRBnro2)
                     .addComponent(JRBnro3)
                     .addComponent(JRBnro4)
                     .addComponent(JRBnro5)
                     .addComponent(JRBnro6))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(73, 73, 73))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(EsclistaCat, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(EsclistaCat)
         );
 
         pack();
@@ -134,16 +157,16 @@ public class MenuListaCategorias extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane EsclistaCat;
     private javax.swing.JRadioButton JRBnro1;
     private javax.swing.JRadioButton JRBnro2;
     private javax.swing.JRadioButton JRBnro3;
     private javax.swing.JRadioButton JRBnro4;
     private javax.swing.JRadioButton JRBnro5;
     private javax.swing.JRadioButton JRBnro6;
-    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JTable JTlistaCat;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
