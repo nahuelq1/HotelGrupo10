@@ -78,27 +78,27 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(JBMenuAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(64, 64, 64))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EscritorioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(209, 209, 209))
             .addGroup(EscritorioLayout.createSequentialGroup()
-                .addGap(87, 87, 87)
+                .addGap(116, 116, 116)
                 .addComponent(jLabel2)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EscritorioLayout.createSequentialGroup()
+                .addContainerGap(232, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(232, 232, 232))
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EscritorioLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(24, 24, 24)
                 .addComponent(jLabel1)
-                .addGap(63, 63, 63)
+                .addGap(67, 67, 67)
                 .addComponent(jLabel2)
                 .addGap(80, 80, 80)
                 .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBMenuAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JBMenuCLientes, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(185, Short.MAX_VALUE))
+                .addContainerGap(254, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -129,8 +129,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_JBMenuAdminActionPerformed
 
     private void JBMenuCLientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBMenuCLientesActionPerformed
-        MenuClientes menuClientes = new MenuClientes(); // Crear una instancia de la ventana MenuClientes
-        menuClientes.setVisible(true); // Mostrar la ventana MenuClientes
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        MenuClientes menuC = new MenuClientes(); // Crear una instancia de la ventana MenuClientes
+        menuC.setVisible(true); // Mostrar la ventana MenuClientes
+        Escritorio.add(menuC);
+        Escritorio.moveToFront(menuC);
+
     }//GEN-LAST:event_JBMenuCLientesActionPerformed
 
     public static void main(String args[]) {
