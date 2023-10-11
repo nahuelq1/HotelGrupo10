@@ -9,6 +9,7 @@ import hotelgrupo10.accesoADatos.CategoriaData;
 import hotelgrupo10.accesoADatos.HabitacionData;
 import hotelgrupo10.accesoADatos.HuespedData;
 import hotelgrupo10.accesoADatos.ReservaData;
+import hotelgrupo10.entidades.Categoria;
 import hotelgrupo10.entidades.Habitacion;
 import hotelgrupo10.entidades.Reserva;
 import java.time.LocalDate;
@@ -111,17 +112,17 @@ private ReservaData rd;
 
         JThabitdisp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null},
+                {null},
+                {null},
+                {null}
             },
             new String [] {
-                "cant personas", "tipo habitacion", "fecha de ingreso", "fecha de salida"
+                "Habitaciones Disponibles"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -257,7 +258,7 @@ private ReservaData rd;
         // TODO add your handling code here:
         if(JCBtiposhabit.getSelectedIndex()>0){
         String selectedItem= JCBtiposhabit.getSelectedItem().toString();
-        int cantPersonas= Integer.parseInt(selectedItem.split(" ")[0]);
+        int cantPersonas=Integer.parseInt(selectedItem.split(" ")[0]);
         obtenerReservas(cantPersonas);
             
         
@@ -311,17 +312,13 @@ JCBtiposhabit.addItem(habitacion.getIdHabitacion() + " " + habitacion.getCategor
         DefaultTableModel model = (DefaultTableModel) JThabitdisp.getModel();
         model.setRowCount(0);
 
-        List<Reserva> reservas = rd.obtenerHabitacionPorCantpersonas(cantPersonas) ;
+        List<Categoria> categorias = cd.listarCategoriasDisponiblesPorCantidadPersonas(cantPersonas);
 
-        for (Reserva reserva : reservas ) {
-            int cantpersonas = reserva.getCantPersonas();
-            String tipoHabitacion = reserva.getCategoria().getTipoHabitacion();
-            LocalDate fechai= reserva.getFechaInicio();
-            LocalDate fechaf=reserva.getFechaFin();
-            
+        for (Categoria categoria: categorias ) {
+         
 
             model.addRow(new Object[]{
-                reserva.getCantPersonas(), reserva.getCategoria().getTipoHabitacion(), reserva.getFechaInicio(), reserva.getFechaFin()
+               categoria.getTipoHabitacion(),
             });
         }
     }
