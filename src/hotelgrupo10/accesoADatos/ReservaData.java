@@ -132,7 +132,7 @@ public class ReservaData {
 
         ArrayList<Categoria> categorias = new ArrayList<>();
         String sql = "SELECT* FROM categoria WHERE tipoHabitacion=? AND estado=1";
-        Reserva resv= new Reserva();
+        Reserva resv = new Reserva();
 //        LocalDate fechaEntrada = resv.getFechaInicio();
 //        LocalDate fechaSalida = resv.getFechaFin();
         try {
@@ -144,7 +144,7 @@ public class ReservaData {
                 categoria.setTipoHabitacion(rs.getString("tipoHabitacion"));
                 categoria.setEstado(rs.getBoolean("estado"));
                 categoria.setIdCategoria(rs.getInt("IdCategoria"));
-               
+
                 categorias.add(categoria);
             }
             ps.close();
@@ -251,7 +251,7 @@ public class ReservaData {
 
     public List<Reserva> busquedaDeReservaPorHuesped(Huesped huesped) {
 
-        String sql = "SELECT * FROM reserva";
+        String sql = "SELECT * FROM reserva WHERE idHuesped = ?";
         ArrayList<Reserva> reservas = new ArrayList<>();
         Reserva res = new Reserva();
 
@@ -263,8 +263,8 @@ public class ReservaData {
                 res.setIdReserva(rs.getInt("idReserva"));
                 Habitacion hab = hd.buscarHabitacion(rs.getInt("idHabitacion"));
                 res.setHabitacion(hab);
-                Huesped hus = hd2.buscarHuespedPorId(rs.getInt("idHuesped"));
-                res.setHuesped(hus);
+//                Huesped hus = hd2.buscarHuespedPorId(rs.getInt("idHuesped"));
+                res.setHuesped(huesped);
                 res.setFechaInicio(rs.getDate("fechaInicio").toLocalDate());
                 res.setFechaFin(rs.getDate("fechaFin").toLocalDate());
                 res.setPrecioTotal(rs.getInt("precioTotal"));
@@ -276,9 +276,7 @@ public class ReservaData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "error al acceder a la tabla reserva");
         }
-
         return reservas;
-
     }
 
     public List<Reserva> busquedaDeReservaPorFecha(String fecha) {
@@ -315,7 +313,7 @@ public class ReservaData {
         return reservas;
 
     }
-    
+
     public List<Reserva> obtenerHabitacionPorCantpersonas(int cantPersonas) {
 
         ArrayList<Reserva> reservas = new ArrayList<>();
@@ -327,7 +325,7 @@ public class ReservaData {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Reserva res = new Reserva();
-               res.setIdReserva(rs.getInt("idReserva"));
+                res.setIdReserva(rs.getInt("idReserva"));
                 Habitacion hab = hd.buscarHabitacion(rs.getInt("idHabitacion"));
                 Huesped hus = hd2.buscarHuespedPorId(rs.getInt("idHuesped"));
                 res.setHabitacion(hab);

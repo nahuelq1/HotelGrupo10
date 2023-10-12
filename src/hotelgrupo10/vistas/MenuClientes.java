@@ -4,7 +4,13 @@ import hotelgrupo10.accesoADatos.CategoriaData;
 import hotelgrupo10.accesoADatos.HabitacionData;
 import hotelgrupo10.accesoADatos.HuespedData;
 import hotelgrupo10.accesoADatos.ReservaData;
+import hotelgrupo10.entidades.Huesped;
+import hotelgrupo10.entidades.Reserva;
+import java.sql.Date;
+import java.util.List;
 import javax.swing.JDesktopPane;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class MenuClientes extends javax.swing.JInternalFrame {
 
@@ -156,7 +162,19 @@ public class MenuClientes extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBbuscarActionPerformed
-        // TODO add your handling code here:
+        try {
+            int dni = Integer.parseInt(JTdni.getText());
+            Huesped huesped = hd1.buscarHuesped(dni);
+
+            if (huesped != null) {
+                obtenerReservasXHuesped(huesped);
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe ese huésped");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Ingresa un valor numérico válido para el DNI.");
+        }
+
     }//GEN-LAST:event_JBbuscarActionPerformed
 
     private void JBnuevareservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBnuevareservaActionPerformed
@@ -178,4 +196,19 @@ public class MenuClientes extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    private void obtenerReservasXHuesped(Huesped huesped) {
+        DefaultTableModel model = (DefaultTableModel) JTreservas.getModel();
+        model.setRowCount(0);
+
+        List<Reserva> reservas = rd.busquedaDeReservaPorHuesped(huesped);
+
+        for (Reserva reserva : reservas) {
+            model.addRow(new Object[]{
+                reserva.getIdReserva(), reserva.getHabitacion().getIdHabitacion(),
+                reserva.getHuesped().getIdHuesped(), reserva.getFechaInicio(),
+                reserva.getFechaFin(), reserva.getPrecioTotal(), reserva.getCantPersonas()
+            });
+        }
+    }
 }

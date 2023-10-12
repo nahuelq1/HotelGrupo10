@@ -124,7 +124,7 @@ public class HotelGrupo10 {
 //        CategoriaData categD = new CategoriaData();
 //        HabitacionData hbD = new HabitacionData();
 //        HuespedData huespD = new HuespedData();
-        ReservaData resD = new ReservaData();
+//        ReservaData resD = new ReservaData();
 //
 //        Categoria categoria = new Categoria();
 //        categoria.setIdCategoria(2);
@@ -188,11 +188,11 @@ public class HotelGrupo10 {
 ////            System.out.println("cantpersonas " + res1.getCantPersonas());
 ////        }
 ////
-        for (Categoria categoria1 : resD.mostrarHabitacionesLibres("suit")) {
-            System.out.println("Id:             " + categoria1.getIdCategoria());
-            System.out.println("Tipo Hab:       " + categoria1.getTipoHabitacion());
-            System.out.println("-");
-        }
+//        for (Categoria categoria1 : resD.mostrarHabitacionesLibres("suit")) {
+//            System.out.println("Id:             " + categoria1.getIdCategoria());
+//            System.out.println("Tipo Hab:       " + categoria1.getTipoHabitacion());
+//            System.out.println("-");
+//        }
 ////
 ////        for (Categoria categoria1 : res.montoEstadia("suit2")) {
 ////            System.out.println("\nDatos:              ----");

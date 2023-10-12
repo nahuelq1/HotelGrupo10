@@ -116,7 +116,7 @@ public class HabitacionData {
 
     public Habitacion buscarHabitacion(int idHabitacion) {
         String sql = "SELECT idCategoria, NroHabitacion, Piso, estado "
-                + "FROM habitacion WHERE IdHabitacion = ? AND estado = 1";
+                + "FROM habitacion WHERE IdHabitacion = ?";
         Habitacion habitacionEncontrada = null;
 
         try {
