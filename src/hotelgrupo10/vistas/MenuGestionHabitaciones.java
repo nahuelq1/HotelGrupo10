@@ -5,17 +5,31 @@
  */
 package hotelgrupo10.vistas;
 
+import hotelgrupo10.accesoADatos.CategoriaData;
+import hotelgrupo10.accesoADatos.HabitacionData;
+import hotelgrupo10.accesoADatos.HuespedData;
+import hotelgrupo10.accesoADatos.ReservaData;
+import hotelgrupo10.entidades.Categoria;
+import hotelgrupo10.entidades.Habitacion;
+
 /**
  *
  * @author nahue
  */
 public class MenuGestionHabitaciones extends javax.swing.JInternalFrame {
-
+private CategoriaData cd;
+private HabitacionData hd;
+private HuespedData hd1;
+private ReservaData rd;
     /**
      * Creates new form MenuGestionHabitaciones
      */
     public MenuGestionHabitaciones() {
         initComponents();
+        this.cd= cd;
+        this.hd= hd;
+        this.hd1= hd1;
+        this.rd= rd;
     }
 
     /**
@@ -65,6 +79,11 @@ public class MenuGestionHabitaciones extends javax.swing.JInternalFrame {
         JBeliminar.setText("Eliminar Habitacion");
 
         JBcrearhabitacion.setText("Crear habitacion");
+        JBcrearhabitacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBcrearhabitacionActionPerformed(evt);
+            }
+        });
 
         JBmodificarhabit.setText("Modificar habitacion");
 
@@ -161,6 +180,10 @@ public class MenuGestionHabitaciones extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JBcrearhabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBcrearhabitacionActionPerformed
+       
+    }//GEN-LAST:event_JBcrearhabitacionActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

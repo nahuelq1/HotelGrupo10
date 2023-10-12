@@ -263,7 +263,7 @@ private ReservaData rd;
              
                   
             String selectedItem= JCBtiposhabit.getSelectedItem().toString();
-            String tipoHabitacion= selectedItem.split(" ")[0];
+            String tipoHabitacion= selectedItem.split(" ")[1];
             
            
              obtenerReservas(tipoHabitacion);
@@ -323,8 +323,8 @@ JCBtiposhabit.addItem(habitacion.getIdHabitacion() + " " + habitacion.getCategor
         List<Categoria> categorias = rd.mostrarHabitacionesLibres(tipoHabitacion);
         Reserva res= new Reserva();
         
-        for (Categoria categoria: categorias ) {
-         String t=categoria.getTipoHabitacion();
+        for (Categoria cat: categorias ) {
+         String t=cat.getTipoHabitacion();
 //         String fechaEntradars="";
 //         LocalDate fechaentrada= LocalDate.parse(fechaEntradars);
 //         String fechasalidars="";
@@ -333,7 +333,7 @@ JCBtiposhabit.addItem(habitacion.getIdHabitacion() + " " + habitacion.getCategor
             
             model.addRow(new Object[]{
             
-            categoria.getTipoHabitacion()
+            cat.getTipoHabitacion()
             
             });
            

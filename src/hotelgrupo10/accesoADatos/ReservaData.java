@@ -133,8 +133,8 @@ public class ReservaData {
         ArrayList<Categoria> categorias = new ArrayList<>();
         String sql = "SELECT* FROM categoria WHERE tipoHabitacion=? AND estado=1";
         Reserva resv= new Reserva();
-        LocalDate fechaEntrada = resv.getFechaInicio();
-        LocalDate fechaSalida = resv.getFechaFin();
+//        LocalDate fechaEntrada = resv.getFechaInicio();
+//        LocalDate fechaSalida = resv.getFechaFin();
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, tipoHabitacion);
@@ -144,8 +144,7 @@ public class ReservaData {
                 categoria.setTipoHabitacion(rs.getString("tipoHabitacion"));
                 categoria.setEstado(rs.getBoolean("estado"));
                 categoria.setIdCategoria(rs.getInt("IdCategoria"));
-                resv.setFechaInicio(rs.getDate("FechaInicio").toLocalDate());
-                resv.setFechaFin(rs.getDate("FechaFin").toLocalDate());
+               
                 categorias.add(categoria);
             }
             ps.close();
