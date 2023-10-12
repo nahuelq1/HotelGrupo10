@@ -13,6 +13,7 @@ import hotelgrupo10.entidades.Categoria;
 import hotelgrupo10.entidades.Habitacion;
 import hotelgrupo10.entidades.Reserva;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -246,15 +247,6 @@ private ReservaData rd;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void JRB1personaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JRB1personaActionPerformed
-        botones.add(JRB1persona);
-        botones.add(JRB2personas);
-        botones.add(JRB3personas);
-        botones.add(JRB4personas);
-        botones.add(JRB5personas);
-        botones.add(JRB6personas);
-    }//GEN-LAST:event_JRB1personaActionPerformed
-
     private void JCBtiposhabitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBtiposhabitActionPerformed
         // TODO add your handling code here:
           
@@ -276,6 +268,15 @@ private ReservaData rd;
         }
         
     }//GEN-LAST:event_JCBtiposhabitActionPerformed
+
+    private void JRB1personaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JRB1personaActionPerformed
+        botones.add(JRB1persona);
+        botones.add(JRB2personas);
+        botones.add(JRB3personas);
+        botones.add(JRB4personas);
+        botones.add(JRB5personas);
+        botones.add(JRB6personas);
+    }//GEN-LAST:event_JRB1personaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

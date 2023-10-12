@@ -182,7 +182,14 @@ private ReservaData rd;
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBcrearhabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBcrearhabitacionActionPerformed
-       
+      int idHabitacion= Integer.parseInt(JTidHabitacion.getText());
+      int idCategoria= Integer.parseInt(JTidCategoria.getText());
+      int nroHabitacion=Integer.parseInt(JTnumeroHabit.getText());
+      int nroPiso= Integer.parseInt(JTnumeroPiso.getText());
+      boolean estado= JRBestado.isSelected();
+      Categoria cat= cd.buscarCategoria(idCategoria);
+      Habitacion hab= new Habitacion(idHabitacion, cat, nroHabitacion, nroPiso, estado);
+      hd.crearHabitacion(hab);
     }//GEN-LAST:event_JBcrearhabitacionActionPerformed
 
 
