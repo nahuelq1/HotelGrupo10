@@ -42,6 +42,8 @@ public class MenuClientes extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
 
+        Escritorio.setBackground(new java.awt.Color(204, 204, 204));
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Menu clientes");
 
