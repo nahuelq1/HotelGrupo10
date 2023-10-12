@@ -1,9 +1,25 @@
 package hotelgrupo10.vistas;
 
+import hotelgrupo10.accesoADatos.CategoriaData;
+import hotelgrupo10.accesoADatos.HabitacionData;
+import hotelgrupo10.accesoADatos.HuespedData;
+import hotelgrupo10.accesoADatos.ReservaData;
+import javax.swing.JDesktopPane;
+
 public class MenuClientes extends javax.swing.JInternalFrame {
 
-    public MenuClientes() {
+    private CategoriaData cd;
+    private HabitacionData hd;
+    private HuespedData hd1;
+    private ReservaData rd;
+
+    public MenuClientes(CategoriaData cd, HabitacionData hd, HuespedData hd1, ReservaData rd) {
         initComponents();
+        this.cd = new CategoriaData();
+        this.hd = new HabitacionData();
+        this.hd1 = new HuespedData();
+        this.rd = new ReservaData();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -19,6 +35,11 @@ public class MenuClientes extends javax.swing.JInternalFrame {
         JBeliminarReserva = new javax.swing.JButton();
         JBnuevareserva = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Menu clientes");
 
@@ -26,23 +47,41 @@ public class MenuClientes extends javax.swing.JInternalFrame {
         jLabel2.setText("Ingrese su DNI");
 
         JBbuscar.setText("Buscar");
+        JBbuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBbuscarActionPerformed(evt);
+            }
+        });
 
         JTreservas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6"
+                "Id reserva", "Id habitacion", "Id huesped", "Fecha Inicio", "Fecha Fin", "Precio Total", "Cant personas"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(JTreservas);
 
         JBeliminarReserva.setText("Eliminar reserva");
 
         JBnuevareserva.setText("Nueva reserva");
+        JBnuevareserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBnuevareservaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -94,6 +133,15 @@ public class MenuClientes extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBbuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JBbuscarActionPerformed
+
+    private void JBnuevareservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBnuevareservaActionPerformed
+        MenuReserva menuReserva = new MenuReserva(cd, hd, hd1, rd);
+        menuReserva.setVisible(true);
+    }//GEN-LAST:event_JBnuevareservaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

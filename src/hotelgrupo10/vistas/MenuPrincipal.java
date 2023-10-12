@@ -119,8 +119,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBMenuAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBMenuAdminActionPerformed
-        Escritorio.removeAll();
-        Escritorio.repaint();
+//        Escritorio.removeAll();
+//        Escritorio.repaint();
         MenuAdministracion Menua= new MenuAdministracion();
         Menua.setVisible(true);
         Escritorio.add(Menua);
@@ -129,9 +129,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_JBMenuAdminActionPerformed
 
     private void JBMenuCLientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBMenuCLientesActionPerformed
-        Escritorio.removeAll();
-        Escritorio.repaint();
-        MenuClientes menuC = new MenuClientes(); // Crear una instancia de la ventana MenuClientes
+//        Escritorio.removeAll();
+//        Escritorio.repaint();
+        MenuClientes menuC = new MenuClientes(cd, hd, hd1, rd); // Crear una instancia de la ventana MenuClientes
         menuC.setVisible(true); // Mostrar la ventana MenuClientes
         Escritorio.add(menuC);
         Escritorio.moveToFront(menuC);
