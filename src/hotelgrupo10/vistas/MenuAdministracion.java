@@ -27,76 +27,92 @@ public class MenuAdministracion extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Escmenuadm = new javax.swing.JDesktopPane();
         jLabel1 = new javax.swing.JLabel();
-        JBgestionH = new javax.swing.JButton();
-        JBgestionR = new javax.swing.JButton();
         JBgestionHU = new javax.swing.JButton();
-        JBgestiondeC = new javax.swing.JButton();
+        JBgestionH = new javax.swing.JButton();
+        JBgestionCat = new javax.swing.JButton();
+        JBgestionReservas = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        Escmenuadm.setBackground(new java.awt.Color(204, 204, 204));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Menu administracion");
 
-        JBgestionH.setText("Gestion de habitaciones");
-
-        JBgestionR.setText("Gestion de reservas");
-        JBgestionR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBgestionRActionPerformed(evt);
-            }
-        });
-
+        JBgestionHU.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         JBgestionHU.setText("Gestion de huespedes");
 
-        JBgestiondeC.setText("Gestion de categorias");
+        JBgestionH.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        JBgestionH.setText("Gestion de habitaciones");
+
+        JBgestionCat.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        JBgestionCat.setText("Gestion de categorias");
+
+        JBgestionReservas.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        JBgestionReservas.setText("Gestion de reservas");
+
+        Escmenuadm.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Escmenuadm.setLayer(JBgestionHU, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Escmenuadm.setLayer(JBgestionH, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Escmenuadm.setLayer(JBgestionCat, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Escmenuadm.setLayer(JBgestionReservas, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout EscmenuadmLayout = new javax.swing.GroupLayout(Escmenuadm);
+        Escmenuadm.setLayout(EscmenuadmLayout);
+        EscmenuadmLayout.setHorizontalGroup(
+            EscmenuadmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EscmenuadmLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(130, 130, 130))
+            .addGroup(EscmenuadmLayout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addGroup(EscmenuadmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(JBgestionHU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JBgestionCat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addGroup(EscmenuadmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(JBgestionH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JBgestionReservas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
+        );
+        EscmenuadmLayout.setVerticalGroup(
+            EscmenuadmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EscmenuadmLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(66, 66, 66)
+                .addGroup(EscmenuadmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JBgestionHU, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JBgestionH, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(76, 76, 76)
+                .addGroup(EscmenuadmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JBgestionReservas, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JBgestionCat, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(117, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(98, 98, 98)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JBgestionR, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JBgestionHU, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(JBgestiondeC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JBgestionH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(23, 23, 23))
+            .addComponent(Escmenuadm, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JBgestionH, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JBgestionR, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(JBgestionHU, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                    .addComponent(JBgestiondeC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(83, Short.MAX_VALUE))
+            .addComponent(Escmenuadm, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void JBgestionRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBgestionRActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JBgestionRActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane Escmenuadm;
+    private javax.swing.JButton JBgestionCat;
     private javax.swing.JButton JBgestionH;
     private javax.swing.JButton JBgestionHU;
-    private javax.swing.JButton JBgestionR;
-    private javax.swing.JButton JBgestiondeC;
+    private javax.swing.JButton JBgestionReservas;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
