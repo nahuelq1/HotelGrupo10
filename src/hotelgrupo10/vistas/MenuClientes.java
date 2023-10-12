@@ -160,10 +160,10 @@ public class MenuClientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JBbuscarActionPerformed
 
     private void JBnuevareservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBnuevareservaActionPerformed
-        MenuReserva menuReserva = new MenuReserva(cd, hd, hd1, rd);
-        menuReserva.setVisible(true);
-        menuPrincipal.getEscritorio().add(menuReserva);
-        menuPrincipal.getEscritorio().moveToFront(menuReserva);
+        MenuHuesped menuHuesped = new MenuHuesped();
+        menuHuesped.setVisible(true);
+        menuPrincipal.getEscritorio().add(menuHuesped);
+        menuPrincipal.getEscritorio().moveToFront(menuHuesped);
     }//GEN-LAST:event_JBnuevareservaActionPerformed
 
 
