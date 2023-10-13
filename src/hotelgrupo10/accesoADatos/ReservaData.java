@@ -183,7 +183,8 @@ public class ReservaData {
 
     public void finReserva(Huesped huesped) {
 
-        String sql = "SELECT idReserva, idHabitacion FROM reserva WHERE idHuesped = ? AND Estado = 1";//busca resva
+        String sql = "SELECT idReserva, idHabitacion FROM reserva WHERE idHuesped = ? "+
+                "AND Estado = 1";//busca resva
         Reserva reserva = null;
         int idHabitacion = 0;
 
@@ -251,20 +252,24 @@ public class ReservaData {
 
     public List<Reserva> busquedaDeReservaPorHuesped(Huesped huesped) {
 
-        String sql = "SELECT * FROM reserva WHERE idHuesped = ?";
+        String sql = "SELECT * FROM reserva WHERE idHuesped = ? AND estado=1";
         ArrayList<Reserva> reservas = new ArrayList<>();
-        Reserva res = new Reserva();
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, huesped.getIdHuesped());
             ResultSet rs = ps.executeQuery();
+
             while (rs.next()) {
+                Reserva res = new Reserva();
                 res.setIdReserva(rs.getInt("idReserva"));
                 Habitacion hab = hd.buscarHabitacion(rs.getInt("idHabitacion"));
                 res.setHabitacion(hab);
-//                Huesped hus = hd2.buscarHuespedPorId(rs.getInt("idHuesped"));
-                res.setHuesped(huesped);
+
+                Huesped reserHuesped = new Huesped();
+                reserHuesped.setIdHuesped(huesped.getIdHuesped());
+                res.setHuesped(reserHuesped);
+
                 res.setFechaInicio(rs.getDate("fechaInicio").toLocalDate());
                 res.setFechaFin(rs.getDate("fechaFin").toLocalDate());
                 res.setPrecioTotal(rs.getInt("precioTotal"));

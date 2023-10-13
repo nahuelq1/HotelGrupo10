@@ -73,18 +73,18 @@ public class MenuClientes extends javax.swing.JInternalFrame {
             new String [] {
                 "Id reserva", "Id habitacion", "Id huesped", "Fecha Inicio", "Fecha Fin", "Precio Total", "Cant personas"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        ));
+        JTreservas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        JTreservas.setRowSelectionAllowed(true);
         jScrollPane1.setViewportView(JTreservas);
+        JTreservas.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         JBeliminarReserva.setText("Eliminar reserva");
+        JBeliminarReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBeliminarReservaActionPerformed(evt);
+            }
+        });
 
         JBnuevareserva.setText("Nueva reserva");
         JBnuevareserva.addActionListener(new java.awt.event.ActionListener() {
@@ -184,6 +184,23 @@ public class MenuClientes extends javax.swing.JInternalFrame {
         menuPrincipal.getEscritorio().moveToFront(menuHuesped);
     }//GEN-LAST:event_JBnuevareservaActionPerformed
 
+    private void JBeliminarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBeliminarReservaActionPerformed
+        int selectedRow = JTreservas.getSelectedRow();
+
+        if (selectedRow != -1) {
+            int idReserva = (int) JTreservas.getValueAt(JTreservas.getSelectedRow(),0);
+            int idHuesped = (int) JTreservas.getValueAt(JTreservas.getSelectedRow(),2);
+            Huesped huesped = hd1.buscarHuespedPorId(idHuesped);
+            rd.finReserva(huesped);
+            JOptionPane.showMessageDialog(null, "Idreserva= "+idReserva+"\n Id huesped: "+ idHuesped);
+        
+
+            obtenerReservasXHuesped(huesped);
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecciona una reserva para eliminar.");
+        }
+    }//GEN-LAST:event_JBeliminarReservaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane Escritorio;
@@ -197,6 +214,7 @@ public class MenuClientes extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
+    
     private void obtenerReservasXHuesped(Huesped huesped) {
         DefaultTableModel model = (DefaultTableModel) JTreservas.getModel();
         model.setRowCount(0);
@@ -204,6 +222,7 @@ public class MenuClientes extends javax.swing.JInternalFrame {
         List<Reserva> reservas = rd.busquedaDeReservaPorHuesped(huesped);
 
         for (Reserva reserva : reservas) {
+            
             model.addRow(new Object[]{
                 reserva.getIdReserva(), reserva.getHabitacion().getIdHabitacion(),
                 reserva.getHuesped().getIdHuesped(), reserva.getFechaInicio(),

@@ -108,6 +108,7 @@ public class HuespedData {
         }
         return huespedEncontrado;
     }
+    
  public Huesped buscarHuespedPorId(int id) {
         String sql = "SELECT * FROM huesped WHERE idHuesped = ? AND estado=1";
         Huesped huespedEncontrado = null;
