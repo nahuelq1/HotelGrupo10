@@ -48,6 +48,8 @@ public class MenuGestionCategorias extends javax.swing.JInternalFrame {
         JBcrearcat = new javax.swing.JButton();
         JBlistacat = new javax.swing.JButton();
 
+        setPreferredSize(new java.awt.Dimension(700, 600));
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Gestion de categorias");
 
@@ -75,12 +77,22 @@ public class MenuGestionCategorias extends javax.swing.JInternalFrame {
         jLabel8.setText("Ingrese el ID de la categoria");
 
         JBeliminarcat.setText("Eliminar categoria");
+        JBeliminarcat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBeliminarcatActionPerformed(evt);
+            }
+        });
 
         JBmodificarcat.setText("Modificar categoria");
 
         JBcrearcat.setText("Crear categoria");
 
         JBlistacat.setText("Lista de categorias");
+        JBlistacat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBlistacatActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,52 +105,48 @@ public class MenuGestionCategorias extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel7)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(JBeliminarcat)
-                        .addGap(18, 18, 18)
-                        .addComponent(JBmodificarcat)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(JTFcantpersonas)
-                            .addComponent(JTFcantcamas)
-                            .addComponent(JTFtipodecama)
-                            .addComponent(JTFtipodehabitacion)
-                            .addComponent(JTFprecio)
-                            .addComponent(JTFidcategoria, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(JBbuscar)
-                        .addGap(32, 32, 32))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(97, 97, 97)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JRBestado)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(JRBestado)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(JBcrearcat)
-                                .addGap(18, 18, 18)
-                                .addComponent(JBlistacat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addContainerGap())))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(JTFcantpersonas)
+                                    .addComponent(JTFcantcamas)
+                                    .addComponent(JTFtipodecama)
+                                    .addComponent(JTFtipodehabitacion)
+                                    .addComponent(JTFprecio)
+                                    .addComponent(JTFidcategoria, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE))
+                                .addGap(49, 49, 49)
+                                .addComponent(JBbuscar))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(JBeliminarcat)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JBmodificarcat)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(JBcrearcat)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JBlistacat, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(JBbuscar)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel8)
-                        .addComponent(JTFidcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(25, 25, 25)
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(JTFidcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JBbuscar))
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(JTFcantpersonas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -162,17 +170,25 @@ public class MenuGestionCategorias extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(JRBestado))
-                .addGap(34, 34, 34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBeliminarcat, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JBmodificarcat, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JBcrearcat, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JBlistacat, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 48, Short.MAX_VALUE))
+                .addGap(0, 128, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JBeliminarcatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBeliminarcatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JBeliminarcatActionPerformed
+
+    private void JBlistacatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBlistacatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JBlistacatActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -41,15 +41,35 @@ public class MenuAdministracion extends javax.swing.JInternalFrame {
 
         JBgestionHU.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         JBgestionHU.setText("Gestion de huespedes");
+        JBgestionHU.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBgestionHUActionPerformed(evt);
+            }
+        });
 
         JBgestionH.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         JBgestionH.setText("Gestion de habitaciones");
+        JBgestionH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBgestionHActionPerformed(evt);
+            }
+        });
 
         JBgestionCat.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         JBgestionCat.setText("Gestion de categorias");
+        JBgestionCat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBgestionCatActionPerformed(evt);
+            }
+        });
 
         JBgestionReservas.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         JBgestionReservas.setText("Gestion de reservas");
+        JBgestionReservas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBgestionReservasActionPerformed(evt);
+            }
+        });
 
         Escmenuadm.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         Escmenuadm.setLayer(JBgestionHU, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -105,6 +125,37 @@ public class MenuAdministracion extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JBgestionHUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBgestionHUActionPerformed
+        // TODO add your handling code here:
+        MenuGestionHuespedes Menug = new MenuGestionHuespedes();
+        Menug.setVisible(true);
+        Escmenuadm.add(Menug);
+        Escmenuadm.moveToFront(Menug);
+    }//GEN-LAST:event_JBgestionHUActionPerformed
+
+    private void JBgestionHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBgestionHActionPerformed
+        MenuGestionHabitaciones Menuh = new MenuGestionHabitaciones();
+        Menuh.setVisible(true);
+        Escmenuadm.add(Menuh);
+        Escmenuadm.moveToFront(Menuh);
+    }//GEN-LAST:event_JBgestionHActionPerformed
+
+    private void JBgestionCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBgestionCatActionPerformed
+        
+        MenuGestionCategorias Menugc = new MenuGestionCategorias();
+        Menugc.setVisible(true);
+        Escmenuadm.add(Menugc);
+        Escmenuadm.moveToFront(Menugc);
+    }//GEN-LAST:event_JBgestionCatActionPerformed
+
+    private void JBgestionReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBgestionReservasActionPerformed
+        // TODO add your handling code here:
+        MenuGestionReservas Menugr = new MenuGestionReservas();
+        Menugr.setVisible(true);
+        Escmenuadm.add(Menugr);
+        Escmenuadm.moveToFront(Menugr);
+    }//GEN-LAST:event_JBgestionReservasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
