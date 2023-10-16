@@ -116,7 +116,7 @@ public class HabitacionData {
 
     public Habitacion buscarHabitacion(int idHabitacion) {
         String sql = "SELECT idCategoria, NroHabitacion, Piso, estado "
-                + "FROM habitacion WHERE IdHabitacion = ?";
+                + "FROM habitacion WHERE IdHabitacion = ? AND estado=1";
         Habitacion habitacionEncontrada = null;
 
         try {
@@ -126,16 +126,16 @@ public class HabitacionData {
 
             if (rs.next()) {
                 habitacionEncontrada = new Habitacion();
-
+                habitacionEncontrada.setIdHabitacion(idHabitacion);
                 CategoriaData categD = new CategoriaData();
-                int idCategoria = rs.getInt("idCategoria");
-                Categoria categoria = categD.buscarCategoria(idCategoria);
+                
+                Categoria categoria = categD.buscarCategoria(rs.getInt("idCategoria"));
 
                 habitacionEncontrada.setCategoria(categoria);
                 habitacionEncontrada.setNroHabitacion(rs.getInt("NroHabitacion"));
                 habitacionEncontrada.setPiso(rs.getInt("Piso"));
                 habitacionEncontrada.setEstado(rs.getBoolean("estado"));
-                habitacionEncontrada.setIdHabitacion(idHabitacion);
+                
             } else {
                 JOptionPane.showMessageDialog(null, "No existe esa habitación");
             }

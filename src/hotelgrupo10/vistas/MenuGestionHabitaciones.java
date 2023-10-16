@@ -19,8 +19,8 @@ import hotelgrupo10.entidades.Habitacion;
 public class MenuGestionHabitaciones extends javax.swing.JInternalFrame {
 private CategoriaData cd;
 private HabitacionData hd;
-private HuespedData hd1;
-private ReservaData rd;
+//private HuespedData hd1;
+//private ReservaData rd;
     /**
      * Creates new form MenuGestionHabitaciones
      */
@@ -28,8 +28,8 @@ private ReservaData rd;
         initComponents();
         this.cd= cd;
         this.hd= hd;
-        this.hd1= hd1;
-        this.rd= rd;
+//        this.hd1= hd1;
+//        this.rd= rd;
     }
 
     /**
@@ -88,6 +88,11 @@ private ReservaData rd;
         JBmodificarhabit.setText("Modificar habitacion");
 
         JBbuscar.setText("Buscar ");
+        JBbuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBbuscarActionPerformed(evt);
+            }
+        });
 
         JBlistadehabit.setText("Lista de habitaciones");
 
@@ -182,15 +187,26 @@ private ReservaData rd;
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBcrearhabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBcrearhabitacionActionPerformed
-      int idHabitacion= Integer.parseInt(JTidHabitacion.getText());
+      int idHabitacion=Integer.parseInt(JTidHabitacion.getText());
       int idCategoria= Integer.parseInt(JTidCategoria.getText());
       int nroHabitacion=Integer.parseInt(JTnumeroHabit.getText());
       int nroPiso= Integer.parseInt(JTnumeroPiso.getText());
       boolean estado= JRBestado.isSelected();
       Categoria cat= cd.buscarCategoria(idCategoria);
-      Habitacion hab= new Habitacion(idHabitacion, cat, nroHabitacion, nroPiso, estado);
+      Habitacion hab= new Habitacion(idHabitacion,cat, nroHabitacion, nroPiso, estado);
       hd.crearHabitacion(hab);
     }//GEN-LAST:event_JBcrearhabitacionActionPerformed
+
+    private void JBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBbuscarActionPerformed
+    int idHabitacion=Integer.parseInt(JTidHabitacion.getText());
+     boolean estado = JRBestado.isSelected();
+     Habitacion hab=hd.buscarHabitacion(idHabitacion);
+     JTidCategoria.setText(String.valueOf(hab.getCategoria().getIdCategoria()));
+     JTnumeroHabit.setText(String.valueOf(hab.getNroHabitacion()));
+     JTnumeroPiso.setText(String.valueOf(hab.getPiso()));
+     JRBestado.setSelected(hab.isEstado());
+     
+    }//GEN-LAST:event_JBbuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -211,4 +227,11 @@ private ReservaData rd;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
+
+
+
+
+
+
+
 }

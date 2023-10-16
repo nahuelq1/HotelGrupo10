@@ -77,7 +77,7 @@ public class CategoriaData {
     }
 
     public Categoria buscarCategoria(int idCategoria) {
-        String sql = "SELECT * FROM categoria WHERE idcategoria = ? AND estado = 1";
+        String sql = "SELECT * FROM categoria WHERE idCategoria = ? AND estado = 1";
         Categoria categoriaEncontrada = null;
 
         try {
@@ -87,13 +87,14 @@ public class CategoriaData {
 
             if (rs.next()) {
                 categoriaEncontrada = new Categoria();
-                categoriaEncontrada.setIdCategoria(rs.getInt("idcategoria"));
+               categoriaEncontrada.setIdCategoria(idCategoria);
                 categoriaEncontrada.setCantPersonas(rs.getInt("cantpersonas"));
                 categoriaEncontrada.setCantCamas(rs.getInt("cantcamas"));
                 categoriaEncontrada.setTipoCamas(rs.getString("tipocamas"));
                 categoriaEncontrada.setTipoHabitacion(rs.getString("tipohabitacion"));
                 categoriaEncontrada.setPrecio(rs.getDouble("precio"));
-                categoriaEncontrada.setEstado(rs.getBoolean("estado"));
+                categoriaEncontrada.setEstado(true);
+                 
             } else {
                 JOptionPane.showMessageDialog(null, "No existe esa categoría");
             }

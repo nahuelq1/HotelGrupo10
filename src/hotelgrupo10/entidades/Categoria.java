@@ -10,6 +10,15 @@ public class Categoria {
     private double Precio;
     private boolean Estado;
 
+     public Categoria(int idCategoria, int CantPersonas, int CantCamas, String TipoCamas, String TipoHabitacion, double Precio, boolean Estado) {
+        this.idCategoria = idCategoria;
+        this.CantPersonas = CantPersonas;
+        this.CantCamas = CantCamas;
+        this.TipoCamas = TipoCamas;
+        this.TipoHabitacion = TipoHabitacion;
+        this.Precio = Precio;
+        this.Estado = Estado;
+    }
     public Categoria(int CantPersonas, int CantCamas, String TipoCamas, String TipoHabitacion, double Precio, boolean Estado) {
         this.CantPersonas = CantPersonas;
         this.CantCamas = CantCamas;
@@ -22,15 +31,7 @@ public class Categoria {
     public Categoria() {
     }
 
-    public Categoria(int idCategoria, int CantPersonas, int CantCamas, String TipoCamas, String TipoHabitacion, double Precio, boolean Estado) {
-        this.idCategoria = idCategoria;
-        this.CantPersonas = CantPersonas;
-        this.CantCamas = CantCamas;
-        this.TipoCamas = TipoCamas;
-        this.TipoHabitacion = TipoHabitacion;
-        this.Precio = Precio;
-        this.Estado = Estado;
-    }
+   
 
     public int getIdCategoria() {
         return idCategoria;
