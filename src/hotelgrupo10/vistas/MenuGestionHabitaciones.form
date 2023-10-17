@@ -188,6 +188,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Eliminar Habitacion"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBeliminarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="JBcrearhabitacion">
       <Properties>
@@ -201,6 +204,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Modificar habitacion"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBmodificarhabitActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="JBbuscar">
       <Properties>
@@ -216,6 +222,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Lista de habitaciones"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBlistadehabitActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

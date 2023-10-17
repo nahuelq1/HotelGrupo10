@@ -6,6 +6,7 @@ import hotelgrupo10.accesoADatos.HuespedData;
 import hotelgrupo10.accesoADatos.ReservaData;
 import hotelgrupo10.entidades.Categoria;
 import hotelgrupo10.entidades.Habitacion;
+import javax.swing.JOptionPane;
 
 public class MenuGestionHabitaciones extends javax.swing.JInternalFrame {
 
@@ -68,6 +69,11 @@ public class MenuGestionHabitaciones extends javax.swing.JInternalFrame {
         jLabel6.setText("Ingrese el estado");
 
         JBeliminar.setText("Eliminar Habitacion");
+        JBeliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBeliminarActionPerformed(evt);
+            }
+        });
 
         JBcrearhabitacion.setText("Crear habitacion");
         JBcrearhabitacion.addActionListener(new java.awt.event.ActionListener() {
@@ -77,6 +83,11 @@ public class MenuGestionHabitaciones extends javax.swing.JInternalFrame {
         });
 
         JBmodificarhabit.setText("Modificar habitacion");
+        JBmodificarhabit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBmodificarhabitActionPerformed(evt);
+            }
+        });
 
         JBbuscar.setText("Buscar ");
         JBbuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -86,6 +97,11 @@ public class MenuGestionHabitaciones extends javax.swing.JInternalFrame {
         });
 
         JBlistadehabit.setText("Lista de habitaciones");
+        JBlistadehabit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBlistadehabitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -198,6 +214,42 @@ public class MenuGestionHabitaciones extends javax.swing.JInternalFrame {
         JRBestado.setSelected(hab.isEstado());
 
     }//GEN-LAST:event_JBbuscarActionPerformed
+
+    private void JBeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBeliminarActionPerformed
+       try{
+        int idHabitacion = Integer.parseInt(JTidHabitacion.getText());
+        int idCategoria = Integer.parseInt(JTidCategoria.getText());
+        int nroHabitacion = Integer.parseInt(JTnumeroHabit.getText());
+        int nroPiso = Integer.parseInt(JTnumeroPiso.getText());
+        boolean estado = JRBestado.isSelected();
+        Categoria cat = cd.buscarCategoria(idCategoria);
+        Habitacion hab = new Habitacion(idHabitacion, cat, nroHabitacion, nroPiso, estado);
+        
+        if(idHabitacion!=0){
+        hd.eliminarHabitacion(idHabitacion);
+        }
+       }catch(NumberFormatException nfe){
+       
+           JOptionPane.showMessageDialog(null, "seleccione una habitacion activa");
+       }
+    }//GEN-LAST:event_JBeliminarActionPerformed
+
+    private void JBmodificarhabitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBmodificarhabitActionPerformed
+       int idHabitacion = Integer.parseInt(JTidHabitacion.getText());
+        int idCategoria = Integer.parseInt(JTidCategoria.getText());
+        int nroHabitacion = Integer.parseInt(JTnumeroHabit.getText());
+        int nroPiso = Integer.parseInt(JTnumeroPiso.getText());
+        boolean estado = JRBestado.isSelected();
+        Categoria cat = cd.buscarCategoria(idCategoria);
+        Habitacion hab = new Habitacion(idHabitacion, cat, nroHabitacion, nroPiso, estado);
+        hd.modificarHabitacion(hab);
+    }//GEN-LAST:event_JBmodificarhabitActionPerformed
+
+    private void JBlistadehabitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBlistadehabitActionPerformed
+        // TODO add your handling code here:
+       
+         
+    }//GEN-LAST:event_JBlistadehabitActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
