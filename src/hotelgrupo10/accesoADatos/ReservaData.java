@@ -183,8 +183,8 @@ public class ReservaData {
 
     public void finReserva(Huesped huesped) {
 
-        String sql = "SELECT idReserva, idHabitacion FROM reserva WHERE idHuesped = ? "+
-                "AND Estado = 1";//busca resva
+        String sql = "SELECT idReserva, idHabitacion FROM reserva WHERE idHuesped = ? "
+                + "AND Estado = 1";//busca resva
         Reserva reserva = null;
         int idHabitacion = 0;
 
