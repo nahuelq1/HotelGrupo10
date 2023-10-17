@@ -5,6 +5,8 @@
  */
 package hotelgrupo10.vistas;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author nahue
@@ -30,31 +32,40 @@ public class MenuIniciarSesion extends javax.swing.JInternalFrame {
         EscIniciosesion = new javax.swing.JDesktopPane();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        JTusuario = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        JPFcontraseña = new javax.swing.JPasswordField();
+        JBingresar = new javax.swing.JButton();
 
         EscIniciosesion.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Iniciar sesion");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
         jLabel3.setText("Ingrese su usuario");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        JTusuario.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
         jLabel2.setText("Ingrese su contraseña");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jButton1.setText("Ingresar");
+        JPFcontraseña.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
+
+        JBingresar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        JBingresar.setText("Ingresar");
+        JBingresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBingresarActionPerformed(evt);
+            }
+        });
 
         EscIniciosesion.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         EscIniciosesion.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        EscIniciosesion.setLayer(jTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        EscIniciosesion.setLayer(JTusuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
         EscIniciosesion.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        EscIniciosesion.setLayer(jPasswordField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        EscIniciosesion.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        EscIniciosesion.setLayer(JPFcontraseña, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        EscIniciosesion.setLayer(JBingresar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout EscIniciosesionLayout = new javax.swing.GroupLayout(EscIniciosesion);
         EscIniciosesion.setLayout(EscIniciosesionLayout);
@@ -65,20 +76,21 @@ public class MenuIniciarSesion extends javax.swing.JInternalFrame {
                 .addGroup(EscIniciosesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
-                .addGap(43, 43, 43)
-                .addGroup(EscIniciosesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EscIniciosesionLayout.createSequentialGroup()
-                .addContainerGap(174, Short.MAX_VALUE)
+                .addContainerGap(282, Short.MAX_VALUE)
                 .addGroup(EscIniciosesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EscIniciosesionLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(161, 161, 161))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EscIniciosesionLayout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(182, 182, 182))))
+                    .addComponent(JTusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JPFcontraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(209, 209, 209))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EscIniciosesionLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(232, 232, 232))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EscIniciosesionLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(JBingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         EscIniciosesionLayout.setVerticalGroup(
             EscIniciosesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -86,23 +98,26 @@ public class MenuIniciarSesion extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(50, 50, 50)
-                .addGroup(EscIniciosesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(EscIniciosesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                    .addComponent(JTusuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
                 .addGroup(EscIniciosesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(97, 97, 97))
+                    .addComponent(JPFcontraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(93, 93, 93)
+                .addComponent(JBingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(EscIniciosesion)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(EscIniciosesion)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,14 +127,20 @@ public class MenuIniciarSesion extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void JBingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBingresarActionPerformed
+        // TODO add your handling code here:
+   
+        
+    }//GEN-LAST:event_JBingresarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane EscIniciosesion;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton JBingresar;
+    private javax.swing.JPasswordField JPFcontraseña;
+    private javax.swing.JTextField JTusuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
