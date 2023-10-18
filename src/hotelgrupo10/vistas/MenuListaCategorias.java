@@ -5,17 +5,23 @@
  */
 package hotelgrupo10.vistas;
 
+import hotelgrupo10.accesoADatos.CategoriaData;
+import hotelgrupo10.entidades.Categoria;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author nahue
  */
 public class MenuListaCategorias extends javax.swing.JInternalFrame {
-
+private CategoriaData cd;
     /**
      * Creates new form MenuListaCategorias
      */
     public MenuListaCategorias() {
         initComponents();
+        this.cd=new CategoriaData();
     }
 
     /**
@@ -27,6 +33,7 @@ public class MenuListaCategorias extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        botones = new javax.swing.ButtonGroup();
         EsclistaCat = new javax.swing.JDesktopPane();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -55,34 +62,72 @@ public class MenuListaCategorias extends javax.swing.JInternalFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "idCategoria", "tipoCamas", "tipoHabitacion", "precio"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(JTlistaCat);
 
         JRBnro1.setBackground(new java.awt.Color(204, 204, 204));
         JRBnro1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         JRBnro1.setText("1");
+        JRBnro1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JRBnro1ActionPerformed(evt);
+            }
+        });
 
         JRBnro2.setBackground(new java.awt.Color(204, 204, 204));
         JRBnro2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         JRBnro2.setText("2");
+        JRBnro2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JRBnro2ActionPerformed(evt);
+            }
+        });
 
         JRBnro3.setBackground(new java.awt.Color(204, 204, 204));
         JRBnro3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         JRBnro3.setText("3");
+        JRBnro3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JRBnro3ActionPerformed(evt);
+            }
+        });
 
         JRBnro4.setBackground(new java.awt.Color(204, 204, 204));
         JRBnro4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         JRBnro4.setText("4");
+        JRBnro4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JRBnro4ActionPerformed(evt);
+            }
+        });
 
         JRBnro5.setBackground(new java.awt.Color(204, 204, 204));
         JRBnro5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         JRBnro5.setText("5");
+        JRBnro5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JRBnro5ActionPerformed(evt);
+            }
+        });
 
         JRBnro6.setBackground(new java.awt.Color(204, 204, 204));
         JRBnro6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         JRBnro6.setText("6");
+        JRBnro6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JRBnro6ActionPerformed(evt);
+            }
+        });
 
         EsclistaCat.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         EsclistaCat.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -155,6 +200,105 @@ public class MenuListaCategorias extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void JRBnro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JRBnro1ActionPerformed
+        // TODO add your handling code here:
+        botones.add(JRBnro1);
+        botones.add(JRBnro2);
+        botones.add(JRBnro3);
+        botones.add(JRBnro4);
+        botones.add(JRBnro5);
+        botones.add(JRBnro6);
+        
+        int cantpersonas=1;
+        if(JRBnro1.isSelected()){
+        
+            categoriasDisponibles(cantpersonas);
+        
+        }
+    }//GEN-LAST:event_JRBnro1ActionPerformed
+
+    private void JRBnro2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JRBnro2ActionPerformed
+        // TODO add your handling code here:
+        botones.add(JRBnro1);
+        botones.add(JRBnro2);
+        botones.add(JRBnro3);
+        botones.add(JRBnro4);
+        botones.add(JRBnro5);
+        botones.add(JRBnro6);
+        int cantpersonas=2;
+        if(JRBnro2.isSelected()){
+        
+            categoriasDisponibles(cantpersonas);
+        
+        }
+    }//GEN-LAST:event_JRBnro2ActionPerformed
+
+    private void JRBnro3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JRBnro3ActionPerformed
+        // TODO add your handling code here:
+        botones.add(JRBnro1);
+        botones.add(JRBnro2);
+        botones.add(JRBnro3);
+        botones.add(JRBnro4);
+        botones.add(JRBnro5);
+        botones.add(JRBnro6);
+        int cantpersonas=3;
+        if(JRBnro3.isSelected()){
+        
+            categoriasDisponibles(cantpersonas);
+        
+        }
+    }//GEN-LAST:event_JRBnro3ActionPerformed
+
+    private void JRBnro4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JRBnro4ActionPerformed
+        // TODO add your handling code here:
+        botones.add(JRBnro1);
+        botones.add(JRBnro2);
+        botones.add(JRBnro3);
+        botones.add(JRBnro4);
+        botones.add(JRBnro5);
+        botones.add(JRBnro6);
+        int cantpersonas=4;
+        if(JRBnro4.isSelected()){
+        
+            categoriasDisponibles(cantpersonas);
+        
+        }
+    }//GEN-LAST:event_JRBnro4ActionPerformed
+
+    private void JRBnro5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JRBnro5ActionPerformed
+        // TODO add your handling code here:
+        
+        botones.add(JRBnro1);
+        botones.add(JRBnro2);
+        botones.add(JRBnro3);
+        botones.add(JRBnro4);
+        botones.add(JRBnro5);
+        botones.add(JRBnro6);
+        int cantpersonas=5;
+        if(JRBnro5.isSelected()){
+        
+            categoriasDisponibles(cantpersonas);
+        
+        }
+    }//GEN-LAST:event_JRBnro5ActionPerformed
+
+    private void JRBnro6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JRBnro6ActionPerformed
+        // TODO add your handling code here:
+        
+        botones.add(JRBnro1);
+        botones.add(JRBnro2);
+        botones.add(JRBnro3);
+        botones.add(JRBnro4);
+        botones.add(JRBnro5);
+        botones.add(JRBnro6);
+        int cantpersonas=6;
+        if(JRBnro6.isSelected()){
+        
+            categoriasDisponibles(cantpersonas);
+        
+        }
+    }//GEN-LAST:event_JRBnro6ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane EsclistaCat;
@@ -165,8 +309,35 @@ public class MenuListaCategorias extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton JRBnro5;
     private javax.swing.JRadioButton JRBnro6;
     private javax.swing.JTable JTlistaCat;
+    private javax.swing.ButtonGroup botones;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+
+private void categoriasDisponibles(int cantPersonas){
+
+DefaultTableModel model = (DefaultTableModel) JTlistaCat.getModel();
+model.setRowCount(0);
+
+
+List<Categoria> cantidadPersonas=cd.listarCategoriasDisponiblesPorCantidadPersonas(cantPersonas);
+
+for(Categoria categoria: cantidadPersonas){
+
+ model.addRow(new Object[]{
+categoria.getIdCategoria(),categoria.getTipoCamas(),categoria.getTipoHabitacion(),categoria.getPrecio()
+
+ });
+}
+
+
+
+}
+
+
+
+
+
 }

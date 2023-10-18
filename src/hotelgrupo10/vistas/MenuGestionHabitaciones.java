@@ -6,6 +6,7 @@ import hotelgrupo10.accesoADatos.HuespedData;
 import hotelgrupo10.accesoADatos.ReservaData;
 import hotelgrupo10.entidades.Categoria;
 import hotelgrupo10.entidades.Habitacion;
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 
 public class MenuGestionHabitaciones extends javax.swing.JInternalFrame {
@@ -19,11 +20,11 @@ public class MenuGestionHabitaciones extends javax.swing.JInternalFrame {
     /**
      * Creates new form MenuGestionHabitaciones
      */
-    public MenuGestionHabitaciones() {
+    public MenuGestionHabitaciones(MenuPrincipal menuPrincipal) {
         initComponents();
         this.cd = new CategoriaData();
         this.hd = new HabitacionData();
-        this.menuPrincipal = menuPrincipal;
+        this.menuPrincipal= menuPrincipal;
 //        this.hd1= hd1;
 //        this.rd= rd;
     }
@@ -49,6 +50,10 @@ public class MenuGestionHabitaciones extends javax.swing.JInternalFrame {
         JBbuscar = new javax.swing.JButton();
         JRBestado = new javax.swing.JRadioButton();
         JBlistadehabit = new javax.swing.JButton();
+
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Gestion de habitaciones");
@@ -248,7 +253,11 @@ public class MenuGestionHabitaciones extends javax.swing.JInternalFrame {
     private void JBlistadehabitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBlistadehabitActionPerformed
         // TODO add your handling code here:
        
-         
+        MenuListaHabitaciones mlh = new MenuListaHabitaciones();
+        mlh.setVisible(true);
+        menuPrincipal.getEscritorio().add(mlh);
+        menuPrincipal.getEscritorio().moveToFront(mlh);
+        
     }//GEN-LAST:event_JBlistadehabitActionPerformed
 
 

@@ -5,17 +5,26 @@
  */
 package hotelgrupo10.vistas;
 
+import hotelgrupo10.accesoADatos.CategoriaData;
+import hotelgrupo10.accesoADatos.HabitacionData;
+import hotelgrupo10.entidades.Habitacion;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author nahue
  */
 public class MenuListaHabitaciones extends javax.swing.JInternalFrame {
-
+private HabitacionData hd;
     /**
      * Creates new form MenuListaHabitaciones
      */
     public MenuListaHabitaciones() {
         initComponents();
+        this.hd = new HabitacionData();
+        cargarCombo();
     }
 
     /**
@@ -43,20 +52,33 @@ public class MenuListaHabitaciones extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Seleccione el tipo de habitacion");
 
-        JCBlistacat.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        JCBlistacat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        JCBlistacat.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        JCBlistacat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Habitacion" }));
+        JCBlistacat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JCBlistacatActionPerformed(evt);
+            }
+        });
 
         JTlistacat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "tipo de habitacion disponible", "nroHabitacion"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(JTlistacat);
 
         EscListahabit.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -115,6 +137,20 @@ public class MenuListaHabitaciones extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void JCBlistacatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBlistacatActionPerformed
+        // TODO add your handling code here:
+        if (JCBlistacat.getSelectedIndex() > 0) {
+            String selectedItem = JCBlistacat.getSelectedItem().toString();
+            String tipoHabitacion = selectedItem.split(" ")[0];
+
+            obtenerHabitaciones(tipoHabitacion);
+        }else{
+        
+            JOptionPane.showMessageDialog(null, "Seleccione Habitacion");
+        
+        }
+    }//GEN-LAST:event_JCBlistacatActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane EscListahabit;
@@ -124,4 +160,37 @@ public class MenuListaHabitaciones extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+
+    
+    private void cargarCombo(){
+    List<Habitacion> habitaciones=hd.listarHabitaciones();
+    for(Habitacion habitacion: habitaciones){
+    JCBlistacat.addItem(habitacion.getCategoria().getTipoHabitacion());
+    }
+    
+    }
+    
+    
+    
+private void obtenerHabitaciones(String tipoHabitacion){
+
+ DefaultTableModel model = (DefaultTableModel) JTlistacat.getModel();
+        model.setRowCount(0);
+List<Habitacion> habitaciones=hd.listarHabitaciones();
+
+for(Habitacion habitacion: habitaciones){
+
+
+    model.addRow(new Object[]{
+    habitacion.getCategoria().getTipoHabitacion(),habitacion.getNroHabitacion()
+    });
+    }
+
+
+
+}
+
+
+
 }
