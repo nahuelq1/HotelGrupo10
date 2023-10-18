@@ -5,17 +5,25 @@
  */
 package hotelgrupo10.vistas;
 
+import hotelgrupo10.accesoADatos.CategoriaData;
+import hotelgrupo10.entidades.Categoria;
+import javax.swing.JOptionPane;
+
+
 /**
  *
  * @author nahue
  */
 public class MenuGestionCategorias extends javax.swing.JInternalFrame {
-
+    private MenuPrincipal menuPrincipal;
+    private CategoriaData cd;
     /**
      * Creates new form MenuGestionCategorias
      */
-    public MenuGestionCategorias() {
+    public MenuGestionCategorias(MenuPrincipal menuPrincipal) {
         initComponents();
+         this.cd = new CategoriaData();
+         this.menuPrincipal= menuPrincipal;
     }
 
     /**
@@ -48,6 +56,9 @@ public class MenuGestionCategorias extends javax.swing.JInternalFrame {
         JBcrearcat = new javax.swing.JButton();
         JBlistacat = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
         setPreferredSize(new java.awt.Dimension(700, 600));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -72,6 +83,11 @@ public class MenuGestionCategorias extends javax.swing.JInternalFrame {
         jLabel7.setText("Marque el estado");
 
         JBbuscar.setText("Buscar");
+        JBbuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBbuscarActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Ingrese el ID de la categoria");
@@ -84,8 +100,18 @@ public class MenuGestionCategorias extends javax.swing.JInternalFrame {
         });
 
         JBmodificarcat.setText("Modificar categoria");
+        JBmodificarcat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBmodificarcatActionPerformed(evt);
+            }
+        });
 
         JBcrearcat.setText("Crear categoria");
+        JBcrearcat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBcrearcatActionPerformed(evt);
+            }
+        });
 
         JBlistacat.setText("Lista de categorias");
         JBlistacat.addActionListener(new java.awt.event.ActionListener() {
@@ -184,11 +210,76 @@ public class MenuGestionCategorias extends javax.swing.JInternalFrame {
 
     private void JBeliminarcatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBeliminarcatActionPerformed
         // TODO add your handling code here:
+        try{
+        int idCategoria= Integer.parseInt(JTFidcategoria.getText());
+        int cantPersonas= Integer.parseInt(JTFcantpersonas.getText());
+        int cantCamas= Integer.parseInt(JTFcantcamas.getText());
+        String tipoCamas=JTFtipodecama.getText();
+        String tipoHabitacion= JTFtipodehabitacion.getText();
+        double precio= Double.parseDouble(JTFprecio.getText());
+        boolean estado=JRBestado.isSelected();
+        Categoria cat=new Categoria(idCategoria, cantPersonas, cantCamas, tipoCamas, tipoHabitacion, precio, estado);
+        if(idCategoria!=0){
+        
+        cd.eliminarCategoria(idCategoria);
+        
+        }
+        }catch(NumberFormatException nfe){
+        
+            JOptionPane.showMessageDialog(null, "Seleccione Una categoria Activa");
+        
+        }
+         
+        
     }//GEN-LAST:event_JBeliminarcatActionPerformed
 
     private void JBlistacatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBlistacatActionPerformed
         // TODO add your handling code here:
+         MenuListaCategorias mlc = new MenuListaCategorias();
+        mlc.setVisible(true);
+        menuPrincipal.getEscritorio().add(mlc);
+        menuPrincipal.getEscritorio().moveToFront(mlc);
     }//GEN-LAST:event_JBlistacatActionPerformed
+
+    private void JBcrearcatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBcrearcatActionPerformed
+        // TODO add your handling code here:
+        int idCategoria= Integer.parseInt(JTFidcategoria.getText());
+        int cantPersonas= Integer.parseInt(JTFcantpersonas.getText());
+        int cantCamas= Integer.parseInt(JTFcantcamas.getText());
+        String tipoCamas=JTFtipodecama.getText();
+        String tipoHabitacion= JTFtipodehabitacion.getText();
+        double precio= Double.parseDouble(JTFprecio.getText());
+        boolean estado=JRBestado.isSelected();
+        Categoria cat=new Categoria(idCategoria, cantPersonas, cantCamas, tipoCamas, tipoHabitacion, precio, estado);
+        cd.agregarCategoria(cat);
+    }//GEN-LAST:event_JBcrearcatActionPerformed
+
+    private void JBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBbuscarActionPerformed
+        // TODO add your handling code here:
+         int idCategoria= Integer.parseInt(JTFidcategoria.getText());
+         boolean estado=JRBestado.isSelected();
+         Categoria cat=cd.buscarCategoria(idCategoria);
+         JTFcantpersonas.setText(String.valueOf(cat.getCantPersonas()));
+         JTFcantcamas.setText(String.valueOf(cat.getCantCamas()));
+         JTFtipodecama.setText(cat.getTipoCamas());
+         JTFtipodehabitacion.setText(cat.getTipoHabitacion());
+         JTFprecio.setText(String.valueOf(cat.getPrecio()));
+         JRBestado.setSelected(cat.isEstado());
+        
+    }//GEN-LAST:event_JBbuscarActionPerformed
+
+    private void JBmodificarcatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBmodificarcatActionPerformed
+        // TODO add your handling code here:
+       int idCategoria= Integer.parseInt(JTFidcategoria.getText());
+        int cantPersonas= Integer.parseInt(JTFcantpersonas.getText());
+        int cantCamas= Integer.parseInt(JTFcantcamas.getText());
+        String tipoCamas=JTFtipodecama.getText();
+        String tipoHabitacion= JTFtipodehabitacion.getText();
+        double precio= Double.parseDouble(JTFprecio.getText());
+        boolean estado=JRBestado.isSelected();
+        Categoria cat=new Categoria(idCategoria, cantPersonas, cantCamas, tipoCamas, tipoHabitacion, precio, estado);
+        cd.modificarCategoria(cat);
+    }//GEN-LAST:event_JBmodificarcatActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

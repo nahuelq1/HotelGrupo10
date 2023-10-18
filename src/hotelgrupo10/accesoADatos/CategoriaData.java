@@ -18,15 +18,16 @@ public class CategoriaData {
     }
 
     public void agregarCategoria(Categoria nuevaCategoria) {
-        String sql = "INSERT INTO categoria (cantpersonas, cantcamas, tipocamas, tipohabitacion, precio, estado) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO categoria (idCategoria, cantpersonas, cantcamas, tipocamas, tipohabitacion, precio, estado) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, nuevaCategoria.getCantPersonas());
-            ps.setInt(2, nuevaCategoria.getCantCamas());
-            ps.setString(3, nuevaCategoria.getTipoCamas());
-            ps.setString(4, nuevaCategoria.getTipoHabitacion());
-            ps.setDouble(5, nuevaCategoria.getPrecio());
-            ps.setBoolean(6, nuevaCategoria.isEstado());
+            ps.setInt(1, nuevaCategoria.getIdCategoria());
+            ps.setInt(2, nuevaCategoria.getCantPersonas());
+            ps.setInt(3, nuevaCategoria.getCantCamas());
+            ps.setString(4, nuevaCategoria.getTipoCamas());
+            ps.setString(5, nuevaCategoria.getTipoHabitacion());
+            ps.setDouble(6, nuevaCategoria.getPrecio());
+            ps.setBoolean(7, nuevaCategoria.isEstado());
             ps.executeUpdate();
             ps.close();
             JOptionPane.showMessageDialog(null, "Categoría agregada con éxito");
@@ -60,13 +61,13 @@ public class CategoriaData {
     }
 
     public void eliminarCategoria(int idCategoria) {
-        String sql = "UPDATE categoria SET estado = 0 WHERE idcategoria = ?";
+        String sql = "UPDATE categoria SET estado=0 WHERE idCategoria=?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idCategoria);
             int exito = ps.executeUpdate();
             ps.close();
-            if (exito > 0) {
+            if (exito ==1) {
                 JOptionPane.showMessageDialog(null, "Categoría eliminada con éxito");
             } else {
                 JOptionPane.showMessageDialog(null, "La categoría no pudo ser eliminada");

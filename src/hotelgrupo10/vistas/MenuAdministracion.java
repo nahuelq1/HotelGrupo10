@@ -122,7 +122,7 @@ public class MenuAdministracion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JBgestionHUActionPerformed
 
     private void JBgestionHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBgestionHActionPerformed
-        MenuGestionHabitaciones Menuh = new MenuGestionHabitaciones();
+        MenuGestionHabitaciones Menuh = new MenuGestionHabitaciones(menuPrincipal);
         Menuh.setVisible(true);
         menuPrincipal.getEscritorio().add(Menuh);
         menuPrincipal.getEscritorio().moveToFront(Menuh);
@@ -130,7 +130,7 @@ public class MenuAdministracion extends javax.swing.JInternalFrame {
 
     private void JBgestionCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBgestionCatActionPerformed
 
-        MenuGestionCategorias Menugc = new MenuGestionCategorias();
+        MenuGestionCategorias Menugc = new MenuGestionCategorias(menuPrincipal);
         Menugc.setVisible(true);
         menuPrincipal.getEscritorio().add(Menugc);
         menuPrincipal.getEscritorio().moveToFront(Menugc);
