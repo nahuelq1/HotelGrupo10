@@ -21,6 +21,16 @@ public class Huesped {
         this.Estado = Estado;
     }
 
+    public Huesped(String Nombre, String Apellido, int DNI, String Domicilio, String Correo, int Celular) {
+        this.Nombre = Nombre;
+        this.Apellido = Apellido;
+        this.DNI = DNI;
+        this.Domicilio = Domicilio;
+        this.Correo = Correo;
+        this.Celular = Celular;
+    }
+    
+
     public Huesped() {
     }
 
@@ -33,7 +43,9 @@ public class Huesped {
         this.Correo = Correo;
         this.Celular = Celular;
         this.Estado = Estado;
+        
     }
+
 
     public int getIdHuesped() {
         return IdHuesped;

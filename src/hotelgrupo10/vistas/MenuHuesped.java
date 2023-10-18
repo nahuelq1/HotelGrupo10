@@ -1,9 +1,18 @@
 package hotelgrupo10.vistas;
 
+import hotelgrupo10.accesoADatos.HuespedData;
+import hotelgrupo10.entidades.Huesped;
+import javax.swing.JOptionPane;
+
 public class MenuHuesped extends javax.swing.JInternalFrame {
+private MenuPrincipal menuPrincipal;
+private HuespedData hd1;
+
 
     public MenuHuesped() {
         initComponents();
+        this.menuPrincipal = menuPrincipal;
+         this.hd1= new HuespedData();
     }
 
     @SuppressWarnings("unchecked")
@@ -23,6 +32,8 @@ public class MenuHuesped extends javax.swing.JInternalFrame {
         JTCorreo = new javax.swing.JTextField();
         JTCelular = new javax.swing.JTextField();
         JBMenuCsiguiente = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        JTdomicilio = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -47,6 +58,13 @@ public class MenuHuesped extends javax.swing.JInternalFrame {
 
         JBMenuCsiguiente.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         JBMenuCsiguiente.setText("Siguiente");
+        JBMenuCsiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBMenuCsiguienteActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Domicilio");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -67,14 +85,16 @@ public class MenuHuesped extends javax.swing.JInternalFrame {
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
                         .addComponent(JTApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(JTDocumento)
-                    .addComponent(JTCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JTCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                    .addComponent(JTdomicilio))
                 .addGap(52, 52, 52))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -86,7 +106,7 @@ public class MenuHuesped extends javax.swing.JInternalFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addGap(126, 126, 126)
                             .addComponent(jLabel1))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,14 +136,35 @@ public class MenuHuesped extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JTCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8)
+                    .addComponent(JTdomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addComponent(JBMenuCsiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JBMenuCsiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBMenuCsiguienteActionPerformed
+        // TODO add your handling code here:
+        try {
+        String nombre= JTNombre.getText();
+        String apellido= JTApellido.getText();
+        int celular = Integer.parseInt(JTCelular.getText());
+        String correo = JTCorreo.getText();
+        int documento = Integer.parseInt(JTDocumento.getText());
+        String domicilio = JTdomicilio.getText();
+        
+        Huesped huesped = new Huesped(nombre,apellido,documento,domicilio,correo,celular);
+        hd1.agregarHuesped(huesped);
+        
+        } catch (NumberFormatException nfe) {
+            JOptionPane.showMessageDialog(null, "Error al guadar Alumno, verifique los datos y vuelva intentelo más tarde.");
+        }
+       
+    }//GEN-LAST:event_JBMenuCsiguienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -133,6 +174,7 @@ public class MenuHuesped extends javax.swing.JInternalFrame {
     private javax.swing.JTextField JTCorreo;
     private javax.swing.JTextField JTDocumento;
     private javax.swing.JTextField JTNombre;
+    private javax.swing.JTextField JTdomicilio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -140,5 +182,6 @@ public class MenuHuesped extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     // End of variables declaration//GEN-END:variables
 }
