@@ -138,7 +138,7 @@ public class MenuAdministracion extends javax.swing.JInternalFrame {
 
     private void JBgestionReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBgestionReservasActionPerformed
         // TODO add your handling code here:
-        MenuGestionReservas Menugr = new MenuGestionReservas();
+        MenuGestionReservas Menugr = new MenuGestionReservas(menuPrincipal);
         Menugr.setVisible(true);
         menuPrincipal.getEscritorio().add(Menugr);
         menuPrincipal.getEscritorio().moveToFront(Menugr);

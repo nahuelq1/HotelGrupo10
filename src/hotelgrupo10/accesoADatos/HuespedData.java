@@ -201,4 +201,40 @@ public class HuespedData {
 
         return huespedes;
     }
+
+ public List<Huesped> listarHuespedesPorid(int id) {
+        String sql = "SELECT idHuesped, dni, nombre, apellido, domicilio, correo,"
+                + " celular, estado FROM huesped WHERE idHuesped=? AND estado = 1";
+        ArrayList<Huesped> huespedes = new ArrayList<>();
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Huesped huesped = new Huesped();
+                huesped.setIdHuesped(rs.getInt("idHuesped"));
+                huesped.setDNI(rs.getInt("dni"));
+                huesped.setNombre(rs.getString("nombre"));
+                huesped.setApellido(rs.getString("apellido"));
+                huesped.setDomicilio(rs.getString("domicilio"));
+                huesped.setCorreo(rs.getString("correo"));
+                huesped.setCelular(rs.getInt("celular"));
+                huesped.setEstado(rs.getBoolean("estado"));
+
+                huespedes.add(huesped);
+            }
+
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla huesped");
+        }
+
+        return huespedes;
+    }
+
+
+
+
 }

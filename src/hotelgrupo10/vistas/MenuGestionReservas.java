@@ -5,17 +5,36 @@
  */
 package hotelgrupo10.vistas;
 
+
+import hotelgrupo10.accesoADatos.CategoriaData;
+import hotelgrupo10.accesoADatos.HabitacionData;
+import hotelgrupo10.accesoADatos.HuespedData;
+import hotelgrupo10.accesoADatos.ReservaData;
+import hotelgrupo10.entidades.Huesped;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author nahue
  */
 public class MenuGestionReservas extends javax.swing.JInternalFrame {
-
+private HuespedData hd1;
+  private MenuPrincipal menuPrincipal;
+    private CategoriaData cd;
+    private HabitacionData hd;
+    private ReservaData rd;
     /**
      * Creates new form MenuGestionR
      */
-    public MenuGestionReservas() {
+    public MenuGestionReservas(MenuPrincipal menuPrincipal) {
         initComponents();
+        this.hd1=new HuespedData();
+        this.cd = new CategoriaData();
+        this.hd = new HabitacionData();
+        this.rd = new ReservaData();
+        this.menuPrincipal = menuPrincipal;
     }
 
     /**
@@ -50,6 +69,11 @@ public class MenuGestionReservas extends javax.swing.JInternalFrame {
         jLabel2.setText("Ingrese el ID del huesped ");
 
         JBbuscarXhuesped.setText("Buscar");
+        JBbuscarXhuesped.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBbuscarXhuespedActionPerformed(evt);
+            }
+        });
 
         JTreservasXhuesped.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -59,9 +83,17 @@ public class MenuGestionReservas extends javax.swing.JInternalFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "idHuesped", "nombre", "apellido", "celular"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(JTreservasXhuesped);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -85,6 +117,11 @@ public class MenuGestionReservas extends javax.swing.JInternalFrame {
         JBeliminarXhuesped.setText("Eliminar reserva");
 
         JBnuevareserva.setText("Nueva reserva");
+        JBnuevareserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBnuevareservaActionPerformed(evt);
+            }
+        });
 
         JBeliminarXfecha.setText("Eliminar reserva");
 
@@ -165,6 +202,35 @@ public class MenuGestionReservas extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void JBbuscarXhuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBbuscarXhuespedActionPerformed
+        // TODO add your handling code here:
+         try{
+            int id= Integer.parseInt(JTidhuesped.getText());
+           Huesped huesped=hd1.buscarHuespedPorId(id);
+            if(huesped!=null){
+                obtenerHuespedesPorId(id);
+
+            }else{
+
+                JOptionPane.showMessageDialog(null, "no existe ese huesped");
+
+            }
+        }catch(NumberFormatException nfe){
+
+            JOptionPane.showMessageDialog(null, "ingrese un idHuesped valido");
+
+        }
+
+    }//GEN-LAST:event_JBbuscarXhuespedActionPerformed
+
+    private void JBnuevareservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBnuevareservaActionPerformed
+        // TODO add your handling code here:
+        MenuHuesped menuHuesped = new MenuHuesped(cd, hd, hd1, rd, menuPrincipal);
+        menuHuesped.setVisible(true);
+        menuPrincipal.getEscritorio().add(menuHuesped);
+        menuPrincipal.getEscritorio().moveToFront(menuHuesped);
+    }//GEN-LAST:event_JBnuevareservaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBbuscarXhuesped;
@@ -183,4 +249,29 @@ public class MenuGestionReservas extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
+
+
+private void obtenerHuespedesPorId(int id){
+
+DefaultTableModel model = (DefaultTableModel) JTreservasXhuesped.getModel();
+        model.setRowCount(0);
+
+List<Huesped> huespedes=hd1.listarHuespedesPorid(id);
+
+for(Huesped huesped: huespedes){
+
+ model.addRow(new Object[]{
+
+     huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getCelular()
+
+ });
+
+}
+
+
+
+}
+
+
+
 }

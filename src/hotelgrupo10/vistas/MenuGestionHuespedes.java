@@ -124,8 +124,8 @@ private HuespedData hd;
 
         try{
             int dni= Integer.parseInt(JTFingresoDNI.getText());
-            hd.buscarHuesped(dni);
-            if(dni!=0){
+            Huesped huesped=hd.buscarHuesped(dni);
+            if(huesped!=null){
                 obtenerHuespedesPorDni(dni);
 
             }else{
