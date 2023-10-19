@@ -178,7 +178,7 @@ public class MenuClientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JBbuscarActionPerformed
 
     private void JBnuevareservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBnuevareservaActionPerformed
-        MenuHuesped menuHuesped = new MenuHuesped();
+        MenuHuesped menuHuesped = new MenuHuesped(cd, hd, hd1, rd, menuPrincipal);
         menuHuesped.setVisible(true);
         menuPrincipal.getEscritorio().add(menuHuesped);
         menuPrincipal.getEscritorio().moveToFront(menuHuesped);

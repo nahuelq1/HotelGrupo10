@@ -11,16 +11,6 @@ public class Huesped {
     private int Celular;
     private boolean Estado;
 
-    public Huesped(String Nombre, String Apellido, int DNI, String Domicilio, String Correo, int Celular, boolean Estado) {
-        this.Nombre = Nombre;
-        this.Apellido = Apellido;
-        this.DNI = DNI;
-        this.Domicilio = Domicilio;
-        this.Correo = Correo;
-        this.Celular = Celular;
-        this.Estado = Estado;
-    }
-
     public Huesped(String Nombre, String Apellido, int DNI, String Domicilio, String Correo, int Celular) {
         this.Nombre = Nombre;
         this.Apellido = Apellido;
@@ -28,11 +18,10 @@ public class Huesped {
         this.Domicilio = Domicilio;
         this.Correo = Correo;
         this.Celular = Celular;
+        this.Estado = true;
     }
-    
 
-    public Huesped() {
-    }
+
 
     public Huesped(int IdHuesped, String Nombre, String Apellido, int DNI, String Domicilio, String Correo, int Celular, boolean Estado) {
         this.IdHuesped = IdHuesped;
@@ -43,9 +32,10 @@ public class Huesped {
         this.Correo = Correo;
         this.Celular = Celular;
         this.Estado = Estado;
-        
     }
-
+    
+    public Huesped() {
+    }
 
     public int getIdHuesped() {
         return IdHuesped;

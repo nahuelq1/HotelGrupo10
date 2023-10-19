@@ -1,18 +1,24 @@
 package hotelgrupo10.vistas;
 
+import hotelgrupo10.accesoADatos.CategoriaData;
+import hotelgrupo10.accesoADatos.HabitacionData;
 import hotelgrupo10.accesoADatos.HuespedData;
+import hotelgrupo10.accesoADatos.ReservaData;
 import hotelgrupo10.entidades.Huesped;
 import javax.swing.JOptionPane;
 
 public class MenuHuesped extends javax.swing.JInternalFrame {
-private MenuPrincipal menuPrincipal;
-private HuespedData hd1;
 
+    private MenuPrincipal menuPrincipal;
+    private CategoriaData cd;
+    private HabitacionData hd;
+    private HuespedData hd1;
+    private ReservaData rd;
 
-    public MenuHuesped() {
+    public MenuHuesped(CategoriaData cd, HabitacionData hd, HuespedData hd1, ReservaData rd, MenuPrincipal menuPrincipal) {
         initComponents();
         this.menuPrincipal = menuPrincipal;
-         this.hd1= new HuespedData();
+        this.hd1 = new HuespedData();
     }
 
     @SuppressWarnings("unchecked")
@@ -156,21 +162,28 @@ private HuespedData hd1;
 
     private void JBMenuCsiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBMenuCsiguienteActionPerformed
         // TODO add your handling code here:
+
         try {
-        String nombre= JTNombre.getText();
-        String apellido= JTApellido.getText();
-        int celular = Integer.parseInt(JTCelular.getText());
-        String correo = JTCorreo.getText();
-        int documento = Integer.parseInt(JTDocumento.getText());
-        String domicilio = JTdomicilio.getText();
-        
-        Huesped huesped = new Huesped(nombre,apellido,documento,domicilio,correo,celular);
-        hd1.agregarHuesped(huesped);
-        
+//            String nombre = JTNombre.getText();
+//            String apellido = JTApellido.getText();
+//            int celular = Integer.parseInt(JTCelular.getText());
+//            String correo = JTCorreo.getText();
+//            int documento = Integer.parseInt(JTDocumento.getText());
+//            String domicilio = JTdomicilio.getText();
+//
+//            Huesped huesped = new Huesped(nombre, apellido, documento, domicilio, correo, celular);
+//            hd1.agregarHuesped(huesped);
+
+            MenuReserva menuReserva = new MenuReserva(cd, hd, hd1, rd, menuPrincipal);
+            menuReserva.setVisible(true);
+            menuPrincipal.getEscritorio().add(menuReserva);
+            menuPrincipal.getEscritorio().moveToFront(menuReserva);
+
         } catch (NumberFormatException nfe) {
             JOptionPane.showMessageDialog(null, "Error al guadar Alumno, verifique los datos y vuelva intentelo más tarde.");
         }
-       
+
+
     }//GEN-LAST:event_JBMenuCsiguienteActionPerformed
 
 
