@@ -206,8 +206,7 @@ public class ReservaData {
                 
                 PreparedStatement psMarcarHabitacion = con.prepareStatement(sqlMarcarHabitacion);
                 psMarcarHabitacion.setInt(1, idHabitacion);
-
-                int filasActualizadasHabitacion = psMarcarHabitacion.executeUpdate();
+                int filasActualizadasHabitacion = psMarcarHabitacion.executeUpdate();//consulta ejectuada 
                 psMarcarHabitacion.close();
 
                 if (filasActualizadasHabitacion == 1) {
@@ -215,11 +214,10 @@ public class ReservaData {
                     // Elimina la resv
                     String sqlEliminarReserva = "DELETE FROM reserva WHERE idReserva = ?";
                     
-                    PreparedStatement psEliminarReserva = con.prepareStatement(sqlEliminarReserva);
-                    psEliminarReserva.setInt(1, reserva.getIdReserva());
-
-                    int filasEliminadas = psEliminarReserva.executeUpdate();
-                    psEliminarReserva.close();
+                    PreparedStatement psEliminarRsv = con.prepareStatement(sqlEliminarReserva);
+                    psEliminarRsv.setInt(1, reserva.getIdReserva());
+                    int filasEliminadas = psEliminarRsv.executeUpdate();
+                    psEliminarRsv.close();
 
                     if (filasEliminadas == 1) {
                         JOptionPane.showMessageDialog(null, "Habitación marcada como libre y reserva eliminada.");
