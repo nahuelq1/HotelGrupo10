@@ -5,17 +5,24 @@
  */
 package hotelgrupo10.vistas;
 
+import hotelgrupo10.accesoADatos.HuespedData;
+import hotelgrupo10.entidades.Huesped;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author nahue
  */
 public class MenuGestionHuespedes extends javax.swing.JInternalFrame {
-
+private HuespedData hd;
     /**
      * Creates new form MenuGestionHuespedes
      */
     public MenuGestionHuespedes() {
         initComponents();
+        this.hd=new HuespedData();
     }
 
     /**
@@ -34,6 +41,8 @@ public class MenuGestionHuespedes extends javax.swing.JInternalFrame {
         JTtablahuespedes = new javax.swing.JTable();
         JBbuscar = new javax.swing.JButton();
 
+        setPreferredSize(new java.awt.Dimension(648, 472));
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Gestion huespedes");
 
@@ -44,19 +53,33 @@ public class MenuGestionHuespedes extends javax.swing.JInternalFrame {
 
         JTtablahuespedes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "IdHuesped", "Nombre", "Apellido", "celular", "correo"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        JTtablahuespedes.setMinimumSize(new java.awt.Dimension(105, 64));
         jScrollPane1.setViewportView(JTtablahuespedes);
 
         JBbuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         JBbuscar.setText("Buscar");
+        JBbuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBbuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -72,31 +95,51 @@ public class MenuGestionHuespedes extends javax.swing.JInternalFrame {
                         .addGap(59, 59, 59)
                         .addComponent(JBbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(48, Short.MAX_VALUE))
+                        .addGap(183, 183, 183)
+                        .addComponent(jLabel1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(172, 172, 172))
+                .addGap(0, 10, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 623, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(103, 103, 103))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(21, 21, 21)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(JTFingresoDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JBbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(74, Short.MAX_VALUE))
+                    .addComponent(JBbuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBbuscarActionPerformed
+
+        try{
+            int dni= Integer.parseInt(JTFingresoDNI.getText());
+            hd.buscarHuesped(dni);
+            if(dni!=0){
+                obtenerHuespedesPorDni(dni);
+
+            }else{
+
+                JOptionPane.showMessageDialog(null, "no existe ese huesped");
+
+            }
+        }catch(NumberFormatException nfe){
+
+            JOptionPane.showMessageDialog(null, "ingrese un dni valido");
+
+        }
+
+    }//GEN-LAST:event_JBbuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -107,4 +150,27 @@ public class MenuGestionHuespedes extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+
+private void obtenerHuespedesPorDni(int dni){
+
+DefaultTableModel model = (DefaultTableModel) JTtablahuespedes.getModel();
+        model.setRowCount(0);
+
+List<Huesped> huespedes= hd.listarHuespedesPorDni(dni);
+
+for(Huesped huesped: huespedes){
+
+ model.addRow(new Object[]{
+
+     huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getCelular(), huesped.getCorreo()
+
+ });
+
+}
+
+
+
+}
+
 }

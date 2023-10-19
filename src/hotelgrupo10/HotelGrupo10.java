@@ -23,21 +23,21 @@ public class HotelGrupo10 {
         Connection con = Conexion.getConexion();
 //
 //                      *****HUESPED DATA*****
-//        HuespedData huespd = new HuespedData();
+        HuespedData huespd = new HuespedData();
 //        Huesped juan = new Huesped(1, "Christian", "Anaya", 95583109, "Santiago del", "christiananaya2099@gmail.com",
 //                1136767691, true);
 
 //        huespd.agregarHuesped(juan);
 //        huespd.modificarHuesped(juan);
 //        huespd.eliminarHuesped(955831091);
-//        Huesped huespedEncontrado = huespd.buscarHuesped(95583109);
-//        if (huespedEncontrado != null) {
-//            System.out.println("dni:        " + huespedEncontrado.getDNI());
-//            System.out.println("nombre:     " + huespedEncontrado.getNombre());
-//            System.out.println("apellido:   " + huespedEncontrado.getApellido());
-//            System.out.println("domicilio:  " + huespedEncontrado.getDomicilio());
-//            System.out.println("estado:     " + huespedEncontrado.isEstado());
-//            System.out.println("id:         " + huespedEncontrado.getIdHuesped());
+        Huesped huespedEncontrado = huespd.buscarHuesped(95583109);
+        if (huespedEncontrado != null) {
+            System.out.println("dni:        " + huespedEncontrado.getDNI());
+            System.out.println("nombre:     " + huespedEncontrado.getNombre());
+            System.out.println("apellido:   " + huespedEncontrado.getApellido());
+            System.out.println("domicilio:  " + huespedEncontrado.getDomicilio());
+            System.out.println("estado:     " + huespedEncontrado.isEstado());
+            System.out.println("id:         " + huespedEncontrado.getIdHuesped());
 //        }
 //
 //        for (Huesped huesped : huespd.listarHuespedes()) {
@@ -212,4 +212,5 @@ public class HotelGrupo10 {
 //        }
     }
 
+}
 }
