@@ -221,39 +221,19 @@ public class ReservaData {
         }
         JOptionPane.showMessageDialog(null, "Reserva: " + reserva);
 
-//        int idHabitacion = 0;
-//        JOptionPane.showMessageDialog(null, "id habitacion" + idHabitacion);
-//
-//        try {
-//            String sqlMarcarReserva = "UPDATE reserva SET Estado = 0 WHERE idReserva = ?";
-//            PreparedStatement psMarcarReserva = con.prepareStatement(sqlMarcarReserva);
-//            psMarcarReserva.setInt(1, reserva.getIdReserva());
-//
-//            int filasActualizadas = psMarcarReserva.executeUpdate();
-//
-//            if (filasActualizadas == 1) {
-//                JOptionPane.showMessageDialog(null, "Reserva marcada como inactiva.");
-//
-//            } else {
-//                JOptionPane.showMessageDialog(null, "La reserva no pudo ser marcada como inactiva.");
-//            }
-//            psMarcarReserva.close();
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(null, "Error al marcar la reserva como inactiva.");
-//        }
         if (reserva != null) {
-            // Ahora, marca la reserva como inactiva
+            // reserva como inactiva
             String sqlMarcarReserva = "UPDATE reserva SET Estado = 0 WHERE idReserva = ?";
             try {
                 PreparedStatement psMarcarReserva = con.prepareStatement(sqlMarcarReserva);
                 psMarcarReserva.setInt(1, reserva.getIdReserva());
+
                 int filasActualizadasReserva = psMarcarReserva.executeUpdate();
                 psMarcarReserva.close();
 
+                // Marcar la habitación como libre
                 if (filasActualizadasReserva == 1) {
-                    // Reserva marcada como inactiva
 
-                    // Marcar la habitación como libre
                     int idHabitacion = reserva.getHabitacion().getIdHabitacion();
                     String sqlMarcarHabitacion = "UPDATE habitacion SET Estado = 1 WHERE idHabitacion = ?";
                     try {
