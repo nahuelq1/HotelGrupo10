@@ -188,13 +188,15 @@ public class MenuClientes extends javax.swing.JInternalFrame {
         int selectedRow = JTreservas.getSelectedRow();
 
         if (selectedRow != -1) {
-            int idReserva = (int) JTreservas.getValueAt(JTreservas.getSelectedRow(),0);
-            int idHuesped = (int) JTreservas.getValueAt(JTreservas.getSelectedRow(),2);
+            int idReserva = (int) JTreservas.getValueAt(selectedRow, 0);
+            int idHuesped = (int) JTreservas.getValueAt(selectedRow, 2);
+            Reserva reserva = rd.buscarReserva(idReserva);
             Huesped huesped = hd1.buscarHuespedPorId(idHuesped);
-            rd.finReserva(huesped);
-            JOptionPane.showMessageDialog(null, "Idreserva= "+idReserva+"\n Id huesped: "+ idHuesped);
-        
+            
+            rd.FinalReserva(huesped, reserva);
+            JOptionPane.showMessageDialog(null, "Idreserva= " + idReserva + "\n Id huesped: " + idHuesped);
 
+            
             obtenerReservasXHuesped(huesped);
         } else {
             JOptionPane.showMessageDialog(null, "Selecciona una reserva para eliminar.");
@@ -214,7 +216,6 @@ public class MenuClientes extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-    
     private void obtenerReservasXHuesped(Huesped huesped) {
         DefaultTableModel model = (DefaultTableModel) JTreservas.getModel();
         model.setRowCount(0);
@@ -222,7 +223,7 @@ public class MenuClientes extends javax.swing.JInternalFrame {
         List<Reserva> reservas = rd.busquedaDeReservaPorHuesped(huesped);
 
         for (Reserva reserva : reservas) {
-            
+
             model.addRow(new Object[]{
                 reserva.getIdReserva(), reserva.getHabitacion().getIdHabitacion(),
                 reserva.getHuesped().getIdHuesped(), reserva.getFechaInicio(),
