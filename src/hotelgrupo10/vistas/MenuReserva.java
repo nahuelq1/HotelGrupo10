@@ -23,13 +23,13 @@ public class MenuReserva extends javax.swing.JInternalFrame {
 
     public MenuReserva(CategoriaData cd, HabitacionData hd, HuespedData hd1, ReservaData rd, MenuPrincipal menuPrincipal) {
         initComponents();
-        this.cd = cd;
-        this.hd = hd;
-        this.hd1 = hd1;
-        this.rd = rd;
+        this.cd = new CategoriaData();
+        this.hd = new HabitacionData();
+        this.hd1 = new HuespedData();
+        this.rd = new ReservaData();
         this.menuPrincipal = menuPrincipal;
-//        cargarCombo();
-//
+        cargarCategoriasEnComboBox();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -171,24 +171,22 @@ public class MenuReserva extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addComponent(jLabel3)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(JDCfechaing, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addComponent(jLabel5)
-                                            .addGap(86, 86, 86)))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(JCBtiposhabit, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel4)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(JDCfechasalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(JDCfechaing, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addGap(86, 86, 86)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(JCBtiposhabit, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(JDCfechasalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -220,6 +218,10 @@ public class MenuReserva extends javax.swing.JInternalFrame {
                     .addComponent(JBreserva, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JTpreciototal, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,9 +251,9 @@ public class MenuReserva extends javax.swing.JInternalFrame {
                     .addComponent(JDCfechasalida, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addComponent(jLabel6)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(JTpreciototal, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -266,12 +268,9 @@ public class MenuReserva extends javax.swing.JInternalFrame {
     private void JCBtiposhabitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBtiposhabitActionPerformed
 
         if (JCBtiposhabit.getSelectedIndex() > 0) {
-
             String selectedItem = JCBtiposhabit.getSelectedItem().toString();
             String tipoHabitacion = selectedItem.split(" ")[1];
-
-            obtenerReservas(tipoHabitacion);
-
+//            obtenerReservas(tipoHabitacion);
         } else {
 
             JOptionPane.showMessageDialog(null, "Seleccione Habitacion");
@@ -332,39 +331,36 @@ public class MenuReserva extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-    private void cargarCombo() {
-
-        List<Habitacion> listaHabitacion = hd.listarHabitaciones();
-        for (Habitacion habitacion : listaHabitacion) {
-
-            JCBtiposhabit.addItem(habitacion.getIdHabitacion() + " " + habitacion.getCategoria().getTipoHabitacion());
-
-        }
-
-    }
-
-    private void obtenerReservas(String tipoHabitacion) {
-
-        DefaultTableModel model = (DefaultTableModel) JThabitdisp.getModel();
-        model.setRowCount(0);
-
-        List<Categoria> categorias = rd.mostrarHabitacionesLibres(tipoHabitacion);
-        Reserva res = new Reserva();
-
-        for (Categoria cat : categorias) {
-            String t = cat.getTipoHabitacion();
-//         String fechaEntradars="";
-//         LocalDate fechaentrada= LocalDate.parse(fechaEntradars);
-//         String fechasalidars="";
-//         
-//         LocalDate fechasalida=LocalDate.parse(fechasalidars);
-
-            model.addRow(new Object[]{
-                cat.getTipoHabitacion()
-
-            });
-
+    private void cargarCategoriasEnComboBox() {
+        List<Categoria> categorias = cd.listarCategorias();
+        for (Categoria categoria : categorias) {
+            JCBtiposhabit.addItem(categoria.getTipoHabitacion());
         }
     }
+
+    
+//    private void obtenerReservas(String tipoHabitacion) {
+//
+//        DefaultTableModel model = (DefaultTableModel) JThabitdisp.getModel();
+//        model.setRowCount(0);
+//
+//        List<Categoria> categorias = rd.mostrarHabitacionesLibres(tipoHabitacion);
+//        Reserva res = new Reserva();
+//
+//        for (Categoria cat : categorias) {
+//            String t = cat.getTipoHabitacion();
+////         String fechaEntradars="";
+////         LocalDate fechaentrada= LocalDate.parse(fechaEntradars);
+////         String fechasalidars="";
+////         
+////         LocalDate fechasalida=LocalDate.parse(fechasalidars);
+//
+//            model.addRow(new Object[]{
+//                cat.getTipoHabitacion()
+//
+//            });
+//
+//        }
+//    }
 
 }
