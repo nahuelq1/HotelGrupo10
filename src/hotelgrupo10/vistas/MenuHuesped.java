@@ -75,17 +75,21 @@ public class MenuHuesped extends javax.swing.JInternalFrame {
 
         JBclienteEx.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         JBclienteEx.setText("Cliente existente");
+        JBclienteEx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBclienteExActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(126, 126, 126)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(126, 126, 126)
-                        .addComponent(jLabel1)))
+                    .addComponent(jLabel1))
                 .addContainerGap(115, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(37, 37, 37)
@@ -175,6 +179,7 @@ public class MenuHuesped extends javax.swing.JInternalFrame {
 //            hd1.agregarHuesped(huesped);
 
             MenuReserva menuReserva = new MenuReserva(cd, hd, hd1, rd, menuPrincipal);
+            this.dispose();
             menuReserva.setVisible(true);
             menuPrincipal.getEscritorio().add(menuReserva);
             menuPrincipal.getEscritorio().moveToFront(menuReserva);
@@ -185,6 +190,15 @@ public class MenuHuesped extends javax.swing.JInternalFrame {
 
 
     }//GEN-LAST:event_JBMenuCsiguienteActionPerformed
+
+    private void JBclienteExActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBclienteExActionPerformed
+        // TODO add your handling code here:
+        MenuReserva menuReserva = new MenuReserva(cd, hd, hd1, rd, menuPrincipal);
+        this.dispose();
+        menuReserva.setVisible(true);
+        menuPrincipal.getEscritorio().add(menuReserva);
+        menuPrincipal.getEscritorio().moveToFront(menuReserva);
+    }//GEN-LAST:event_JBclienteExActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

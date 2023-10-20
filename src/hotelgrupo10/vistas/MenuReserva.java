@@ -28,8 +28,8 @@ public class MenuReserva extends javax.swing.JInternalFrame {
         this.hd1 = hd1;
         this.rd = rd;
         this.menuPrincipal = menuPrincipal;
-        cargarCombo();
-
+//        cargarCombo();
+//
     }
 
     @SuppressWarnings("unchecked")
@@ -59,6 +59,10 @@ public class MenuReserva extends javax.swing.JInternalFrame {
         JTpreciototal = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(204, 204, 204));
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Reserva de habitaciones");
@@ -74,14 +78,39 @@ public class MenuReserva extends javax.swing.JInternalFrame {
         });
 
         JRB2personas.setText("2");
+        JRB2personas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JRB2personasActionPerformed(evt);
+            }
+        });
 
         JRB3personas.setText("3");
+        JRB3personas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JRB3personasActionPerformed(evt);
+            }
+        });
 
         JRB4personas.setText("4");
+        JRB4personas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JRB4personasActionPerformed(evt);
+            }
+        });
 
         JRB5personas.setText("5");
+        JRB5personas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JRB5personasActionPerformed(evt);
+            }
+        });
 
         JRB6personas.setText("6");
+        JRB6personas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JRB6personasActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Seleccione fecha de ingreso ");

@@ -136,6 +136,7 @@ public class CategoriaData {
 
         return categorias;
     }
+    
     public List<Categoria> listarCategoriasDisponiblesPorCantidadPersonas(int cantPersonas) {
     String sql = "SELECT idcategoria, cantpersonas, cantcamas, tipocamas, tipohabitacion, precio, estado FROM categoria WHERE cantpersonas = ? AND estado = 1";
     ArrayList<Categoria> categorias = new ArrayList<>();
