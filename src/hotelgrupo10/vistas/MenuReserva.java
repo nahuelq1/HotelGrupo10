@@ -21,7 +21,7 @@ public class MenuReserva extends javax.swing.JInternalFrame {
     private HuespedData hd1;
     private ReservaData rd;
 
-    public MenuReserva(CategoriaData cd, HabitacionData hd, HuespedData hd1, ReservaData rd,MenuPrincipal menuPrincipal) {
+    public MenuReserva(CategoriaData cd, HabitacionData hd, HuespedData hd1, ReservaData rd, MenuPrincipal menuPrincipal) {
         initComponents();
         this.cd = cd;
         this.hd = hd;
@@ -287,6 +287,25 @@ public class MenuReserva extends javax.swing.JInternalFrame {
         botones.add(JRB5personas);
         botones.add(JRB6personas);
     }//GEN-LAST:event_JRB1personaActionPerformed
+    private void JRB2personasActionPerformed(java.awt.event.ActionEvent evt) {
+        // Aquí colocas la lógica que deseas ejecutar cuando JRB2personas se seleccione.
+    }
+
+    private void JRB3personasActionPerformed(java.awt.event.ActionEvent evt) {
+        // Aquí colocas la lógica que deseas ejecutar cuando JRB2personas se seleccione.
+    }
+
+    private void JRB4personasActionPerformed(java.awt.event.ActionEvent evt) {
+        // Aquí colocas la lógica que deseas ejecutar cuando JRB2personas se seleccione.
+    }
+
+    private void JRB5personasActionPerformed(java.awt.event.ActionEvent evt) {
+        // Aquí colocas la lógica que deseas ejecutar cuando JRB2personas se seleccione.
+    }
+
+    private void JRB6personasActionPerformed(java.awt.event.ActionEvent evt) {
+        // Aquí colocas la lógica que deseas ejecutar cuando JRB2personas se seleccione.
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
