@@ -11,6 +11,7 @@ import hotelgrupo10.accesoADatos.HabitacionData;
 import hotelgrupo10.accesoADatos.HuespedData;
 import hotelgrupo10.accesoADatos.ReservaData;
 import hotelgrupo10.entidades.Huesped;
+import hotelgrupo10.entidades.Reserva;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -115,6 +116,11 @@ private HuespedData hd1;
         JBbuscarporF.setText("buscar");
 
         JBeliminarXhuesped.setText("Eliminar reserva");
+        JBeliminarXhuesped.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBeliminarXhuespedActionPerformed(evt);
+            }
+        });
 
         JBnuevareserva.setText("Nueva reserva");
         JBnuevareserva.addActionListener(new java.awt.event.ActionListener() {
@@ -231,6 +237,10 @@ private HuespedData hd1;
         menuPrincipal.getEscritorio().moveToFront(menuHuesped);
     }//GEN-LAST:event_JBnuevareservaActionPerformed
 
+    private void JBeliminarXhuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBeliminarXhuespedActionPerformed
+       
+    }//GEN-LAST:event_JBeliminarXhuespedActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBbuscarXhuesped;
@@ -273,5 +283,5 @@ for(Huesped huesped: huespedes){
 }
 
 
-
+ 
 }

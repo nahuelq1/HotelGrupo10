@@ -269,7 +269,7 @@ public class MenuReserva extends javax.swing.JInternalFrame {
 
         if (JCBtiposhabit.getSelectedIndex() > 0) {
             String selectedItem = JCBtiposhabit.getSelectedItem().toString();
-            String tipoHabitacion = selectedItem.split(" ")[1];
+            String tipoHabitacion = selectedItem.split(" ")[0];
 //            obtenerReservas(tipoHabitacion);
         } else {
 
@@ -288,22 +288,57 @@ public class MenuReserva extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JRB1personaActionPerformed
     private void JRB2personasActionPerformed(java.awt.event.ActionEvent evt) {
         // Aquí colocas la lógica que deseas ejecutar cuando JRB2personas se seleccione.
+         botones.add(JRB1persona);
+        botones.add(JRB2personas);
+        botones.add(JRB3personas);
+        botones.add(JRB4personas);
+        botones.add(JRB5personas);
+        botones.add(JRB6personas);
+
     }
 
     private void JRB3personasActionPerformed(java.awt.event.ActionEvent evt) {
         // Aquí colocas la lógica que deseas ejecutar cuando JRB2personas se seleccione.
+         botones.add(JRB1persona);
+        botones.add(JRB2personas);
+        botones.add(JRB3personas);
+        botones.add(JRB4personas);
+        botones.add(JRB5personas);
+        botones.add(JRB6personas);
+
     }
 
     private void JRB4personasActionPerformed(java.awt.event.ActionEvent evt) {
         // Aquí colocas la lógica que deseas ejecutar cuando JRB2personas se seleccione.
+         botones.add(JRB1persona);
+        botones.add(JRB2personas);
+        botones.add(JRB3personas);
+        botones.add(JRB4personas);
+        botones.add(JRB5personas);
+        botones.add(JRB6personas);
+
     }
 
     private void JRB5personasActionPerformed(java.awt.event.ActionEvent evt) {
         // Aquí colocas la lógica que deseas ejecutar cuando JRB2personas se seleccione.
+         botones.add(JRB1persona);
+        botones.add(JRB2personas);
+        botones.add(JRB3personas);
+        botones.add(JRB4personas);
+        botones.add(JRB5personas);
+        botones.add(JRB6personas);
+
     }
 
     private void JRB6personasActionPerformed(java.awt.event.ActionEvent evt) {
         // Aquí colocas la lógica que deseas ejecutar cuando JRB2personas se seleccione.
+         botones.add(JRB1persona);
+        botones.add(JRB2personas);
+        botones.add(JRB3personas);
+        botones.add(JRB4personas);
+        botones.add(JRB5personas);
+        botones.add(JRB6personas);
+
     }
 
 
