@@ -343,15 +343,16 @@ public class ReservaData {
         return reservas;
     }
 
-    public List<Reserva> busquedaDeReservaPorFecha(String fecha) {
+    public List<Reserva> busquedaDeReservaPorFecha(LocalDate fecha) {
 
-        String sql = "SELECT * FROM reserva";
+        String sql = "SELECT * FROM reserva WHERE fechaInicio=? AND estado=1";
         ArrayList<Reserva> reservas = new ArrayList<>();
+        
         Reserva res = new Reserva();
+        
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            LocalDate f = LocalDate.parse(fecha);
             ps.setDate(1, Date.valueOf(fecha));
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {

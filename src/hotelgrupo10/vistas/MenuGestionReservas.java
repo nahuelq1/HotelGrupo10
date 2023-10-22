@@ -12,6 +12,8 @@ import hotelgrupo10.accesoADatos.HuespedData;
 import hotelgrupo10.accesoADatos.ReservaData;
 import hotelgrupo10.entidades.Huesped;
 import hotelgrupo10.entidades.Reserva;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -102,18 +104,31 @@ private HuespedData hd1;
 
         JTreservasxF.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "idReserva", "idHabitacion", "idHuesped", "fechaInicio", "FechaFin"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(JTreservasxF);
 
         JBbuscarporF.setText("buscar");
+        JBbuscarporF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBbuscarporFActionPerformed(evt);
+            }
+        });
 
         JBeliminarXhuesped.setText("Eliminar reserva");
         JBeliminarXhuesped.addActionListener(new java.awt.event.ActionListener() {
@@ -130,8 +145,18 @@ private HuespedData hd1;
         });
 
         JBeliminarXfecha.setText("Eliminar reserva");
+        JBeliminarXfecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBeliminarXfechaActionPerformed(evt);
+            }
+        });
 
         JBnuevareserva2.setText("Nueva reserva");
+        JBnuevareserva2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBnuevareserva2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -139,21 +164,9 @@ private HuespedData hd1;
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(158, 158, 158)
-                            .addComponent(jLabel1))
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jLabel2)
-                            .addGap(18, 18, 18)
-                            .addComponent(JTidhuesped, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(JBbuscarXhuesped)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(11, 11, 11)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -168,7 +181,20 @@ private HuespedData hd1;
                                 .addComponent(JBeliminarXhuesped, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(JBnuevareserva, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(40, 40, 40))))
+                                .addGap(40, 40, 40))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(148, 148, 148)
+                                        .addComponent(jLabel1))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel2)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(JTidhuesped, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(JBbuscarXhuesped)))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(JBeliminarXfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -202,7 +228,7 @@ private HuespedData hd1;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBeliminarXfecha)
                     .addComponent(JBnuevareserva2))
-                .addGap(0, 76, Short.MAX_VALUE))
+                .addGap(0, 80, Short.MAX_VALUE))
         );
 
         pack();
@@ -210,22 +236,18 @@ private HuespedData hd1;
 
     private void JBbuscarXhuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBbuscarXhuespedActionPerformed
         // TODO add your handling code here:
-         try{
-            int id= Integer.parseInt(JTidhuesped.getText());
-           Huesped huesped=hd1.buscarHuespedPorId(id);
-            if(huesped!=null){
+     try {
+           int id= Integer.parseInt(JTidhuesped.getText());
+           Huesped huesped= hd1.buscarHuespedPorId(id);
+            if (huesped != null) {
                 obtenerHuespedesPorId(id);
-
-            }else{
-
-                JOptionPane.showMessageDialog(null, "no existe ese huesped");
-
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe esa reserva");
             }
-        }catch(NumberFormatException nfe){
-
-            JOptionPane.showMessageDialog(null, "ingrese un idHuesped valido");
-
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Ingresa una fecha valida");
         }
+    
 
     }//GEN-LAST:event_JBbuscarXhuespedActionPerformed
 
@@ -238,8 +260,56 @@ private HuespedData hd1;
     }//GEN-LAST:event_JBnuevareservaActionPerformed
 
     private void JBeliminarXhuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBeliminarXhuespedActionPerformed
-       
+        
     }//GEN-LAST:event_JBeliminarXhuespedActionPerformed
+
+    private void JBbuscarporFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBbuscarporFActionPerformed
+        // TODO add your handling code here:
+         try {
+           LocalDate fecha = JDCfechadebusqueda.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            rd.busquedaDeReservaPorFecha(fecha);
+
+            if (fecha != null) {
+                obtenerReservasXFecha(fecha);
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe esa reserva");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Ingresa una fecha valida");
+        }
+
+                                    
+    }//GEN-LAST:event_JBbuscarporFActionPerformed
+
+    private void JBeliminarXfechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBeliminarXfechaActionPerformed
+        // TODO add your handling code here:
+         int selectedRow = JTreservasxF.getSelectedRow();
+
+        if (selectedRow != -1) {
+            int idReserva = (int) JTreservasxF.getValueAt(selectedRow, 0);
+            int idHuesped = (int) JTreservasxF.getValueAt(selectedRow, 2);
+            LocalDate fecha = JDCfechadebusqueda.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            rd.busquedaDeReservaPorFecha(fecha);
+            Reserva reserva = rd.buscarReserva(idReserva);
+            Huesped huesped = hd1.buscarHuespedPorId(idHuesped);
+            
+            rd.FinalReserva(huesped, reserva);
+            JOptionPane.showMessageDialog(null, "Idreserva= " + idReserva + "\n Id huesped: " + idHuesped);
+
+            obtenerReservasXFecha(fecha);
+           
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecciona una reserva para eliminar.");
+        }
+    }//GEN-LAST:event_JBeliminarXfechaActionPerformed
+
+    private void JBnuevareserva2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBnuevareserva2ActionPerformed
+        // TODO add your handling code here:
+        MenuHuesped menuHuesped = new MenuHuesped(cd, hd, hd1, rd, menuPrincipal);
+        menuHuesped.setVisible(true);
+        menuPrincipal.getEscritorio().add(menuHuesped);
+        menuPrincipal.getEscritorio().moveToFront(menuHuesped);
+    }//GEN-LAST:event_JBnuevareserva2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -261,27 +331,41 @@ private HuespedData hd1;
     // End of variables declaration//GEN-END:variables
 
 
-private void obtenerHuespedesPorId(int id){
+private void obtenerHuespedesPorId(int idHuesped){
 
 DefaultTableModel model = (DefaultTableModel) JTreservasXhuesped.getModel();
         model.setRowCount(0);
 
-List<Huesped> huespedes=hd1.listarHuespedesPorid(id);
+ List<Huesped> huespedes= hd1.listarHuespedesPorid(idHuesped);
 
+        
 for(Huesped huesped: huespedes){
 
+
  model.addRow(new Object[]{
-
      huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getCelular()
-
- });
-
+  });
 }
 
 
 
 }
 
+private void obtenerReservasXFecha(LocalDate fecha) {
+        DefaultTableModel model = (DefaultTableModel) JTreservasxF.getModel();
+        model.setRowCount(0);
+
+        List<Reserva> reservas = rd.busquedaDeReservaPorFecha(fecha);
+
+        for (Reserva reserva : reservas) {
+
+            model.addRow(new Object[]{
+                reserva.getIdReserva(), reserva.getHabitacion().getIdHabitacion(),
+                reserva.getHuesped().getIdHuesped(), reserva.getFechaInicio(),
+                reserva.getFechaFin(), reserva.getPrecioTotal(), reserva.getCantPersonas()
+            });
+        }
+    }
 
  
 }

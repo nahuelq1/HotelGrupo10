@@ -7,6 +7,7 @@ package hotelgrupo10.vistas;
 
 import hotelgrupo10.accesoADatos.CategoriaData;
 import hotelgrupo10.entidades.Categoria;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 
@@ -243,6 +244,8 @@ public class MenuGestionCategorias extends javax.swing.JInternalFrame {
 
     private void JBcrearcatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBcrearcatActionPerformed
         // TODO add your handling code here:
+        
+        try{
         int idCategoria= Integer.parseInt(JTFidcategoria.getText());
         int cantPersonas= Integer.parseInt(JTFcantpersonas.getText());
         int cantCamas= Integer.parseInt(JTFcantcamas.getText());
@@ -250,13 +253,35 @@ public class MenuGestionCategorias extends javax.swing.JInternalFrame {
         String tipoHabitacion= JTFtipodehabitacion.getText();
         double precio= Double.parseDouble(JTFprecio.getText());
         boolean estado=JRBestado.isSelected();
-        Categoria cat=new Categoria(idCategoria, cantPersonas, cantCamas, tipoCamas, tipoHabitacion, precio, estado);
-        cd.agregarCategoria(cat);
+        if (!validarCategoriaSinNumeros(tipoCamas) || !validarCategoriaSinNumeros(tipoHabitacion)) {
+                JOptionPane.showMessageDialog(null, "tipocamas y tipohabitacion no deben contener números.");
+                return;
+            } 
+        if(JTFidcategoria.getText().isEmpty() || JTFcantpersonas.getText().isEmpty() 
+                    || JTFcantcamas.getText().isEmpty()
+                    || JTFtipodecama.getText().isEmpty() || JTFtipodehabitacion.getText().isEmpty() || 
+                JTFprecio.getText().isEmpty() || JRBestado.isSelected()==false ){
+            JOptionPane.showMessageDialog(null, "no dejar espacios en blanco");
+          
+            }else{
+        
+              Categoria cat=new Categoria(idCategoria, cantPersonas, cantCamas, tipoCamas, tipoHabitacion, precio, estado);
+               cd.agregarCategoria(cat);
+        
+        }
+       
+        
+        }catch(NumberFormatException nfe){
+                
+          JOptionPane.showMessageDialog(null, "datos incorrectos o incompletos");
+                
+                }
     }//GEN-LAST:event_JBcrearcatActionPerformed
 
     private void JBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBbuscarActionPerformed
         // TODO add your handling code here:
-         int idCategoria= Integer.parseInt(JTFidcategoria.getText());
+        try{ 
+        int idCategoria= Integer.parseInt(JTFidcategoria.getText());
          boolean estado=JRBestado.isSelected();
          Categoria cat=cd.buscarCategoria(idCategoria);
          JTFcantpersonas.setText(String.valueOf(cat.getCantPersonas()));
@@ -265,6 +290,10 @@ public class MenuGestionCategorias extends javax.swing.JInternalFrame {
          JTFtipodehabitacion.setText(cat.getTipoHabitacion());
          JTFprecio.setText(String.valueOf(cat.getPrecio()));
          JRBestado.setSelected(cat.isEstado());
+        }catch(NumberFormatException nfe){
+        
+        JOptionPane.showMessageDialog(null, "ingresa una id valida");
+        }
         
     }//GEN-LAST:event_JBbuscarActionPerformed
 
@@ -304,4 +333,13 @@ public class MenuGestionCategorias extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     // End of variables declaration//GEN-END:variables
+
+
+
+ private boolean validarCategoriaSinNumeros(String cadena) {
+        return !Pattern.compile("[0-9]").matcher(cadena).find();
+    }
+
+
+
 }
