@@ -29,7 +29,6 @@ public class MenuReserva extends javax.swing.JInternalFrame {
         this.rd = new ReservaData();
         this.menuPrincipal = menuPrincipal;
         cargarCategoriasEnComboBox();
-
     }
 
     @SuppressWarnings("unchecked")
@@ -39,12 +38,6 @@ public class MenuReserva extends javax.swing.JInternalFrame {
         botones = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        JRB1persona = new javax.swing.JRadioButton();
-        JRB2personas = new javax.swing.JRadioButton();
-        JRB3personas = new javax.swing.JRadioButton();
-        JRB4personas = new javax.swing.JRadioButton();
-        JRB5personas = new javax.swing.JRadioButton();
-        JRB6personas = new javax.swing.JRadioButton();
         JDCfechaing = new com.toedter.calendar.JDateChooser();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -57,6 +50,9 @@ public class MenuReserva extends javax.swing.JInternalFrame {
         JBreserva = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         JTpreciototal = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jTdniH = new javax.swing.JTextField();
+        jSpinner1 = new javax.swing.JSpinner();
 
         setBackground(new java.awt.Color(204, 204, 204));
         setClosable(true);
@@ -69,48 +65,6 @@ public class MenuReserva extends javax.swing.JInternalFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Ingrese la cantidad de personas a hospedarse");
-
-        JRB1persona.setText("1");
-        JRB1persona.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JRB1personaActionPerformed(evt);
-            }
-        });
-
-        JRB2personas.setText("2");
-        JRB2personas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JRB2personasActionPerformed(evt);
-            }
-        });
-
-        JRB3personas.setText("3");
-        JRB3personas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JRB3personasActionPerformed(evt);
-            }
-        });
-
-        JRB4personas.setText("4");
-        JRB4personas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JRB4personasActionPerformed(evt);
-            }
-        });
-
-        JRB5personas.setText("5");
-        JRB5personas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JRB5personasActionPerformed(evt);
-            }
-        });
-
-        JRB6personas.setText("6");
-        JRB6personas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JRB6personasActionPerformed(evt);
-            }
-        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Seleccione fecha de ingreso ");
@@ -161,105 +115,109 @@ public class MenuReserva extends javax.swing.JInternalFrame {
         JTpreciototal.setEditable(false);
         JTpreciototal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
+        jLabel8.setText("DNI HUESPED");
+
+        jTdniH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTdniHActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(JDCfechaing, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(86, 86, 86)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(JCBtiposhabit, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(JDCfechasalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(112, 112, 112))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(177, 177, 177))))
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabel5)
+                        .addGap(86, 86, 86)
+                        .addComponent(JCBtiposhabit, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(JRB1persona)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(JRB2personas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JRB3personas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JRB4personas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JRB5personas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JRB6personas)
-                        .addGap(0, 4, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(156, 156, 156)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JBreserva, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JTpreciototal, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(156, 156, 156)
+                        .addComponent(JBreserva, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(189, 189, 189)
+                        .addComponent(jLabel6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(JDCfechaing, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JDCfechasalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(56, 56, 56)
+                                .addComponent(JTpreciototal, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(jLabel8)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(112, 112, 112))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(156, 156, 156))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jTdniH, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(30, 30, 30)
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel8)
+                    .addComponent(jTdniH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(JRB1persona)
-                    .addComponent(JRB2personas)
-                    .addComponent(JRB3personas)
-                    .addComponent(JRB4personas)
-                    .addComponent(JRB5personas)
-                    .addComponent(JRB6personas))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(JCBtiposhabit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel3)
-                                .addComponent(JDCfechaing, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(JDCfechasalida, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addComponent(jLabel6)
-                .addGap(12, 12, 12)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(JTpreciototal, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                    .addComponent(jLabel5)
+                    .addComponent(JCBtiposhabit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addComponent(JDCfechaing, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(JDCfechasalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JTpreciototal, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(24, 24, 24)
                 .addComponent(JBreserva, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -278,68 +236,9 @@ public class MenuReserva extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_JCBtiposhabitActionPerformed
 
-    private void JRB1personaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JRB1personaActionPerformed
-        botones.add(JRB1persona);
-        botones.add(JRB2personas);
-        botones.add(JRB3personas);
-        botones.add(JRB4personas);
-        botones.add(JRB5personas);
-        botones.add(JRB6personas);
-    }//GEN-LAST:event_JRB1personaActionPerformed
-    private void JRB2personasActionPerformed(java.awt.event.ActionEvent evt) {
-        // Aquí colocas la lógica que deseas ejecutar cuando JRB2personas se seleccione.
-         botones.add(JRB1persona);
-        botones.add(JRB2personas);
-        botones.add(JRB3personas);
-        botones.add(JRB4personas);
-        botones.add(JRB5personas);
-        botones.add(JRB6personas);
-
-    }
-
-    private void JRB3personasActionPerformed(java.awt.event.ActionEvent evt) {
-        // Aquí colocas la lógica que deseas ejecutar cuando JRB2personas se seleccione.
-         botones.add(JRB1persona);
-        botones.add(JRB2personas);
-        botones.add(JRB3personas);
-        botones.add(JRB4personas);
-        botones.add(JRB5personas);
-        botones.add(JRB6personas);
-
-    }
-
-    private void JRB4personasActionPerformed(java.awt.event.ActionEvent evt) {
-        // Aquí colocas la lógica que deseas ejecutar cuando JRB2personas se seleccione.
-         botones.add(JRB1persona);
-        botones.add(JRB2personas);
-        botones.add(JRB3personas);
-        botones.add(JRB4personas);
-        botones.add(JRB5personas);
-        botones.add(JRB6personas);
-
-    }
-
-    private void JRB5personasActionPerformed(java.awt.event.ActionEvent evt) {
-        // Aquí colocas la lógica que deseas ejecutar cuando JRB2personas se seleccione.
-         botones.add(JRB1persona);
-        botones.add(JRB2personas);
-        botones.add(JRB3personas);
-        botones.add(JRB4personas);
-        botones.add(JRB5personas);
-        botones.add(JRB6personas);
-
-    }
-
-    private void JRB6personasActionPerformed(java.awt.event.ActionEvent evt) {
-        // Aquí colocas la lógica que deseas ejecutar cuando JRB2personas se seleccione.
-         botones.add(JRB1persona);
-        botones.add(JRB2personas);
-        botones.add(JRB3personas);
-        botones.add(JRB4personas);
-        botones.add(JRB5personas);
-        botones.add(JRB6personas);
-
-    }
+    private void jTdniHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTdniHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTdniHActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -347,12 +246,6 @@ public class MenuReserva extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> JCBtiposhabit;
     private com.toedter.calendar.JDateChooser JDCfechaing;
     private com.toedter.calendar.JDateChooser JDCfechasalida;
-    private javax.swing.JRadioButton JRB1persona;
-    private javax.swing.JRadioButton JRB2personas;
-    private javax.swing.JRadioButton JRB3personas;
-    private javax.swing.JRadioButton JRB4personas;
-    private javax.swing.JRadioButton JRB5personas;
-    private javax.swing.JRadioButton JRB6personas;
     private javax.swing.JTable JThabitdisp;
     private javax.swing.JTextField JTpreciototal;
     private javax.swing.ButtonGroup botones;
@@ -363,7 +256,10 @@ public class MenuReserva extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JTextField jTdniH;
     // End of variables declaration//GEN-END:variables
 
     private void cargarCategoriasEnComboBox() {
@@ -373,29 +269,5 @@ public class MenuReserva extends javax.swing.JInternalFrame {
         }
     }
 
-    
-//    private void obtenerReservas(String tipoHabitacion) {
-//
-//        DefaultTableModel model = (DefaultTableModel) JThabitdisp.getModel();
-//        model.setRowCount(0);
-//
-//        List<Categoria> categorias = rd.mostrarHabitacionesLibres(tipoHabitacion);
-//        Reserva res = new Reserva();
-//
-//        for (Categoria cat : categorias) {
-//            String t = cat.getTipoHabitacion();
-////         String fechaEntradars="";
-////         LocalDate fechaentrada= LocalDate.parse(fechaEntradars);
-////         String fechasalidars="";
-////         
-////         LocalDate fechasalida=LocalDate.parse(fechasalidars);
-//
-//            model.addRow(new Object[]{
-//                cat.getTipoHabitacion()
-//
-//            });
-//
-//        }
-//    }
 
 }

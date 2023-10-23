@@ -18,7 +18,6 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import universidadgrupo10.entidades.Inscripcion;
 
 public class ReservaData {
 
@@ -206,7 +205,7 @@ public class ReservaData {
 
                 // hab libre
                 String sqlMarcarHabitacion = "UPDATE habitacion SET Estado = 1 WHERE idHabitacion = ?";
-                
+
                 PreparedStatement psMarcarHabitacion = con.prepareStatement(sqlMarcarHabitacion);
                 psMarcarHabitacion.setInt(1, idHabitacion);
                 int filasActualizadasHabitacion = psMarcarHabitacion.executeUpdate();//consulta ejectuada 
@@ -216,7 +215,7 @@ public class ReservaData {
 
                     // Elimina la resv
                     String sqlEliminarReserva = "DELETE FROM reserva WHERE idReserva = ?";
-                    
+
                     PreparedStatement psEliminarRsv = con.prepareStatement(sqlEliminarReserva);
                     psEliminarRsv.setInt(1, reserva.getIdReserva());
                     int filasEliminadas = psEliminarRsv.executeUpdate();
@@ -347,9 +346,8 @@ public class ReservaData {
 
         String sql = "SELECT * FROM reserva WHERE fechaInicio=? AND estado=1";
         ArrayList<Reserva> reservas = new ArrayList<>();
-        
+
         Reserva res = new Reserva();
-        
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -411,5 +409,35 @@ public class ReservaData {
         return reservas;
 
     }
-   
+
+    public List<Habitacion> obtenerHabitacionesDisponibles(int cantidadPersonas, String tipoHabitacion) {
+        List<Habitacion> habitacionesDisponibles = new ArrayList<>();
+
+        String sql = "SELECT idHabitacion, nroHabitacion FROM habitacion "
+                + "WHERE cantPersonas >= ? AND tipoHabitacion = ? AND estado = 1";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, cantidadPersonas);
+            ps.setString(2, tipoHabitacion);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Reserva res = new Reserva();
+                Habitacion habitacion = new Habitacion();
+                Categoria categoria = new Categoria();
+                habitacion.setIdHabitacion(rs.getInt("idHabitacion"));
+                habitacion.setNroHabitacion(rs.getInt("numero"));
+                res.setCantPersonas(rs.getInt("cantPersonas"));
+                categoria.setTipoHabitacion(rs.getString("tipoHabitacion"));
+                habitacionesDisponibles.add(habitacion);
+            }
+
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla de habitaciones.");
+        }
+
+        return habitacionesDisponibles;
+    }
 }
