@@ -5,6 +5,7 @@ import hotelgrupo10.accesoADatos.HabitacionData;
 import hotelgrupo10.accesoADatos.HuespedData;
 import hotelgrupo10.accesoADatos.ReservaData;
 import hotelgrupo10.entidades.Huesped;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 public class MenuHuesped extends javax.swing.JInternalFrame {
@@ -168,24 +169,23 @@ public class MenuHuesped extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
 
         try {
-//            String nombre = JTNombre.getText();
-//            String apellido = JTApellido.getText();
-//            int celular = Integer.parseInt(JTCelular.getText());
-//            String correo = JTCorreo.getText();
-//            int documento = Integer.parseInt(JTDocumento.getText());
-//            String domicilio = JTdomicilio.getText();
-//
-//            Huesped huesped = new Huesped(nombre, apellido, documento, domicilio, correo, celular);
-//            hd1.agregarHuesped(huesped);
+            String nombre = JTNombre.getText();
+            String apellido = JTApellido.getText();
+            int celular = Integer.parseInt(JTCelular.getText());
+            String correo = JTCorreo.getText();
+            int documento = Integer.parseInt(JTDocumento.getText());
+            String domicilio = JTdomicilio.getText();
+            if (!validarDatosSinNumeros(nombre) || !validarDatosSinNumeros(apellido)) {
+              JOptionPane.showMessageDialog(null, "error al ingresar el nombre o el apellido del huesped");
+              return;
+            }else{
+            Huesped huesped = new Huesped(nombre, apellido, documento, domicilio, correo, celular);
+            hd1.agregarHuesped(huesped);
 
-            MenuReserva menuReserva = new MenuReserva(cd, hd, hd1, rd, menuPrincipal);
-            this.dispose();
-            menuReserva.setVisible(true);
-            menuPrincipal.getEscritorio().add(menuReserva);
-            menuPrincipal.getEscritorio().moveToFront(menuReserva);
+            }
 
         } catch (NumberFormatException nfe) {
-            JOptionPane.showMessageDialog(null, "Error al guadar Alumno, verifique los datos y vuelva intentelo más tarde.");
+            JOptionPane.showMessageDialog(null, "Error al guadar Huesped, verifique los datos y vuelva intentelo más tarde.");
         }
 
 
@@ -219,4 +219,16 @@ public class MenuHuesped extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     // End of variables declaration//GEN-END:variables
+
+
+
+private boolean validarDatosSinNumeros(String cadena) {
+        return !Pattern.compile("[0-9]").matcher(cadena).find();
+    }
+
+
+
+
+
+
 }

@@ -12,12 +12,13 @@ import javax.swing.JOptionPane;
  * @author nahue
  */
 public class MenuIniciarSesion extends javax.swing.JInternalFrame {
-
+ private MenuPrincipal menuPrincipal;
     /**
      * Creates new form MenuIniciarSesion
      */
-    public MenuIniciarSesion() {
+    public MenuIniciarSesion(MenuPrincipal menuPrincipal) {
         initComponents();
+        this.menuPrincipal=menuPrincipal;
     }
 
     /**
@@ -129,6 +130,24 @@ public class MenuIniciarSesion extends javax.swing.JInternalFrame {
 
     private void JBingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBingresarActionPerformed
         // TODO add your handling code here:
+        if(JTusuario.getText().equalsIgnoreCase("apple20") && JPFcontraseña.getText().equalsIgnoreCase("grupo10")){
+        
+        MenuAdministracion menua= new MenuAdministracion(menuPrincipal);
+        menua.setVisible(true);
+        menuPrincipal.getEscritorio().add(menua);
+        menuPrincipal.getEscritorio().moveToFront(menua);
+        
+        }else if(JTusuario.getText().isEmpty() || JPFcontraseña.getText().isEmpty()){
+        
+        
+        JOptionPane.showMessageDialog(null, "No Dejar Usuario o Contraseña Sin Completar");
+        
+        
+        }else{
+        
+        JOptionPane.showMessageDialog(null, "Usuario Y/O Contraseñas Incorrectos");
+        
+        }
    
         
     }//GEN-LAST:event_JBingresarActionPerformed

@@ -83,7 +83,7 @@ public class MenuGestionCategorias extends javax.swing.JInternalFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Marque el estado");
 
-        JBbuscar.setText("Buscar");
+        JBbuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Sin título.jpg"))); // NOI18N
         JBbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBbuscarActionPerformed(evt);
@@ -148,8 +148,8 @@ public class MenuGestionCategorias extends javax.swing.JInternalFrame {
                                     .addComponent(JTFtipodehabitacion)
                                     .addComponent(JTFprecio)
                                     .addComponent(JTFidcategoria, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE))
-                                .addGap(49, 49, 49)
-                                .addComponent(JBbuscar))))
+                                .addGap(50, 50, 50)
+                                .addComponent(JBbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(JBeliminarcat)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -168,12 +168,17 @@ public class MenuGestionCategorias extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(JTFidcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JBbuscar))
-                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(JTFidcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
+                        .addGap(19, 19, 19))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JBbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(JTFcantpersonas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -203,7 +208,7 @@ public class MenuGestionCategorias extends javax.swing.JInternalFrame {
                     .addComponent(JBmodificarcat, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JBcrearcat, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JBlistacat, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 182, Short.MAX_VALUE))
+                .addGap(0, 171, Short.MAX_VALUE))
         );
 
         pack();
@@ -227,7 +232,7 @@ public class MenuGestionCategorias extends javax.swing.JInternalFrame {
         }
         }catch(NumberFormatException nfe){
         
-            JOptionPane.showMessageDialog(null, "Seleccione Una categoria Activa");
+            JOptionPane.showMessageDialog(null, "Seleccione Una categoria Activa o no cambie los datos");
         
         }
          
@@ -299,15 +304,28 @@ public class MenuGestionCategorias extends javax.swing.JInternalFrame {
 
     private void JBmodificarcatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBmodificarcatActionPerformed
         // TODO add your handling code here:
-       int idCategoria= Integer.parseInt(JTFidcategoria.getText());
+        try{
+        int idCategoria= Integer.parseInt(JTFidcategoria.getText());
         int cantPersonas= Integer.parseInt(JTFcantpersonas.getText());
         int cantCamas= Integer.parseInt(JTFcantcamas.getText());
         String tipoCamas=JTFtipodecama.getText();
         String tipoHabitacion= JTFtipodehabitacion.getText();
         double precio= Double.parseDouble(JTFprecio.getText());
         boolean estado=JRBestado.isSelected();
+         if (!validarCategoriaSinNumeros(tipoCamas) || !validarCategoriaSinNumeros(tipoHabitacion)) {
+                JOptionPane.showMessageDialog(null, "tipocamas y tipohabitacion no deben contener números.");
+                return;
+            }else{
         Categoria cat=new Categoria(idCategoria, cantPersonas, cantCamas, tipoCamas, tipoHabitacion, precio, estado);
         cd.modificarCategoria(cat);
+         }
+         }catch(NumberFormatException nfe){
+                 
+           JOptionPane.showMessageDialog(null, "Error Al Modificar Los Datos");
+                 
+                 
+                 }
+         
     }//GEN-LAST:event_JBmodificarcatActionPerformed
 
 
