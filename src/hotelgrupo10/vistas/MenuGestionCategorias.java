@@ -298,6 +298,10 @@ public class MenuGestionCategorias extends javax.swing.JInternalFrame {
         }catch(NumberFormatException nfe){
         
         JOptionPane.showMessageDialog(null, "ingresa una id valida");
+        }catch(NullPointerException n){
+        
+        JOptionPane.showMessageDialog(null, "error al buscar categoria");
+        
         }
         
     }//GEN-LAST:event_JBbuscarActionPerformed

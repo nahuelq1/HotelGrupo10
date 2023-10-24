@@ -220,10 +220,15 @@ public class MenuGestionHabitaciones extends javax.swing.JInternalFrame {
         
         JOptionPane.showMessageDialog(null, "Error al crear la habitacion verifique los datos");
         
+        }catch(NullPointerException n){
+        
+         JOptionPane.showMessageDialog(null, "Error al crear la habitacion verifique los datos");
+        
         }
     }//GEN-LAST:event_JBcrearhabitacionActionPerformed
 
     private void JBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBbuscarActionPerformed
+        try{
         int idHabitacion = Integer.parseInt(JTidHabitacion.getText());
         boolean estado = JRBestado.isSelected();
         Habitacion hab = hd.buscarHabitacion(idHabitacion);
@@ -231,6 +236,15 @@ public class MenuGestionHabitaciones extends javax.swing.JInternalFrame {
         JTnumeroHabit.setText(String.valueOf(hab.getNroHabitacion()));
         JTnumeroPiso.setText(String.valueOf(hab.getPiso()));
         JRBestado.setSelected(hab.isEstado());
+        }catch(NumberFormatException nfe){
+        
+        JOptionPane.showMessageDialog(null, "error hay que poner una id valida");
+        }catch(NullPointerException n){
+        
+        
+        JOptionPane.showMessageDialog(null, "error al buscar habitacion");
+        
+        }
 
     }//GEN-LAST:event_JBbuscarActionPerformed
 

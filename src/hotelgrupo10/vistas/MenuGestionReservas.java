@@ -299,7 +299,9 @@ private HuespedData hd1;
 
     private void JBeliminarXfechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBeliminarXfechaActionPerformed
         // TODO add your handling code here:
-         int selectedRow = JTreservasxF.getSelectedRow();
+         
+        try{
+        int selectedRow = JTreservasxF.getSelectedRow();
 
         if (selectedRow != -1) {
             int idReserva = (int) JTreservasxF.getValueAt(selectedRow, 0);
@@ -316,6 +318,11 @@ private HuespedData hd1;
            
         } else {
             JOptionPane.showMessageDialog(null, "Selecciona una reserva para eliminar.");
+        }
+        }catch(ClassCastException CEF){
+        
+        JOptionPane.showMessageDialog(null, "no cambie los datos de la reserva");
+        
         }
     }//GEN-LAST:event_JBeliminarXfechaActionPerformed
 
