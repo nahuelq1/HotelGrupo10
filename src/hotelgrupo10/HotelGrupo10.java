@@ -178,7 +178,7 @@ public class HotelGrupo10 {
 //
 //        scanner.close();
 //
-////        Reserva resv = new Reserva(hab1, juan, categoria, LocalDate.of(2002, 4, 25), LocalDate.of(2002, 4, 26), 5000, 7, true);
+//        Reserva resv = new Reserva(hab1, juan, categoria, LocalDate.of(2002, 4, 25), LocalDate.of(2002, 4, 26), 5000, 7, true);
 ////        res.crearReserva(resv);
 ////        res.cancelarReserva(9);
 ////

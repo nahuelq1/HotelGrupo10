@@ -74,6 +74,7 @@ public class MenuClientes extends javax.swing.JInternalFrame {
                 "Id reserva", "Id habitacion", "Id huesped", "Fecha Inicio", "Fecha Fin", "Precio Total", "Cant personas"
             }
         ));
+        JTreservas.setColumnSelectionAllowed(true);
         JTreservas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(JTreservas);
         JTreservas.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);

@@ -95,12 +95,12 @@ public class MenuReserva extends javax.swing.JInternalFrame {
                 "nroHabitacion", "piso", "precio"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            boolean[] canEdit = new boolean [] {
+                false, false, false
             };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(JThabitdisp);
@@ -262,33 +262,34 @@ public class MenuReserva extends javax.swing.JInternalFrame {
 
         if (JThabitdisp.getSelectedRow() != -1) {
             int filaSeleccionada = JThabitdisp.getSelectedRow();
-            int numeroHabitacion = (int) JThabitdisp.getValueAt(filaSeleccionada, 0); // Número de habitación
+            int numeroHabitacion = (int) JThabitdisp.getValueAt(filaSeleccionada, 0); 
+            JOptionPane.showMessageDialog(null, "nrohab= " + numeroHabitacion);
 
             String selectedValue = JCBtiposhabit.getSelectedItem().toString();
             String[] parts = selectedValue.split(" ");
             int idCategoria = Integer.parseInt(parts[0]);
             String tipoHabitacion = parts[1];
 
-            // Crear una instancia de Reserva
             Reserva reserva = new Reserva();
             reserva.setFechaInicio(JDCfechaing.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
             reserva.setFechaFin(JDCfechasalida.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 
             reserva.setCantPersonas(cantidadPersonas);
-            Categoria categoria = cd.buscarCategoria(idCategoria); // Obtener la categoría
+            Categoria categoria = cd.buscarCategoria(idCategoria); 
 
             reserva.setCategoria(categoria);
-            Habitacion habitacion = hd.buscarHabitacionPorNumero(numeroHabitacion); // Obtener la habitación
+            Habitacion habitacion = hd.buscarHabitacionPorNumero(numeroHabitacion); 
             reserva.setHabitacion(habitacion);
-            Huesped huesped = hd1.buscarHuesped(dniHuesped); // Obtener el huésped
-            reserva.setHuesped(huesped);
 
-            // Llamar al método para crear la reserva
+            Huesped huesped = hd1.buscarHuesped(dniHuesped); 
+            reserva.setHuesped(huesped);
+            JOptionPane.showMessageDialog(null, "nrohab= " + reserva);
             rd.crearReserva(reserva);
+            JOptionPane.showMessageDialog(null, "nrohab= " + reserva);
+            completarTablaDisponibilidad();
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione una habitación para reservar.");
         }
-
     }//GEN-LAST:event_JBreservaActionPerformed
 
 
