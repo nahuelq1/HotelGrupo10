@@ -133,10 +133,11 @@ public class MenuClientes extends javax.swing.JInternalFrame {
                 .addGap(27, 27, 27)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JTdni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(JBbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JBbuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(JTdni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
@@ -184,6 +185,9 @@ public class MenuClientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JBnuevareservaActionPerformed
 
     private void JBeliminarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBeliminarReservaActionPerformed
+        
+        
+        try{
         int selectedRow = JTreservas.getSelectedRow();
 
         if (selectedRow != -1) {
@@ -199,6 +203,11 @@ public class MenuClientes extends javax.swing.JInternalFrame {
             obtenerReservasXHuesped(huesped);
         } else {
             JOptionPane.showMessageDialog(null, "Selecciona una reserva para eliminar.");
+        }
+        }catch(ClassCastException cger){
+        
+        JOptionPane.showMessageDialog(null, "no cambiar los datos de la reserva");
+        
         }
     }//GEN-LAST:event_JBeliminarReservaActionPerformed
 
