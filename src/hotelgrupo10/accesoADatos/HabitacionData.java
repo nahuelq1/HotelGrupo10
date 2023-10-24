@@ -206,4 +206,36 @@ public class HabitacionData {
 
         return habitacionesDisponibles;
     }
+
+    public Habitacion buscarHabitacionPorNumero(int numeroHabitacion) {
+        Habitacion habitacionEncontrada = null;
+        String sql = "SELECT * FROM habitacion WHERE NroHabitacion = ? AND estado = 1";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, numeroHabitacion);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                habitacionEncontrada = new Habitacion();
+                habitacionEncontrada.setIdHabitacion(rs.getInt("idHabitacion"));
+                CategoriaData categD = new CategoriaData();
+
+                habitacionEncontrada.setCategoria(categD.buscarCategoria(rs.getInt("idCategoria")));
+                habitacionEncontrada.setNroHabitacion(rs.getInt("NroHabitacion"));
+                habitacionEncontrada.setPiso(rs.getInt("Piso"));
+                habitacionEncontrada.setEstado(rs.getBoolean("estado"));
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe esa habitación o no está disponible");
+            }
+
+            rs.close();
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al buscar la habitación");
+        }
+
+        return habitacionEncontrada;
+    }
+
 }

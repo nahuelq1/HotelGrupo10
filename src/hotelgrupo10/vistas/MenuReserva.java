@@ -6,6 +6,7 @@ import hotelgrupo10.accesoADatos.HuespedData;
 import hotelgrupo10.accesoADatos.ReservaData;
 import hotelgrupo10.entidades.Categoria;
 import hotelgrupo10.entidades.Habitacion;
+import hotelgrupo10.entidades.Huesped;
 import hotelgrupo10.entidades.Reserva;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -253,36 +254,40 @@ public class MenuReserva extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JTpreciototalActionPerformed
 
     private void JBreservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBreservaActionPerformed
-        // TODO add your handling code here:
-        // Obtener la información necesaria para crear la reserva
-//        String dniHuesped = jTdniH.getText();
-//        int cantidadPersonas = (int) jSpinner1.getValue();
-//
-//        if (JThabitdisp.getSelectedRow() != -1) {
-//            int filaSeleccionada = JThabitdisp.getSelectedRow();
-//            int numeroHabitacion = (int) JThabitdisp.getValueAt(filaSeleccionada, 0); // Número de habitación
-//            String categoria = JCBtiposhabit.getSelectedItem().toString(); // Categoría seleccionada
-//
-//            // Crear una instancia de Reserva
-//            Reserva reserva = new Reserva();
-//            reserva.setFechaInicio(JDCfechaing.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-//            reserva.setFechaFin(JDCfechasalida.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-//            
-//            reserva.setCantPersonas(cantidadPersonas);
-//            Categoria categoria = cd.obtenerCategoriaPorTipo(categoria); // Obtener la categoría
-//            
-//            reserva.setCategoria(categoria);
-//            Habitacion habitacion = hd.obtenerHabitacionPorNumero(numeroHabitacion); // Obtener la habitación
-//            reserva.setHabitacion(habitacion);
-//            Huesped huesped = hd1.obtenerHuespedPorDNI(dniHuesped); // Obtener el huésped
-//            reserva.setHuesped(huesped);
-//
-//            // Llamar al método para crear la reserva
-//            rd.crearReserva(reserva);
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Seleccione una habitación para reservar.");
-//        }
+        int dniHuesped = 0;
+        String dniHuespedText = jTdniH.getText();
+        dniHuesped = Integer.parseInt(dniHuespedText);
 
+        int cantidadPersonas = (int) jSpinner1.getValue();
+
+        if (JThabitdisp.getSelectedRow() != -1) {
+            int filaSeleccionada = JThabitdisp.getSelectedRow();
+            int numeroHabitacion = (int) JThabitdisp.getValueAt(filaSeleccionada, 0); // Número de habitación
+
+            String selectedValue = JCBtiposhabit.getSelectedItem().toString();
+            String[] parts = selectedValue.split(" ");
+            int idCategoria = Integer.parseInt(parts[0]);
+            String tipoHabitacion = parts[1];
+
+            // Crear una instancia de Reserva
+            Reserva reserva = new Reserva();
+            reserva.setFechaInicio(JDCfechaing.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+            reserva.setFechaFin(JDCfechasalida.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+
+            reserva.setCantPersonas(cantidadPersonas);
+            Categoria categoria = cd.buscarCategoria(idCategoria); // Obtener la categoría
+
+            reserva.setCategoria(categoria);
+            Habitacion habitacion = hd.buscarHabitacionPorNumero(numeroHabitacion); // Obtener la habitación
+            reserva.setHabitacion(habitacion);
+            Huesped huesped = hd1.buscarHuesped(dniHuesped); // Obtener el huésped
+            reserva.setHuesped(huesped);
+
+            // Llamar al método para crear la reserva
+            rd.crearReserva(reserva);
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione una habitación para reservar.");
+        }
 
     }//GEN-LAST:event_JBreservaActionPerformed
 
@@ -329,7 +334,7 @@ public class MenuReserva extends javax.swing.JInternalFrame {
         // Obtener IDcategoría y el tipdehabitación
         String selectedValue = JCBtiposhabit.getSelectedItem().toString();
         String[] parts = selectedValue.split(" ");
-        int idCategoria = Integer.parseInt(parts[0]); 
+        int idCategoria = Integer.parseInt(parts[0]);
         String tipoHabitacion = parts[1];
 
         //obt lista de habt disponibles
