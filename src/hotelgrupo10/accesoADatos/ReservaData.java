@@ -410,34 +410,36 @@ public class ReservaData {
 
     }
 
-    public List<Habitacion> obtenerHabitacionesDisponibles(int cantidadPersonas, String tipoHabitacion) {
-        List<Habitacion> habitacionesDisponibles = new ArrayList<>();
+//    public List<Habitacion> obtenerHabitacionesDisponibles(int cantidadPersonas, String tipoHabitacion) {
+//        List<Habitacion> habitacionesDisponibles = new ArrayList<>();
+//
+//        String sql = "SELECT idHabitacion, nroHabitacion FROM habitacion "
+//                + "WHERE cantPersonas >= ? AND tipoHabitacion = ? AND estado = 1";
+//
+//        try {
+//            PreparedStatement ps = con.prepareStatement(sql);
+//            ps.setInt(1, cantidadPersonas);
+//            ps.setString(2, tipoHabitacion);
+//            ResultSet rs = ps.executeQuery();
+//
+//            while (rs.next()) {
+//                Reserva res = new Reserva();
+//                Habitacion habitacion = new Habitacion();
+//                Categoria categoria = new Categoria();
+//                habitacion.setIdHabitacion(rs.getInt("idHabitacion"));
+//                habitacion.setNroHabitacion(rs.getInt("numero"));
+//                res.setCantPersonas(rs.getInt("cantPersonas"));
+//                categoria.setTipoHabitacion(rs.getString("tipoHabitacion"));
+//                habitacionesDisponibles.add(habitacion);
+//            }
+//
+//            ps.close();
+//        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla de habitaciones.");
+//        }
+//
+//        return habitacionesDisponibles;
+//    }
+   
 
-        String sql = "SELECT idHabitacion, nroHabitacion FROM habitacion "
-                + "WHERE cantPersonas >= ? AND tipoHabitacion = ? AND estado = 1";
-
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, cantidadPersonas);
-            ps.setString(2, tipoHabitacion);
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                Reserva res = new Reserva();
-                Habitacion habitacion = new Habitacion();
-                Categoria categoria = new Categoria();
-                habitacion.setIdHabitacion(rs.getInt("idHabitacion"));
-                habitacion.setNroHabitacion(rs.getInt("numero"));
-                res.setCantPersonas(rs.getInt("cantPersonas"));
-                categoria.setTipoHabitacion(rs.getString("tipoHabitacion"));
-                habitacionesDisponibles.add(habitacion);
-            }
-
-            ps.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla de habitaciones.");
-        }
-
-        return habitacionesDisponibles;
-    }
 }

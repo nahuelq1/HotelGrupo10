@@ -3,10 +3,12 @@ package hotelgrupo10.accesoADatos;
 import hotelgrupo10.entidades.Categoria;
 import java.sql.Connection;
 import hotelgrupo10.entidades.Habitacion;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -115,7 +117,7 @@ public class HabitacionData {
     }
 
     public Habitacion buscarHabitacion(int idHabitacion) {
-  String sql = "SELECT idCategoria, NroHabitacion, Piso, estado "
+        String sql = "SELECT idCategoria, NroHabitacion, Piso, estado "
                 + "FROM habitacion WHERE IdHabitacion = ? ";
         Habitacion habitacionEncontrada = null;
 
@@ -128,14 +130,14 @@ public class HabitacionData {
                 habitacionEncontrada = new Habitacion();
                 habitacionEncontrada.setIdHabitacion(idHabitacion);
                 CategoriaData categD = new CategoriaData();
-                
+
                 Categoria categoria = categD.buscarCategoria(rs.getInt("idCategoria"));
 
                 habitacionEncontrada.setCategoria(categoria);
                 habitacionEncontrada.setNroHabitacion(rs.getInt("NroHabitacion"));
                 habitacionEncontrada.setPiso(rs.getInt("Piso"));
                 habitacionEncontrada.setEstado(rs.getBoolean("estado"));
-                
+
             } else {
                 JOptionPane.showMessageDialog(null, "No existe esa habitación");
             }
@@ -162,7 +164,7 @@ public class HabitacionData {
                 habitacionDisponible = new Habitacion();
                 habitacionDisponible.setIdHabitacion(rs.getInt("idHabitacion"));
                 CategoriaData categD = new CategoriaData();
-                
+
                 habitacionDisponible.setCategoria(categD.buscarCategoria(rs.getInt("idCategoria")));
                 habitacionDisponible.setNroHabitacion(rs.getInt("NroHabitacion"));
                 habitacionDisponible.setPiso(rs.getInt("Piso"));
@@ -175,5 +177,33 @@ public class HabitacionData {
         }
 
         return habitacionDisponible;
+    }
+
+    public List<Habitacion> ListobtenerHabitacionesDisponiblesPorCategoria(int idCategoria) {
+        List<Habitacion> habitacionesDisponibles = new ArrayList<>();
+        String sql = "SELECT * FROM habitacion WHERE idCategoria = ? AND estado = 1"; // Sin LIMIT para obtener todas las habitaciones disponibles
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idCategoria);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Habitacion habitacion = new Habitacion();
+                habitacion.setIdHabitacion(rs.getInt("idHabitacion"));
+                CategoriaData categD = new CategoriaData();
+                habitacion.setCategoria(categD.buscarCategoria(rs.getInt("idCategoria")));
+                habitacion.setNroHabitacion(rs.getInt("NroHabitacion"));
+                habitacion.setPiso(rs.getInt("Piso"));
+                habitacion.setEstado(rs.getBoolean("estado"));
+                habitacionesDisponibles.add(habitacion);
+            }
+
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla habitación");
+        }
+
+        return habitacionesDisponibles;
     }
 }
