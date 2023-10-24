@@ -262,27 +262,31 @@ public class MenuReserva extends javax.swing.JInternalFrame {
 
         if (JThabitdisp.getSelectedRow() != -1) {
             int filaSeleccionada = JThabitdisp.getSelectedRow();
-            int numeroHabitacion = (int) JThabitdisp.getValueAt(filaSeleccionada, 0); 
-            JOptionPane.showMessageDialog(null, "nrohab= " + numeroHabitacion);
+            //Habitacion
+            int numeroHabitacion = (int) JThabitdisp.getValueAt(filaSeleccionada, 0);
+            Habitacion habitacion = hd.buscarHabitacionPorNumero(numeroHabitacion);
 
+            JOptionPane.showMessageDialog(null, "nrohab= " + numeroHabitacion);
+            JOptionPane.showMessageDialog(null, "nrohab= " + habitacion);
+            //idCategoria y tipo de Habitacion
             String selectedValue = JCBtiposhabit.getSelectedItem().toString();
             String[] parts = selectedValue.split(" ");
             int idCategoria = Integer.parseInt(parts[0]);
             String tipoHabitacion = parts[1];
 
-            Reserva reserva = new Reserva();
-            reserva.setFechaInicio(JDCfechaing.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-            reserva.setFechaFin(JDCfechasalida.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+            //Fecha
+            LocalDate fechaInicio = JDCfechaing.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate fechaFin = JDCfechasalida.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
-            reserva.setCantPersonas(cantidadPersonas);
-            Categoria categoria = cd.buscarCategoria(idCategoria); 
+            //precio
+            Categoria categoria = cd.buscarCategoria(idCategoria);
+            double precio = categoria.getPrecio();
 
-            reserva.setCategoria(categoria);
-            Habitacion habitacion = hd.buscarHabitacionPorNumero(numeroHabitacion); 
-            reserva.setHabitacion(habitacion);
+            //huesped
+            Huesped huesped = hd1.buscarHuesped(dniHuesped);
 
-            Huesped huesped = hd1.buscarHuesped(dniHuesped); 
-            reserva.setHuesped(huesped);
+            Reserva reserva = new Reserva(habitacion, huesped, categoria, fechaInicio, fechaFin, precio, cantidadPersonas, true);
+
             JOptionPane.showMessageDialog(null, "nrohab= " + reserva);
             rd.crearReserva(reserva);
             JOptionPane.showMessageDialog(null, "nrohab= " + reserva);
