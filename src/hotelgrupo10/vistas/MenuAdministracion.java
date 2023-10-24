@@ -20,6 +20,10 @@ public class MenuAdministracion extends javax.swing.JInternalFrame {
         JBgestionCat = new javax.swing.JButton();
         JBgestionReservas = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+
         Escmenuadm.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N

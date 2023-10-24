@@ -43,6 +43,10 @@ private HabitacionData hd;
         jScrollPane1 = new javax.swing.JScrollPane();
         JTlistacat = new javax.swing.JTable();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+
         EscListahabit.setBackground(new java.awt.Color(204, 204, 204));
         EscListahabit.setForeground(new java.awt.Color(204, 204, 204));
 

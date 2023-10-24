@@ -46,6 +46,10 @@ private CategoriaData cd;
         JRBnro5 = new javax.swing.JRadioButton();
         JRBnro6 = new javax.swing.JRadioButton();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+
         EsclistaCat.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N

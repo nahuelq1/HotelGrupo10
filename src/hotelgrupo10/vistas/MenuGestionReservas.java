@@ -65,6 +65,10 @@ private HuespedData hd1;
         JBeliminarXfecha = new javax.swing.JButton();
         JBnuevareserva2 = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Gestion de reservas");
 

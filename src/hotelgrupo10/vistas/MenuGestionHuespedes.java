@@ -41,6 +41,9 @@ private HuespedData hd;
         JTtablahuespedes = new javax.swing.JTable();
         JBbuscar = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
         setPreferredSize(new java.awt.Dimension(648, 472));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
