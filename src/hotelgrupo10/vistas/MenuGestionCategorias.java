@@ -313,7 +313,7 @@ public class MenuGestionCategorias extends javax.swing.JInternalFrame {
         double precio= Double.parseDouble(JTFprecio.getText());
         boolean estado=JRBestado.isSelected();
          if (!validarCategoriaSinNumeros(tipoCamas) || !validarCategoriaSinNumeros(tipoHabitacion)) {
-                JOptionPane.showMessageDialog(null, "tipocamas y tipohabitacion no deben contener números.");
+                JOptionPane.showMessageDialog(null, "tipo de camas y tipo de habitacion no deben contener números.");
                 return;
             }else{
         Categoria cat=new Categoria(idCategoria, cantPersonas, cantCamas, tipoCamas, tipoHabitacion, precio, estado);

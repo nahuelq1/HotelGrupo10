@@ -141,6 +141,7 @@ public class MenuIniciarSesion extends javax.swing.JInternalFrame {
         menuPrincipal.getEscritorio().add(menua);
         menuPrincipal.getEscritorio().moveToFront(menua);
         
+        
         }else if(JTusuario.getText().isEmpty() || JPFcontraseña.getText().isEmpty()){
         
         

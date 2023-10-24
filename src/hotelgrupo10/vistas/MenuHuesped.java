@@ -181,11 +181,17 @@ public class MenuHuesped extends javax.swing.JInternalFrame {
             }else{
             Huesped huesped = new Huesped(nombre, apellido, documento, domicilio, correo, celular);
             hd1.agregarHuesped(huesped);
+            MenuReserva menuReserva = new MenuReserva(cd, hd, hd1, rd, menuPrincipal);
+        this.dispose();
+        menuReserva.setVisible(true);
+        menuPrincipal.getEscritorio().add(menuReserva);
+        menuPrincipal.getEscritorio().moveToFront(menuReserva);
+            
 
             }
 
         } catch (NumberFormatException nfe) {
-            JOptionPane.showMessageDialog(null, "Error al guadar Huesped, verifique los datos y vuelva intentelo más tarde.");
+            JOptionPane.showMessageDialog(null, "Error al guardar Huesped, verifique los datos y vuelva intentelo más tarde.");
         }
 
 
