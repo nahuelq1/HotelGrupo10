@@ -38,6 +38,10 @@ public class MenuIniciarSesion extends javax.swing.JInternalFrame {
         JPFcontraseña = new javax.swing.JPasswordField();
         JBingresar = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+
         EscIniciosesion.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
