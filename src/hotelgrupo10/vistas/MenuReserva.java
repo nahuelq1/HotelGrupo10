@@ -10,8 +10,10 @@ import hotelgrupo10.entidades.Huesped;
 import hotelgrupo10.entidades.Reserva;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -30,7 +32,7 @@ public class MenuReserva extends javax.swing.JInternalFrame {
         this.hd1 = new HuespedData();
         this.rd = new ReservaData();
         this.menuPrincipal = menuPrincipal;
-        cargarCategoriasEnComboBox();
+//        cargarCategoriasEnComboBox();
     }
 
     @SuppressWarnings("unchecked")
@@ -103,6 +105,11 @@ public class MenuReserva extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        JThabitdisp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JThabitdispMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(JThabitdisp);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -132,6 +139,12 @@ public class MenuReserva extends javax.swing.JInternalFrame {
         jTdniH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTdniHActionPerformed(evt);
+            }
+        });
+
+        jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner1StateChanged(evt);
             }
         });
 
@@ -251,61 +264,93 @@ public class MenuReserva extends javax.swing.JInternalFrame {
 
     private void JTpreciototalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTpreciototalActionPerformed
         // TODO add your handling code here:
-        
-            
-        
-        
+
+
     }//GEN-LAST:event_JTpreciototalActionPerformed
 
     private void JBreservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBreservaActionPerformed
-        
-        try{
-        int dniHuesped = 0;
-        String dniHuespedText = jTdniH.getText();
-        dniHuesped = Integer.parseInt(dniHuespedText);
 
+        try {
+            int dniHuesped = 0;
+            String dniHuespedText = jTdniH.getText();
+            dniHuesped = Integer.parseInt(dniHuespedText);
+
+            int cantidadPersonas = (int) jSpinner1.getValue();
+
+            if (JThabitdisp.getSelectedRow() != -1) {
+                int filaSeleccionada = JThabitdisp.getSelectedRow();
+                //Habitacion
+                int numeroHabitacion = (int) JThabitdisp.getValueAt(filaSeleccionada, 0);
+                Habitacion habitacion = hd.buscarHabitacionPorNumero(numeroHabitacion);
+
+                //idCategoria y tipo de Habitacion
+                String selectedValue = JCBtiposhabit.getSelectedItem().toString();
+                String[] parts = selectedValue.split(" ");
+                int idCategoria = Integer.parseInt(parts[0]);
+                String tipoHabitacion = parts[1];
+
+                //Fecha
+                LocalDate fechaInicio = JDCfechaing.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate fechaFin = JDCfechasalida.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+                //precio
+                Categoria categoria = cd.buscarCategoria(idCategoria);
+                double precio = categoria.getPrecio();
+
+                //huesped
+                Huesped huesped = hd1.buscarHuesped(dniHuesped);
+
+                Reserva reserva = new Reserva(habitacion, huesped, categoria, fechaInicio, fechaFin, precio, cantidadPersonas, true);
+
+//       
+                rd.crearReserva(reserva);
+//            
+                completarTablaDisponibilidad();
+            } else {
+                JOptionPane.showMessageDialog(null, "Seleccione una habitación para reservar.");
+            }
+        } catch (NullPointerException n) {
+
+            JOptionPane.showMessageDialog(null, "error no cambie los datos");
+
+        }
+    }//GEN-LAST:event_JBreservaActionPerformed
+
+    private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
+        // TODO add your handling code here:
         int cantidadPersonas = (int) jSpinner1.getValue();
+        cargarCategoriasEnComboBox(cantidadPersonas);
 
-        if (JThabitdisp.getSelectedRow() != -1) {
-            int filaSeleccionada = JThabitdisp.getSelectedRow();
-            //Habitacion
-            int numeroHabitacion = (int) JThabitdisp.getValueAt(filaSeleccionada, 0);
-            Habitacion habitacion = hd.buscarHabitacionPorNumero(numeroHabitacion);
+    }//GEN-LAST:event_jSpinner1StateChanged
 
+    private void JThabitdispMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JThabitdispMouseClicked
+        // TODO add your handling code here:
+        int filaSeleccionada = JThabitdisp.getSelectedRow();
 
-            //idCategoria y tipo de Habitacion
+        if (filaSeleccionada != -1) {
+            //fecha
+            LocalDate fechaInicio = JDCfechaing.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate fechaFin = JDCfechasalida.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+            //idCategoria
             String selectedValue = JCBtiposhabit.getSelectedItem().toString();
             String[] parts = selectedValue.split(" ");
             int idCategoria = Integer.parseInt(parts[0]);
-            String tipoHabitacion = parts[1];
-
-            //Fecha
-            LocalDate fechaInicio = JDCfechaing.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            LocalDate fechaFin = JDCfechasalida.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             
-            
-            //precio
             Categoria categoria = cd.buscarCategoria(idCategoria);
             double precio = categoria.getPrecio();
+            
+            double precioHabitacion = (double) JThabitdisp.getValueAt(filaSeleccionada, 2);
 
-            //huesped
-            Huesped huesped = hd1.buscarHuesped(dniHuesped);
+            // Calcular el precio total basado en el precio de la habitación y la duración
+            long diasReserva = ChronoUnit.DAYS.between(fechaInicio, fechaFin);
 
-            Reserva reserva = new Reserva(habitacion, huesped, categoria, fechaInicio, fechaFin, precio, cantidadPersonas, true);
+            double precioTotal = precio * diasReserva;
 
-//       
-            rd.crearReserva(reserva);
-//            
-            completarTablaDisponibilidad();
-        } else {
-            JOptionPane.showMessageDialog(null, "Seleccione una habitación para reservar.");
+            // Mostrar el precio total en JTpreciototal
+            JTpreciototal.setText(String.valueOf(precioTotal));
         }
-        }catch(NullPointerException n){
-        
-        JOptionPane.showMessageDialog(null, "error no cambie los datos");
-        
-        }
-    }//GEN-LAST:event_JBreservaActionPerformed
+    }//GEN-LAST:event_JThabitdispMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -329,11 +374,24 @@ public class MenuReserva extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTdniH;
     // End of variables declaration//GEN-END:variables
 
-    private void cargarCategoriasEnComboBox() {
-        List<Categoria> listarCategorias = cd.listarCategorias();
-        for (Categoria categoria : listarCategorias) {
-            JCBtiposhabit.addItem(categoria.getIdCategoria() + " " + categoria.getTipoHabitacion());
+//    private void cargarCategoriasEnComboBox() {
+//        List<Categoria> listarCategorias = cd.listarCategorias();
+//        for (Categoria categoria : listarCategorias) {
+//            JCBtiposhabit.addItem(categoria.getIdCategoria() + " " + categoria.getTipoHabitacion());
+//        }
+//    }
+    private void cargarCategoriasEnComboBox(int cantidadPersonas) {
+        DefaultComboBoxModel<String> comboBoxModel = new DefaultComboBoxModel<>();
+        List<Categoria> categorias = cd.listarCategorias();
+
+        for (Categoria categoria : categorias) {
+            // Verificar si la categoría es adecuada para la cantidad de personas
+            if (categoria.getCantPersonas() >= cantidadPersonas) {
+                comboBoxModel.addElement(categoria.getIdCategoria() + " " + categoria.getTipoHabitacion());
+            }
         }
+
+        JCBtiposhabit.setModel(comboBoxModel);
     }
 
     private void completarTablaDisponibilidad() {
