@@ -60,7 +60,6 @@ private HuespedData hd1;
         jScrollPane2 = new javax.swing.JScrollPane();
         JTreservasxF = new javax.swing.JTable();
         JBbuscarporF = new javax.swing.JButton();
-        JBeliminarXhuesped = new javax.swing.JButton();
         JBnuevareserva = new javax.swing.JButton();
         JBeliminarXfecha = new javax.swing.JButton();
         JBnuevareserva2 = new javax.swing.JButton();
@@ -148,13 +147,6 @@ private HuespedData hd1;
             }
         });
 
-        JBeliminarXhuesped.setText("Eliminar reserva");
-        JBeliminarXhuesped.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBeliminarXhuespedActionPerformed(evt);
-            }
-        });
-
         JBnuevareserva.setText("Nueva reserva");
         JBnuevareserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -184,7 +176,7 @@ private HuespedData hd1;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(11, 11, 11)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -194,12 +186,6 @@ private HuespedData hd1;
                                 .addComponent(JDCfechadebusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(28, 28, 28)
                                 .addComponent(JBbuscarporF, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(JBeliminarXhuesped, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(JBnuevareserva, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(40, 40, 40))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addGap(148, 148, 148)
@@ -215,7 +201,10 @@ private HuespedData hd1;
                         .addGap(35, 35, 35)
                         .addComponent(JBeliminarXfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(107, 107, 107)
-                        .addComponent(JBnuevareserva2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(JBnuevareserva2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(158, 158, 158)
+                        .addComponent(JBnuevareserva, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(56, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -234,9 +223,7 @@ private HuespedData hd1;
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JBeliminarXhuesped)
-                    .addComponent(JBnuevareserva))
+                .addComponent(JBnuevareserva)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
@@ -244,8 +231,8 @@ private HuespedData hd1;
                             .addComponent(jLabel3)
                             .addComponent(JDCfechadebusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(28, 28, 28))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(JBbuscarporF, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -253,7 +240,7 @@ private HuespedData hd1;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBeliminarXfecha)
                     .addComponent(JBnuevareserva2))
-                .addGap(0, 70, Short.MAX_VALUE))
+                .addGap(0, 74, Short.MAX_VALUE))
         );
 
         pack();
@@ -283,10 +270,6 @@ private HuespedData hd1;
         menuPrincipal.getEscritorio().add(menuHuesped);
         menuPrincipal.getEscritorio().moveToFront(menuHuesped);
     }//GEN-LAST:event_JBnuevareservaActionPerformed
-
-    private void JBeliminarXhuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBeliminarXhuespedActionPerformed
-        
-    }//GEN-LAST:event_JBeliminarXhuespedActionPerformed
 
     private void JBbuscarporFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBbuscarporFActionPerformed
         // TODO add your handling code here:
@@ -353,7 +336,6 @@ private HuespedData hd1;
     private javax.swing.JButton JBbuscarXhuesped;
     private javax.swing.JButton JBbuscarporF;
     private javax.swing.JButton JBeliminarXfecha;
-    private javax.swing.JButton JBeliminarXhuesped;
     private javax.swing.JButton JBnuevareserva;
     private javax.swing.JButton JBnuevareserva2;
     private com.toedter.calendar.JDateChooser JDCfechadebusqueda;

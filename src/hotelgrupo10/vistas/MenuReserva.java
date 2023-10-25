@@ -279,7 +279,7 @@ public class MenuReserva extends javax.swing.JInternalFrame {
 
     private void JTpreciototalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTpreciototalActionPerformed
         // TODO add your handling code here:
-
+        
 
     }//GEN-LAST:event_JTpreciototalActionPerformed
 
