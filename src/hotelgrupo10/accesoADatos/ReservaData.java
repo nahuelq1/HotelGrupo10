@@ -38,19 +38,19 @@ public class ReservaData {
 
         double precioTotal = calcularPrecioTotal(resv.getCategoria(), fechaEntrada, fechaSalida);
 
-        HabitacionData habitacionData = new HabitacionData();
-        Habitacion habitacionDisponible = habitacionData.obtenerHabitacionDisponiblePorCategoria(resv.getCategoria().getIdCategoria());
+//        HabitacionData habitacionData = new HabitacionData();
+//        Habitacion habitacionDisponible = habitacionData.obtenerHabitacionDisponiblePorCategoria(resv.getCategoria().getIdCategoria());
 
-        if (habitacionDisponible == null) {
+        if (resv.getHabitacion() == null) {
             JOptionPane.showMessageDialog(null, "No hay habitaciones disponibles para esta categoría.");
             return;
         }
 
-        resv.setHabitacion(habitacionDisponible);
         resv.setPrecioTotal(precioTotal);
         resv.setEstado(true); // Estado = 1 (Activa)
 
-        String sqlInsertReserva = "INSERT INTO reserva(idHabitacion, idHuesped, FechaInicio, FechaFin, PrecioTotal, CantPersonas, Estado) VALUES (?,?,?,?,?,?,?)";
+        String sqlInsertReserva = "INSERT INTO reserva(idHabitacion, idHuesped, FechaInicio, "+
+                "FechaFin, PrecioTotal, CantPersonas, Estado) VALUES (?,?,?,?,?,?,?)";
         String sqlUpdateHabitacion = "UPDATE habitacion SET estado = 0 WHERE idHabitacion = ?";
 
         try {
