@@ -76,6 +76,12 @@ public class MenuReserva extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Fecha de salida");
 
+        JDCfechasalida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JDCfechasalidaMouseClicked(evt);
+            }
+        });
+
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Seleccione el tipo de habitacion ");
 
@@ -97,9 +103,16 @@ public class MenuReserva extends javax.swing.JInternalFrame {
                 "nroHabitacion", "piso", "precio"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Double.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -246,12 +259,14 @@ public class MenuReserva extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JCBtiposhabitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBtiposhabitActionPerformed
-        if (JCBtiposhabit.getSelectedIndex() > 0) {
+        int selectedIndex = JCBtiposhabit.getSelectedIndex();
+
+        if (selectedIndex != 0) {
             String selectedItem = JCBtiposhabit.getSelectedItem().toString();
             String categoria = selectedItem;
             String tipoHabitacion = selectedItem.split(" ")[0];
 
-            //act tabla por disponibilidad
+            // Actualizar tabla por disponibilidad
             completarTablaDisponibilidad();
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione Habitación");
@@ -324,33 +339,41 @@ public class MenuReserva extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jSpinner1StateChanged
 
     private void JThabitdispMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JThabitdispMouseClicked
-        // TODO add your handling code here:
         int filaSeleccionada = JThabitdisp.getSelectedRow();
 
         if (filaSeleccionada != -1) {
-            //fecha
-            LocalDate fechaInicio = JDCfechaing.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            LocalDate fechaFin = JDCfechasalida.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            try {
+                // Verificar si se han seleccionado las fechas
+                if (JDCfechaing.getDate() == null || JDCfechasalida.getDate() == null) {
+                    JOptionPane.showMessageDialog(null, "Seleccione las fechas de ingreso y salida.");
+                    return;
+                }
 
-            //idCategoria
-            String selectedValue = JCBtiposhabit.getSelectedItem().toString();
-            String[] parts = selectedValue.split(" ");
-            int idCategoria = Integer.parseInt(parts[0]);
-            
-            Categoria categoria = cd.buscarCategoria(idCategoria);
-            double precio = categoria.getPrecio();
-            
-            double precioHabitacion = (double) JThabitdisp.getValueAt(filaSeleccionada, 2);
+                double precioHabitacion = (double) JThabitdisp.getValueAt(filaSeleccionada, 2);
+                //fecha
+                LocalDate fechaInicio = JDCfechaing.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate fechaFin = JDCfechasalida.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
-            // Calcular el precio total basado en el precio de la habitación y la duración
-            long diasReserva = ChronoUnit.DAYS.between(fechaInicio, fechaFin);
+                // Validar que la fecha de salida sea posterior a la fecha de ingreso
+                if (fechaFin.isBefore(fechaInicio)) {
+                    JOptionPane.showMessageDialog(null, "La fecha de salida debe ser posterior a la fecha de ingreso.");
+                    return;
+                }
 
-            double precioTotal = precio * diasReserva;
-
-            // Mostrar el precio total en JTpreciototal
-            JTpreciototal.setText(String.valueOf(precioTotal));
+                //calculo
+                long diasReserva = ChronoUnit.DAYS.between(fechaInicio, fechaFin);
+                double precioTotal = precioHabitacion * diasReserva;
+                // mostrar en JTpreciototal
+                JTpreciototal.setText(String.valueOf(precioTotal));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al calcular el precio total.");
+            }
         }
     }//GEN-LAST:event_JThabitdispMouseClicked
+
+    private void JDCfechasalidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JDCfechasalidaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JDCfechasalidaMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -418,4 +441,5 @@ public class MenuReserva extends javax.swing.JInternalFrame {
             modeloTabla.addRow(new Object[]{habitacion.getNroHabitacion(), habitacion.getPiso(), habitacion.getCategoria().getPrecio()});
         }
     }
+
 }

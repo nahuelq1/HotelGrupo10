@@ -184,6 +184,9 @@
       </Properties>
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="JDCfechasalida">
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="JDCfechasalidaMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
@@ -221,7 +224,7 @@
               <Table columnCount="3" rowCount="4">
                 <Column editable="false" title="nroHabitacion" type="java.lang.Object"/>
                 <Column editable="false" title="piso" type="java.lang.Object"/>
-                <Column editable="false" title="precio" type="java.lang.Object"/>
+                <Column editable="false" title="precio" type="java.lang.Double"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
