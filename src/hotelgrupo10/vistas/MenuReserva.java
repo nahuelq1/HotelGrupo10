@@ -282,7 +282,8 @@ public class MenuReserva extends javax.swing.JInternalFrame {
             //Fecha
             LocalDate fechaInicio = JDCfechaing.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             LocalDate fechaFin = JDCfechasalida.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
+            
+            
             //precio
             Categoria categoria = cd.buscarCategoria(idCategoria);
             double precio = categoria.getPrecio();

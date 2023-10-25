@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,8 @@ public class ReservaData {
     public void crearReserva(Reserva resv) {
         LocalDate fechaEntrada = resv.getFechaInicio();
         LocalDate fechaSalida = resv.getFechaFin();
+         
+            
         int cantPersonas = resv.getCantPersonas();
 
         double precioTotal = calcularPrecioTotal(resv.getCategoria(), fechaEntrada, fechaSalida);
@@ -52,7 +55,7 @@ public class ReservaData {
         String sqlInsertReserva = "INSERT INTO reserva(idHabitacion, idHuesped, FechaInicio, "+
                 "FechaFin, PrecioTotal, CantPersonas, Estado) VALUES (?,?,?,?,?,?,?)";
         String sqlUpdateHabitacion = "UPDATE habitacion SET estado = 0 WHERE idHabitacion = ?";
-
+        
         try {
 
             PreparedStatement psInsert = con.prepareStatement(sqlInsertReserva, Statement.RETURN_GENERATED_KEYS);

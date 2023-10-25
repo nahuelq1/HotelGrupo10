@@ -7,6 +7,8 @@ import hotelgrupo10.accesoADatos.ReservaData;
 import hotelgrupo10.entidades.Huesped;
 import hotelgrupo10.entidades.Reserva;
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
@@ -230,13 +232,16 @@ public class MenuClientes extends javax.swing.JInternalFrame {
         model.setRowCount(0);
 
         List<Reserva> reservas = rd.busquedaDeReservaPorHuesped(huesped);
-
+        
         for (Reserva reserva : reservas) {
-
+            LocalDate fechainicio=reserva.getFechaInicio();
+            LocalDate fechaFin=reserva.getFechaFin();
+             DateTimeFormatter formato= DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            
             model.addRow(new Object[]{
                 reserva.getIdReserva(), reserva.getHabitacion().getIdHabitacion(),
-                reserva.getHuesped().getIdHuesped(), reserva.getFechaInicio(),
-                reserva.getFechaFin(), reserva.getPrecioTotal(), reserva.getCantPersonas()
+                reserva.getHuesped().getIdHuesped(), fechainicio.format(formato),
+                fechaFin.format(formato), reserva.getPrecioTotal(), reserva.getCantPersonas()
             });
         }
     }
