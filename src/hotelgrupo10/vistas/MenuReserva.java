@@ -251,9 +251,15 @@ public class MenuReserva extends javax.swing.JInternalFrame {
 
     private void JTpreciototalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTpreciototalActionPerformed
         // TODO add your handling code here:
+        
+            
+        
+        
     }//GEN-LAST:event_JTpreciototalActionPerformed
 
     private void JBreservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBreservaActionPerformed
+        
+        try{
         int dniHuesped = 0;
         String dniHuespedText = jTdniH.getText();
         dniHuesped = Integer.parseInt(dniHuespedText);
@@ -266,8 +272,7 @@ public class MenuReserva extends javax.swing.JInternalFrame {
             int numeroHabitacion = (int) JThabitdisp.getValueAt(filaSeleccionada, 0);
             Habitacion habitacion = hd.buscarHabitacionPorNumero(numeroHabitacion);
 
-            JOptionPane.showMessageDialog(null, "nrohab= " + numeroHabitacion);
-            JOptionPane.showMessageDialog(null, "nrohab= " + habitacion);
+
             //idCategoria y tipo de Habitacion
             String selectedValue = JCBtiposhabit.getSelectedItem().toString();
             String[] parts = selectedValue.split(" ");
@@ -287,12 +292,17 @@ public class MenuReserva extends javax.swing.JInternalFrame {
 
             Reserva reserva = new Reserva(habitacion, huesped, categoria, fechaInicio, fechaFin, precio, cantidadPersonas, true);
 
-            JOptionPane.showMessageDialog(null, "nrohab= " + reserva);
+//       
             rd.crearReserva(reserva);
-            JOptionPane.showMessageDialog(null, "nrohab= " + reserva);
+//            
             completarTablaDisponibilidad();
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione una habitación para reservar.");
+        }
+        }catch(NullPointerException n){
+        
+        JOptionPane.showMessageDialog(null, "error no cambie los datos");
+        
         }
     }//GEN-LAST:event_JBreservaActionPerformed
 
