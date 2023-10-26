@@ -155,6 +155,7 @@ public class MenuReserva extends javax.swing.JInternalFrame {
             }
         });
 
+        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
         jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSpinner1StateChanged(evt);
@@ -260,16 +261,19 @@ public class MenuReserva extends javax.swing.JInternalFrame {
 
     private void JCBtiposhabitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBtiposhabitActionPerformed
         int selectedIndex = JCBtiposhabit.getSelectedIndex();
+        try {
+            if (selectedIndex != 0) {
+                String selectedItem = JCBtiposhabit.getSelectedItem().toString();
+                String categoria = selectedItem;
+                String tipoHabitacion = selectedItem.split(" ")[0];
 
-        if (selectedIndex != 0) {
-            String selectedItem = JCBtiposhabit.getSelectedItem().toString();
-            String categoria = selectedItem;
-            String tipoHabitacion = selectedItem.split(" ")[0];
-
-            // Actualizar tabla por disponibilidad
-            completarTablaDisponibilidad();
-        } else {
-            JOptionPane.showMessageDialog(null, "Seleccione Habitación");
+                // Actzar tabla
+                completarTablaDisponibilidad();
+            } else {
+                JOptionPane.showMessageDialog(null, "Seleccione Habitación");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
         }
     }//GEN-LAST:event_JCBtiposhabitActionPerformed
 
@@ -279,7 +283,7 @@ public class MenuReserva extends javax.swing.JInternalFrame {
 
     private void JTpreciototalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTpreciototalActionPerformed
         // TODO add your handling code here:
-        
+
 
     }//GEN-LAST:event_JTpreciototalActionPerformed
 
@@ -324,10 +328,12 @@ public class MenuReserva extends javax.swing.JInternalFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Seleccione una habitación para reservar.");
             }
-        } catch (NullPointerException n) {
-
-            JOptionPane.showMessageDialog(null, "error no cambie los datos");
-
+        } catch (NumberFormatException e) {
+            // Capturar error de formato en el DNI
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese un DNI válido para el huésped.");
+        } catch (Exception e) {
+            // Capturar cualquier error inesperado y mostrar un mensaje genérico
+            JOptionPane.showMessageDialog(null, "Se produjo un error: " + e.getMessage());
         }
     }//GEN-LAST:event_JBreservaActionPerformed
 
@@ -366,8 +372,8 @@ public class MenuReserva extends javax.swing.JInternalFrame {
                 // mostrar en JTpreciototal
                 JTpreciototal.setText(String.valueOf(precioTotal));
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al calcular el precio total.");
-            }
+                JOptionPane.showMessageDialog(null, "Error al calcular precio, IDerror: " + e.getMessage());
+        }
         }
     }//GEN-LAST:event_JThabitdispMouseClicked
 
@@ -405,6 +411,8 @@ public class MenuReserva extends javax.swing.JInternalFrame {
 //    }
     private void cargarCategoriasEnComboBox(int cantidadPersonas) {
         DefaultComboBoxModel<String> comboBoxModel = new DefaultComboBoxModel<>();
+        comboBoxModel.addElement("Seleccione Habitación"); // Agrega la opción predeterminada
+
         List<Categoria> categorias = cd.listarCategorias();
 
         for (Categoria categoria : categorias) {
