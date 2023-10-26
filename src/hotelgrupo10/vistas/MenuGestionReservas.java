@@ -72,7 +72,7 @@ private HuespedData hd1;
         jLabel1.setText("Gestion de reservas");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Ingrese el ID del huesped ");
+        jLabel2.setText("Ingrese el DNI del huesped ");
 
         JBbuscarXhuesped.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Sin título.jpg"))); // NOI18N
         JBbuscarXhuesped.addActionListener(new java.awt.event.ActionListener() {
@@ -249,10 +249,10 @@ private HuespedData hd1;
     private void JBbuscarXhuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBbuscarXhuespedActionPerformed
         // TODO add your handling code here:
      try {
-           int id= Integer.parseInt(JTidhuesped.getText());
-           Huesped huesped= hd1.buscarHuespedPorId(id);
+           int dni= Integer.parseInt(JTidhuesped.getText());
+           Huesped huesped= hd1.buscarHuesped(dni);
             if (huesped != null) {
-                obtenerHuespedesPorId(id);
+                obtenerHuespedesPorDni(dni);
             } else {
                 JOptionPane.showMessageDialog(null, "No existe esa reserva");
             }
@@ -350,12 +350,12 @@ private HuespedData hd1;
     // End of variables declaration//GEN-END:variables
 
 
-private void obtenerHuespedesPorId(int idHuesped){
+private void obtenerHuespedesPorDni(int Dni){
 
 DefaultTableModel model = (DefaultTableModel) JTreservasXhuesped.getModel();
         model.setRowCount(0);
 
- List<Huesped> huespedes= hd1.listarHuespedesPorid(idHuesped);
+ List<Huesped> huespedes= hd1.listarHuespedesPorDni(Dni);
 
         
 for(Huesped huesped: huespedes){

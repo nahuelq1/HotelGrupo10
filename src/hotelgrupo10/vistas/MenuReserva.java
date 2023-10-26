@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -32,6 +33,9 @@ public class MenuReserva extends javax.swing.JInternalFrame {
         this.hd1 = new HuespedData();
         this.rd = new ReservaData();
         this.menuPrincipal = menuPrincipal;
+        JDCfechaing.setMinSelectableDate(new Date());
+        JDCfechasalida.setMinSelectableDate(new Date());
+        
 //        cargarCategoriasEnComboBox();
     }
 
