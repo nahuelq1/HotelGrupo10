@@ -178,6 +178,9 @@ public class MenuHuesped extends javax.swing.JInternalFrame {
             if (!validarDatosSinNumeros(nombre) || !validarDatosSinNumeros(apellido)) {
               JOptionPane.showMessageDialog(null, "error al ingresar el nombre o el apellido del huesped");
               return;
+            }else if(JTNombre.getText().isEmpty() || JTApellido.getText().isEmpty() || JTCelular.getText().isEmpty() ||
+                    JTCorreo.getText().isEmpty() || JTDocumento.getText().isEmpty() || JTdomicilio.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "no dejar espacios en blanco");
             }else{
             Huesped huesped = new Huesped(nombre, apellido, documento, domicilio, correo, celular);
             hd1.agregarHuesped(huesped);
