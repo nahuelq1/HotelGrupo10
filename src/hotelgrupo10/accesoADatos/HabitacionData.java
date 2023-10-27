@@ -22,14 +22,13 @@ public class HabitacionData {
     }
 
     public void crearHabitacion(Habitacion habit) {
-        String sql = "INSERT INTO habitacion (idHabitacion, idCategoria, nroHabitacion, piso, estado) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO habitacion (idCategoria, nroHabitacion, piso, estado) VALUES (?,?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, habit.getIdHabitacion());
-            ps.setInt(2, habit.getCategoria().getIdCategoria());
-            ps.setInt(3, habit.getNroHabitacion());
-            ps.setInt(4, habit.getPiso());
-            ps.setBoolean(5, habit.isEstado());
+            ps.setInt(1, habit.getCategoria().getIdCategoria());
+            ps.setInt(2, habit.getNroHabitacion());
+            ps.setInt(3, habit.getPiso());
+            ps.setBoolean(4, habit.isEstado());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -44,15 +43,15 @@ public class HabitacionData {
     }
 
     public void modificarHabitacion(Habitacion habit) {
-        String sql = "UPDATE habitacion SET idCategoria=?,nroHabitacion=?,piso=?,estado=? WHERE "
-                + "idHabitacion= ?";
+        String sql = "UPDATE habitacion SET idCategoria=?,idHabitacion=?,piso=?,estado=? WHERE "
+                + "nroHabitacion= ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, habit.getCategoria().getIdCategoria());
-            ps.setInt(2, habit.getNroHabitacion());
+            ps.setInt(2, habit.getIdHabitacion());
             ps.setInt(3, habit.getPiso());
             ps.setBoolean(4, habit.isEstado());
-            ps.setInt(5, habit.getIdHabitacion());
+           ps.setInt(5, habit.getNroHabitacion());
             int exito = ps.executeUpdate();
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Habitacion modificada");
@@ -72,7 +71,6 @@ public class HabitacionData {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, IdHabit);
             int exito = ps.executeUpdate();
-            ps.close();
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Habitacion eliminada con éxito");
             } else {
@@ -116,24 +114,24 @@ public class HabitacionData {
         return habitaciones;
     }
 
-    public Habitacion buscarHabitacion(int idHabitacion) {
-        String sql = "SELECT idCategoria, NroHabitacion, Piso, estado "
-                + "FROM habitacion WHERE IdHabitacion = ? ";
+    public Habitacion buscarHabitacion(int NroHabitacion) {
+        String sql = "SELECT idHabitacion,idCategoria, NroHabitacion, Piso, estado "
+                + "FROM habitacion WHERE NroHabitacion = ? ";
         Habitacion habitacionEncontrada = null;
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, idHabitacion);
+            ps.setInt(1, NroHabitacion);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
                 habitacionEncontrada = new Habitacion();
-                habitacionEncontrada.setIdHabitacion(idHabitacion);
                 CategoriaData categD = new CategoriaData();
-
+                
                 Categoria categoria = categD.buscarCategoria(rs.getInt("idCategoria"));
 
                 habitacionEncontrada.setCategoria(categoria);
+                habitacionEncontrada.setIdHabitacion(rs.getInt("idHabitacion"));
                 habitacionEncontrada.setNroHabitacion(rs.getInt("NroHabitacion"));
                 habitacionEncontrada.setPiso(rs.getInt("Piso"));
                 habitacionEncontrada.setEstado(rs.getBoolean("estado"));
