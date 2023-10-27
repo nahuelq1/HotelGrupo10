@@ -219,6 +219,10 @@ public class MenuClientes extends javax.swing.JInternalFrame {
         
         JOptionPane.showMessageDialog(null, "no cambiar los datos de la reserva");
         
+        }catch(NullPointerException ne){
+        
+        JOptionPane.showMessageDialog(null, "seleccionar una reserva");
+        
         }
     }//GEN-LAST:event_JBeliminarReservaActionPerformed
 
