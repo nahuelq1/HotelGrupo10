@@ -257,7 +257,7 @@ private HuespedData hd1;
                 JOptionPane.showMessageDialog(null, "No existe esa reserva");
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Ingresa una id valida");
+            JOptionPane.showMessageDialog(null, "Ingresa un dni valido");
         }
     
 
