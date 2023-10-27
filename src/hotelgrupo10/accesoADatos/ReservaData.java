@@ -35,15 +35,13 @@ public class ReservaData {
     public void crearReserva(Reserva resv) {
         LocalDate fechaEntrada = resv.getFechaInicio();
         LocalDate fechaSalida = resv.getFechaFin();
-         
-            
+
         int cantPersonas = resv.getCantPersonas();
 
         double precioTotal = calcularPrecioTotal(resv.getCategoria(), fechaEntrada, fechaSalida);
 
 //        HabitacionData habitacionData = new HabitacionData();
 //        Habitacion habitacionDisponible = habitacionData.obtenerHabitacionDisponiblePorCategoria(resv.getCategoria().getIdCategoria());
-
         if (resv.getHabitacion() == null) {
             JOptionPane.showMessageDialog(null, "No hay habitaciones disponibles para esta categoría.");
             return;
@@ -52,10 +50,10 @@ public class ReservaData {
         resv.setPrecioTotal(precioTotal);
         resv.setEstado(true); // Estado = 1 (Activa)
 
-        String sqlInsertReserva = "INSERT INTO reserva(idHabitacion, idHuesped, FechaInicio, "+
-                "FechaFin, PrecioTotal, CantPersonas, Estado) VALUES (?,?,?,?,?,?,?)";
+        String sqlInsertReserva = "INSERT INTO reserva(idHabitacion, idHuesped, FechaInicio, "
+                + "FechaFin, PrecioTotal, CantPersonas, Estado) VALUES (?,?,?,?,?,?,?)";
         String sqlUpdateHabitacion = "UPDATE habitacion SET estado = 0 WHERE idHabitacion = ?";
-        
+
         try {
 
             PreparedStatement psInsert = con.prepareStatement(sqlInsertReserva, Statement.RETURN_GENERATED_KEYS);
@@ -350,19 +348,21 @@ public class ReservaData {
         String sql = "SELECT * FROM reserva WHERE fechaInicio=? AND estado=1";
         ArrayList<Reserva> reservas = new ArrayList<>();
 
-        Reserva res = new Reserva();
-
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setDate(1, Date.valueOf(fecha));
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
+                Reserva res = new Reserva();
                 res.setIdReserva(rs.getInt("idReserva"));
-                Habitacion hab = hd.buscarHabitacion(rs.getInt("idHabitacion"));
+                Habitacion hab = hd.buscarHabitacionporid(rs.getInt("idHabitacion"));
                 res.setHabitacion(hab);
+
                 Huesped hus = hd2.buscarHuespedPorId(rs.getInt("idHuesped"));
                 res.setHuesped(hus);
-                res.setFechaInicio(rs.getDate("fechaInicio").toLocalDate());
+                res.setFechaInicio(res.getFechaInicio());
+                
+                res.setFechaInicio(fecha);
                 res.setFechaFin(rs.getDate("fechaFin").toLocalDate());
                 res.setPrecioTotal(rs.getInt("precioTotal"));
                 res.setCantPersonas(rs.getInt("cantPersonas"));
@@ -443,6 +443,4 @@ public class ReservaData {
 //
 //        return habitacionesDisponibles;
 //    }
-   
-
 }

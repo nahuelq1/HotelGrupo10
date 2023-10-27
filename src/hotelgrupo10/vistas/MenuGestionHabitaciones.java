@@ -219,6 +219,10 @@ public class MenuGestionHabitaciones extends javax.swing.JInternalFrame {
         Categoria cat = cd.buscarCategoria(idCategoria);
             if (JRBestado.isSelected()==false) {
                 JOptionPane.showMessageDialog(null, "Completar todos los datos");
+            }else if(JTidCategoria.getText().isEmpty() || JTnumeroHabit.getText().isEmpty()
+                    || JTnumeroPiso.getText().isEmpty()){
+                
+                JOptionPane.showMessageDialog(null, "no dejar espacios en blanco");
             }else{
         Habitacion hab = new Habitacion(cat, nroHabitacion, nroPiso, estado);
         hd.crearHabitacion(hab);
