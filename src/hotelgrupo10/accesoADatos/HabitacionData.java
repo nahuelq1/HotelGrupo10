@@ -213,7 +213,7 @@ public class HabitacionData {
 
     public List<Habitacion> ListobtenerHabitacionesDisponiblesPorCategoria(int idCategoria) {
         List<Habitacion> habitacionesDisponibles = new ArrayList<>();
-        String sql = "SELECT * FROM habitacion WHERE idCategoria = ? AND estado = 1"; // Sin LIMIT para obtener todas las habitaciones disponibles
+        String sql = "SELECT * FROM habitacion WHERE idCategoria = ? AND estado = 1"; 
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -228,6 +228,34 @@ public class HabitacionData {
                 habitacion.setNroHabitacion(rs.getInt("NroHabitacion"));
                 habitacion.setPiso(rs.getInt("Piso"));
                 habitacion.setEstado(rs.getBoolean("estado"));
+                habitacionesDisponibles.add(habitacion);
+            }
+
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla habitación");
+        }
+
+        return habitacionesDisponibles;
+    }
+    
+    public List<Habitacion> ListobtenerHabDisponiblesXCatg2(int idCategoria) {
+        List<Habitacion> habitacionesDisponibles = new ArrayList<>();
+        String sql = "SELECT * FROM habitacion WHERE idCategoria = ? "; 
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idCategoria);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Habitacion habitacion = new Habitacion();
+                habitacion.setIdHabitacion(rs.getInt("idHabitacion"));
+                CategoriaData categD = new CategoriaData();
+                habitacion.setCategoria(categD.buscarCategoria(rs.getInt("idCategoria")));
+                habitacion.setNroHabitacion(rs.getInt("NroHabitacion"));
+                habitacion.setPiso(rs.getInt("Piso"));
+//                habitacion.setEstado(rs.getBoolean("estado"));
                 habitacionesDisponibles.add(habitacion);
             }
 
