@@ -11,6 +11,7 @@ import hotelgrupo10.entidades.Huesped;
 import hotelgrupo10.entidades.Reserva;
 import java.sql.Connection;
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Scanner;
@@ -56,7 +57,7 @@ public class HotelGrupo10 {
 //        
 //        categD.agregarCategoria(categ);
 //        categD.modificarCategoria(categ);
-        categD.eliminarCategoria(1);
+//        categD.eliminarCategoria(1);
 //
 //        Categoria categoriaEncontrada = categD.buscarCategoria(1);
 //        if (categoriaEncontrada != null) {
@@ -118,13 +119,13 @@ public class HotelGrupo10 {
 //        }
 //
 //
-//                      *****RESERVA DATA*****
+////                      *****RESERVA DATA*****
 //        Scanner scanner = new Scanner(System.in);
 //
 //        CategoriaData categD = new CategoriaData();
 //        HabitacionData hbD = new HabitacionData();
 //        HuespedData huespD = new HuespedData();
-//        ReservaData resD = new ReservaData();
+        ReservaData resD = new ReservaData();
 //
 //        Categoria categoria = new Categoria();
 //        categoria.setIdCategoria(2);
@@ -210,6 +211,14 @@ public class HotelGrupo10 {
 //             System.out.println("idReserva " + res2.getIdReserva());
 //            System.out.println("PrecioTotal " + res2.getPrecioTotal());
 //        }
+
+        for (Reserva reserva : resD.busquedaDeReservaPorFecha(LocalDate.of(2023, Month.OCTOBER,28))) {
+            System.out.println("Id:             " + reserva.getIdReserva());
+            System.out.println("Tipo Hab:       " + reserva.getHuesped().getIdHuesped());
+            System.out.println("-");
+        }
+
+
     }
 
 }

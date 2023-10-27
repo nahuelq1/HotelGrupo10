@@ -176,20 +176,19 @@ public class MenuHuesped extends javax.swing.JInternalFrame {
             int documento = Integer.parseInt(JTDocumento.getText());
             String domicilio = JTdomicilio.getText();
             if (!validarDatosSinNumeros(nombre) || !validarDatosSinNumeros(apellido)) {
-              JOptionPane.showMessageDialog(null, "error al ingresar el nombre o el apellido del huesped");
-              return;
-            }else if(JTNombre.getText().isEmpty() || JTApellido.getText().isEmpty() || JTCelular.getText().isEmpty() ||
-                    JTCorreo.getText().isEmpty() || JTDocumento.getText().isEmpty() || JTdomicilio.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "error al ingresar el nombre o el apellido del huesped");
+                return;
+            } else if (JTNombre.getText().isEmpty() || JTApellido.getText().isEmpty() || JTCelular.getText().isEmpty()
+                    || JTCorreo.getText().isEmpty() || JTDocumento.getText().isEmpty() || JTdomicilio.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "no dejar espacios en blanco");
-            }else{
-            Huesped huesped = new Huesped(nombre, apellido, documento, domicilio, correo, celular);
-            hd1.agregarHuesped(huesped);
-            MenuReserva menuReserva = new MenuReserva(cd, hd, hd1, rd, menuPrincipal);
-        this.dispose();
-        menuReserva.setVisible(true);
-        menuPrincipal.getEscritorio().add(menuReserva);
-        menuPrincipal.getEscritorio().moveToFront(menuReserva);
-            
+            } else {
+                Huesped huesped = new Huesped(nombre, apellido, documento, domicilio, correo, celular);
+                hd1.agregarHuesped(huesped);
+                MenuReserva menuReserva = new MenuReserva(cd, hd, hd1, rd, menuPrincipal);
+                this.dispose();
+                menuReserva.setVisible(true);
+                menuPrincipal.getEscritorio().add(menuReserva);
+                menuPrincipal.getEscritorio().moveToFront(menuReserva);
 
             }
 
@@ -229,15 +228,8 @@ public class MenuHuesped extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     // End of variables declaration//GEN-END:variables
 
-
-
-private boolean validarDatosSinNumeros(String cadena) {
+    private boolean validarDatosSinNumeros(String cadena) {
         return !Pattern.compile("[0-9]").matcher(cadena).find();
     }
-
-
-
-
-
 
 }

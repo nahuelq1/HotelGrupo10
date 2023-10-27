@@ -5,7 +5,6 @@
  */
 package hotelgrupo10.vistas;
 
-
 import hotelgrupo10.accesoADatos.CategoriaData;
 import hotelgrupo10.accesoADatos.HabitacionData;
 import hotelgrupo10.accesoADatos.HuespedData;
@@ -23,17 +22,19 @@ import javax.swing.table.DefaultTableModel;
  * @author nahue
  */
 public class MenuGestionReservas extends javax.swing.JInternalFrame {
-private HuespedData hd1;
-  private MenuPrincipal menuPrincipal;
+
+    private HuespedData hd1;
+    private MenuPrincipal menuPrincipal;
     private CategoriaData cd;
     private HabitacionData hd;
     private ReservaData rd;
+
     /**
      * Creates new form MenuGestionR
      */
     public MenuGestionReservas(MenuPrincipal menuPrincipal) {
         initComponents();
-        this.hd1=new HuespedData();
+        this.hd1 = new HuespedData();
         this.cd = new CategoriaData();
         this.hd = new HabitacionData();
         this.rd = new ReservaData();
@@ -248,9 +249,9 @@ private HuespedData hd1;
 
     private void JBbuscarXhuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBbuscarXhuespedActionPerformed
         // TODO add your handling code here:
-     try {
-           int dni= Integer.parseInt(JTidhuesped.getText());
-           Huesped huesped= hd1.buscarHuesped(dni);
+        try {
+            int dni = Integer.parseInt(JTidhuesped.getText());
+            Huesped huesped = hd1.buscarHuesped(dni);
             if (huesped != null) {
                 obtenerHuespedesPorDni(dni);
             } else {
@@ -259,7 +260,7 @@ private HuespedData hd1;
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Ingresa un dni valido");
         }
-    
+
 
     }//GEN-LAST:event_JBbuscarXhuespedActionPerformed
 
@@ -273,9 +274,9 @@ private HuespedData hd1;
 
     private void JBbuscarporFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBbuscarporFActionPerformed
         // TODO add your handling code here:
-         try {
-           LocalDate fecha = JDCfechadebusqueda.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            rd.busquedaDeReservaPorFecha(fecha);
+        try {
+            LocalDate fecha = JDCfechadebusqueda.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//            rd.busquedaDeReservaPorFecha(fecha);
 
             if (fecha != null) {
                 obtenerReservasXFecha(fecha);
@@ -284,42 +285,41 @@ private HuespedData hd1;
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Ingresa una fecha valida");
-        }catch(NullPointerException n){
-        
-        
-        JOptionPane.showMessageDialog(null, "error al cargar la fecha");
-        
+        } catch (NullPointerException n) {
+
+            JOptionPane.showMessageDialog(null, "error al cargar la fecha");
+
         }
 
-                                    
+
     }//GEN-LAST:event_JBbuscarporFActionPerformed
 
     private void JBeliminarXfechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBeliminarXfechaActionPerformed
         // TODO add your handling code here:
-         
-        try{
-        int selectedRow = JTreservasxF.getSelectedRow();
 
-        if (selectedRow != -1) {
-            int idReserva = (int) JTreservasxF.getValueAt(selectedRow, 0);
-            int idHuesped = (int) JTreservasxF.getValueAt(selectedRow, 2);
-            LocalDate fecha = JDCfechadebusqueda.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            rd.busquedaDeReservaPorFecha(fecha);
-            Reserva reserva = rd.buscarReserva(idReserva);
-            Huesped huesped = hd1.buscarHuespedPorId(idHuesped);
-            
-            rd.FinalReserva(huesped, reserva);
-            JOptionPane.showMessageDialog(null, "Idreserva= " + idReserva + "\n Id huesped: " + idHuesped);
+        try {
+            int selectedRow = JTreservasxF.getSelectedRow();
 
-            obtenerReservasXFecha(fecha);
-           
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecciona una reserva para eliminar.");
-        }
-        }catch(ClassCastException CEF){
-        
-        JOptionPane.showMessageDialog(null, "no cambie los datos de la reserva");
-        
+            if (selectedRow != -1) {
+                int idReserva = (int) JTreservasxF.getValueAt(selectedRow, 0);
+                int idHuesped = (int) JTreservasxF.getValueAt(selectedRow, 2);
+                LocalDate fecha = JDCfechadebusqueda.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                rd.busquedaDeReservaPorFecha(fecha);
+                Reserva reserva = rd.buscarReserva(idReserva);
+                Huesped huesped = hd1.buscarHuespedPorId(idHuesped);
+
+                rd.FinalReserva(huesped, reserva);
+                JOptionPane.showMessageDialog(null, "Idreserva= " + idReserva + "\n Id huesped: " + idHuesped);
+
+                obtenerReservasXFecha(fecha);
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Selecciona una reserva para eliminar.");
+            }
+        } catch (ClassCastException CEF) {
+
+            JOptionPane.showMessageDialog(null, "no cambie los datos de la reserva");
+
         }
     }//GEN-LAST:event_JBeliminarXfechaActionPerformed
 
@@ -349,28 +349,23 @@ private HuespedData hd1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 
+    private void obtenerHuespedesPorDni(int Dni) {
 
-private void obtenerHuespedesPorDni(int Dni){
-
-DefaultTableModel model = (DefaultTableModel) JTreservasXhuesped.getModel();
+        DefaultTableModel model = (DefaultTableModel) JTreservasXhuesped.getModel();
         model.setRowCount(0);
 
- List<Huesped> huespedes= hd1.listarHuespedesPorDni(Dni);
+        List<Huesped> huespedes = hd1.listarHuespedesPorDni(Dni);
 
-        
-for(Huesped huesped: huespedes){
+        for (Huesped huesped : huespedes) {
 
+            model.addRow(new Object[]{
+                huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getCelular()
+            });
+        }
 
- model.addRow(new Object[]{
-     huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getCelular()
-  });
-}
+    }
 
-
-
-}
-
-private void obtenerReservasXFecha(LocalDate fecha) {
+    private void obtenerReservasXFecha(LocalDate fecha) {
         DefaultTableModel model = (DefaultTableModel) JTreservasxF.getModel();
         model.setRowCount(0);
 
@@ -386,5 +381,4 @@ private void obtenerReservasXFecha(LocalDate fecha) {
         }
     }
 
- 
 }
