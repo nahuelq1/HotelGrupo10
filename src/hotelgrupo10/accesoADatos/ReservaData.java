@@ -358,7 +358,7 @@ public class ReservaData {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 res.setIdReserva(rs.getInt("idReserva"));
-                Habitacion hab = hd.buscarHabitacion(rs.getInt("idHabitacion"));
+                Habitacion hab = hd.buscarHabitacionporid(rs.getInt("idHabitacion"));
                 res.setHabitacion(hab);
                 Huesped hus = hd2.buscarHuespedPorId(rs.getInt("idHuesped"));
                 res.setHuesped(hus);
