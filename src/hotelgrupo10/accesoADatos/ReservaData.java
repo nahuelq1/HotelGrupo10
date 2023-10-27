@@ -204,7 +204,7 @@ public class ReservaData {
             if (rsReserva.next()) {
                 // recupera la hab de la reserva
                 int idHabitacion = rsReserva.getInt("idHabitacion");
-                Habitacion hab = hd.buscarHabitacion(idHabitacion);
+                Habitacion hab = hd.buscarHabitacionporid(idHabitacion);
 
                 // hab libre
                 String sqlMarcarHabitacion = "UPDATE habitacion SET Estado = 1 WHERE idHabitacion = ?";
@@ -324,7 +324,7 @@ public class ReservaData {
             while (rs.next()) {
                 Reserva res = new Reserva();
                 res.setIdReserva(rs.getInt("idReserva"));
-                Habitacion hab = hd.buscarHabitacion(rs.getInt("idHabitacion"));
+                Habitacion hab = hd.buscarHabitacionporid(rs.getInt("idHabitacion"));
                 res.setHabitacion(hab);
 
                 Huesped reserHuesped = new Huesped();

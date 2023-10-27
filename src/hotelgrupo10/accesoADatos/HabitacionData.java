@@ -148,6 +148,40 @@ public class HabitacionData {
 
         return habitacionEncontrada;
     }
+    public Habitacion buscarHabitacionporid(int idHabitacion) {
+        String sql = "SELECT idCategoria, NroHabitacion, Piso, estado "
+                + "FROM habitacion WHERE idHabitacion = ? ";
+        Habitacion habitacionEncontrada = null;
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idHabitacion);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                habitacionEncontrada = new Habitacion();
+                CategoriaData categD = new CategoriaData();
+                
+                Categoria categoria = categD.buscarCategoria(rs.getInt("idCategoria"));
+
+                habitacionEncontrada.setCategoria(categoria);
+                habitacionEncontrada.setIdHabitacion(idHabitacion);
+                habitacionEncontrada.setNroHabitacion(rs.getInt("NroHabitacion"));
+                habitacionEncontrada.setPiso(rs.getInt("Piso"));
+                habitacionEncontrada.setEstado(rs.getBoolean("estado"));
+
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe esa habitación");
+            }
+
+            rs.close();
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al buscar la habitación");
+        }
+
+        return habitacionEncontrada;
+    }
 
     public Habitacion obtenerHabitacionDisponiblePorCategoria(int idCategoria) {
         Habitacion habitacionDisponible = null;

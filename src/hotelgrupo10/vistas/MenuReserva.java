@@ -139,6 +139,11 @@ public class MenuReserva extends javax.swing.JInternalFrame {
                 JBreservaActionPerformed(evt);
             }
         });
+        JBreserva.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                JBreservaKeyReleased(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("Total a pagar");
@@ -366,8 +371,12 @@ public class MenuReserva extends javax.swing.JInternalFrame {
 
                 // Validar que la fecha de salida sea posterior a la fecha de ingreso
                 if (fechaFin.isBefore(fechaInicio)) {
-                    JOptionPane.showMessageDialog(null, "La fecha de salida debe ser posterior a la fecha de ingreso.");
+                    JOptionPane.showMessageDialog(null, "la fecha de salida debe ser posterior a la de ingreso");
+                    JBreserva.setEnabled(false);
                     return;
+                }else{
+                JBreserva.setEnabled(true);
+                
                 }
 
                 //calculo
@@ -384,6 +393,11 @@ public class MenuReserva extends javax.swing.JInternalFrame {
     private void JDCfechasalidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JDCfechasalidaMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_JDCfechasalidaMouseClicked
+
+    private void JBreservaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JBreservaKeyReleased
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_JBreservaKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
