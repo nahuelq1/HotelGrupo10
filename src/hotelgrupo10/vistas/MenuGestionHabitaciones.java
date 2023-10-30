@@ -323,7 +323,7 @@ public class MenuGestionHabitaciones extends javax.swing.JInternalFrame {
             obtenerDatosC();
         } else {
 
-            JOptionPane.showMessageDialog(null, "Seleccione Habitacion");
+            JOptionPane.showMessageDialog(null, "Seleccione Una Categoria");
 
         }
     }//GEN-LAST:event_JTCategoriaActionPerformed
