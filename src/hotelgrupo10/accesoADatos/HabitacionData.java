@@ -51,7 +51,7 @@ public class HabitacionData {
             ps.setInt(2, habit.getIdHabitacion());
             ps.setInt(3, habit.getPiso());
             ps.setBoolean(4, habit.isEstado());
-           ps.setInt(5, habit.getNroHabitacion());
+            ps.setInt(5, habit.getNroHabitacion());
             int exito = ps.executeUpdate();
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Habitacion modificada");
@@ -66,7 +66,7 @@ public class HabitacionData {
     }
 
     public void eliminarHabitacion(int IdHabit) {
-        String sql = "UPDATE habitacion SET estado=0 WHERE idHabitacion = ?";
+        String sql = "DELETE FROM habitacion WHERE idHabitacion = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, IdHabit);
@@ -127,7 +127,7 @@ public class HabitacionData {
             if (rs.next()) {
                 habitacionEncontrada = new Habitacion();
                 CategoriaData categD = new CategoriaData();
-                
+
                 Categoria categoria = categD.buscarCategoria(rs.getInt("idCategoria"));
 
                 habitacionEncontrada.setCategoria(categoria);
@@ -148,6 +148,7 @@ public class HabitacionData {
 
         return habitacionEncontrada;
     }
+
     public Habitacion buscarHabitacionporid(int idHabitacion) {
         String sql = "SELECT idCategoria, NroHabitacion, Piso, estado "
                 + "FROM habitacion WHERE idHabitacion = ? ";
@@ -161,7 +162,7 @@ public class HabitacionData {
             if (rs.next()) {
                 habitacionEncontrada = new Habitacion();
                 CategoriaData categD = new CategoriaData();
-                
+
                 Categoria categoria = categD.buscarCategoria(rs.getInt("idCategoria"));
 
                 habitacionEncontrada.setCategoria(categoria);
@@ -213,7 +214,7 @@ public class HabitacionData {
 
     public List<Habitacion> ListobtenerHabitacionesDisponiblesPorCategoria(int idCategoria) {
         List<Habitacion> habitacionesDisponibles = new ArrayList<>();
-        String sql = "SELECT * FROM habitacion WHERE idCategoria = ? AND estado = 1"; 
+        String sql = "SELECT * FROM habitacion WHERE idCategoria = ? AND estado = 1";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -238,10 +239,10 @@ public class HabitacionData {
 
         return habitacionesDisponibles;
     }
-    
+
     public List<Habitacion> ListobtenerHabDisponiblesXCatg2(int idCategoria) {
         List<Habitacion> habitacionesDisponibles = new ArrayList<>();
-        String sql = "SELECT * FROM habitacion WHERE idCategoria = ? "; 
+        String sql = "SELECT * FROM habitacion WHERE idCategoria = ? ";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -255,7 +256,7 @@ public class HabitacionData {
                 habitacion.setCategoria(categD.buscarCategoria(rs.getInt("idCategoria")));
                 habitacion.setNroHabitacion(rs.getInt("NroHabitacion"));
                 habitacion.setPiso(rs.getInt("Piso"));
-//                habitacion.setEstado(rs.getBoolean("estado"));
+                habitacion.setEstado(rs.getBoolean("estado"));
                 habitacionesDisponibles.add(habitacion);
             }
 
@@ -266,37 +267,36 @@ public class HabitacionData {
 
         return habitacionesDisponibles;
     }
-    
+
     public Habitacion buscarHabitacionPorNumero(int numeroHabitacion) {
-    Habitacion habitacionEncontrada = null;
-    String sql = "SELECT * FROM habitacion WHERE NroHabitacion = ? AND estado = 1";
+        Habitacion habitacionEncontrada = null;
+        String sql = "SELECT * FROM habitacion WHERE NroHabitacion = ? AND estado = 1";
 
-    try {
-        PreparedStatement ps = con.prepareStatement(sql);
-        ps.setInt(1, numeroHabitacion);
-        ResultSet rs = ps.executeQuery();
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, numeroHabitacion);
+            ResultSet rs = ps.executeQuery();
 
-        if (rs.next()) {
-            habitacionEncontrada = new Habitacion();
-            habitacionEncontrada.setIdHabitacion(rs.getInt("idHabitacion"));
-            CategoriaData categD = new CategoriaData();
+            if (rs.next()) {
+                habitacionEncontrada = new Habitacion();
+                habitacionEncontrada.setIdHabitacion(rs.getInt("idHabitacion"));
+                CategoriaData categD = new CategoriaData();
 
-            habitacionEncontrada.setCategoria(categD.buscarCategoria(rs.getInt("idCategoria")));
-            habitacionEncontrada.setNroHabitacion(rs.getInt("NroHabitacion"));
-            habitacionEncontrada.setPiso(rs.getInt("Piso"));
-            habitacionEncontrada.setEstado(rs.getBoolean("estado"));
-        } else {
-            JOptionPane.showMessageDialog(null, "No existe esa habitación o no está disponible");
+                habitacionEncontrada.setCategoria(categD.buscarCategoria(rs.getInt("idCategoria")));
+                habitacionEncontrada.setNroHabitacion(rs.getInt("NroHabitacion"));
+                habitacionEncontrada.setPiso(rs.getInt("Piso"));
+                habitacionEncontrada.setEstado(rs.getBoolean("estado"));
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe esa habitación o no está disponible");
+            }
+
+            rs.close();
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al buscar la habitación");
         }
 
-        rs.close();
-        ps.close();
-    } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(null, "Error al buscar la habitación");
+        return habitacionEncontrada;
     }
 
-    return habitacionEncontrada;
-}
-    
-    
 }

@@ -164,7 +164,6 @@ public class MenuListaHabitaciones extends javax.swing.JInternalFrame {
         for (Categoria categoria : categorias) {
             JCBlistacat.addItem(categoria.getIdCategoria() + " " + categoria.getTipoHabitacion());
         }
-
     }
 
     private void obtenerHabitaciones() {
@@ -190,7 +189,7 @@ public class MenuListaHabitaciones extends javax.swing.JInternalFrame {
 
             modeloTabla.addRow(new Object[]{
                 habitacion.getCategoria().getTipoHabitacion(), habitacion.getNroHabitacion(),
-                habitacion.getPiso(), habitacion.getCategoria().getPrecio(),habitacion.getCategoria().isEstado()
+                habitacion.getPiso(), habitacion.getCategoria().getPrecio(),habitacion.isEstado()
             });
         }
 

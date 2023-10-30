@@ -27,10 +27,10 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -43,95 +43,94 @@
                       <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="JRBestado" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="JTFcantpersonas" max="32767" attributes="0"/>
-                                  <Component id="JTFcantcamas" max="32767" attributes="0"/>
-                                  <Component id="JTFtipodecama" max="32767" attributes="0"/>
-                                  <Component id="JTFtipodehabitacion" max="32767" attributes="0"/>
-                                  <Component id="JTFprecio" max="32767" attributes="0"/>
-                                  <Component id="JTFidcategoria" pref="133" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                              <Component id="JBbuscar" min="-2" pref="41" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="JTFcantpersonas" max="32767" attributes="0"/>
+                              <Component id="JTFcantcamas" max="32767" attributes="0"/>
+                              <Component id="JTFtipodecama" max="32767" attributes="0"/>
+                              <Component id="JTFtipodehabitacion" max="32767" attributes="0"/>
+                              <Component id="JTFprecio" max="32767" attributes="0"/>
+                              <Component id="JTFidcategoria" min="-2" pref="133" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="JBeliminarcat" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="33" max="32767" attributes="0"/>
+                      <Component id="JBbuscar" min="-2" pref="41" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jCBfindCatg" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="JBeliminarcat" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="JBmodificarcat" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="JBcrearcat" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="JBlistacat" min="-2" pref="186" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="119" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="227" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="216" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jCBfindCatg" min="-2" max="-2" attributes="0"/>
+                  <Component id="JBbuscar" min="-2" pref="41" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="JTFidcategoria" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JTFcantpersonas" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JTFcantcamas" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JTFtipodecama" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JTFtipodehabitacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JTFprecio" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JRBestado" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="JBbuscar" min="-2" pref="41" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
               </Group>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="JTFcantpersonas" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="JTFcantcamas" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="JTFtipodecama" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="JTFtipodehabitacion" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="JTFprecio" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="JRBestado" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="JBeliminarcat" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
                   <Component id="JBmodificarcat" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
                   <Component id="JBcrearcat" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
                   <Component id="JBlistacat" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="0" pref="171" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="119" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -256,6 +255,21 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBlistacatActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jCBfindCatg">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="1">
+            <StringItem index="0" value="Seleccione  la Categoria"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBfindCatgActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

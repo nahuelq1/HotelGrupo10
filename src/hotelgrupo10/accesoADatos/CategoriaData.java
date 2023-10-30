@@ -37,8 +37,8 @@ public class CategoriaData {
     }
 
     public void modificarCategoria(Categoria categoriaExist) {
-        String sql = "UPDATE categoria SET cantpersonas = ?, cantcamas = ?, tipocamas = ?,"+
-                " tipohabitacion = ?, precio = ?, estado = ? WHERE idcategoria = ?";
+        String sql = "UPDATE categoria SET cantpersonas = ?, cantcamas = ?, tipocamas = ?,"
+                + " tipohabitacion = ?, precio = ?, estado = ? WHERE idcategoria = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, categoriaExist.getCantPersonas());
@@ -61,13 +61,13 @@ public class CategoriaData {
     }
 
     public void eliminarCategoria(int idCategoria) {
-        String sql = "UPDATE categoria SET estado=0 WHERE idCategoria=?";
+        String sql = "DELETE FROM categoria WHERE idCategoria=?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idCategoria);
             int exito = ps.executeUpdate();
             ps.close();
-            if (exito ==1) {
+            if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Categoría eliminada con éxito");
             } else {
                 JOptionPane.showMessageDialog(null, "La categoría no pudo ser eliminada");
@@ -88,14 +88,14 @@ public class CategoriaData {
 
             if (rs.next()) {
                 categoriaEncontrada = new Categoria();
-               categoriaEncontrada.setIdCategoria(idCategoria);
+                categoriaEncontrada.setIdCategoria(idCategoria);
                 categoriaEncontrada.setCantPersonas(rs.getInt("cantpersonas"));
                 categoriaEncontrada.setCantCamas(rs.getInt("cantcamas"));
                 categoriaEncontrada.setTipoCamas(rs.getString("tipocamas"));
                 categoriaEncontrada.setTipoHabitacion(rs.getString("tipohabitacion"));
                 categoriaEncontrada.setPrecio(rs.getDouble("precio"));
                 categoriaEncontrada.setEstado(true);
-                 
+
             } else {
                 JOptionPane.showMessageDialog(null, "No existe esa categoría");
             }
@@ -136,33 +136,33 @@ public class CategoriaData {
 
         return categorias;
     }
-    
+
     public List<Categoria> listarCategoriasDisponiblesPorCantidadPersonas(int cantPersonas) {
-    String sql = "SELECT idcategoria, cantpersonas, cantcamas, tipocamas, tipohabitacion, precio, estado FROM categoria WHERE cantpersonas = ? AND estado = 1";
-    ArrayList<Categoria> categorias = new ArrayList<>();
+        String sql = "SELECT idcategoria, cantpersonas, cantcamas, tipocamas, tipohabitacion, precio, estado FROM categoria WHERE cantpersonas = ? AND estado = 1";
+        ArrayList<Categoria> categorias = new ArrayList<>();
 
-    try {
-        PreparedStatement ps = con.prepareStatement(sql);
-        ps.setInt(1, cantPersonas);
-        ResultSet rs = ps.executeQuery();
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, cantPersonas);
+            ResultSet rs = ps.executeQuery();
 
-        while (rs.next()) {
-            Categoria categoria = new Categoria();
-            categoria.setIdCategoria(rs.getInt("idcategoria"));
-        categoria.setCantPersonas(rs.getInt("cantpersonas"));
-            categoria.setCantCamas(rs.getInt("cantcamas"));
-            categoria.setTipoCamas(rs.getString("tipocamas"));
-            categoria.setTipoHabitacion(rs.getString("tipohabitacion"));
-            categoria.setPrecio(rs.getDouble("precio"));
-            categoria.setEstado(rs.getBoolean("estado"));
+            while (rs.next()) {
+                Categoria categoria = new Categoria();
+                categoria.setIdCategoria(rs.getInt("idcategoria"));
+                categoria.setCantPersonas(rs.getInt("cantpersonas"));
+                categoria.setCantCamas(rs.getInt("cantcamas"));
+                categoria.setTipoCamas(rs.getString("tipocamas"));
+                categoria.setTipoHabitacion(rs.getString("tipohabitacion"));
+                categoria.setPrecio(rs.getDouble("precio"));
+                categoria.setEstado(rs.getBoolean("estado"));
 
-            categorias.add(categoria);
+                categorias.add(categoria);
+            }
+
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla categoría");
         }
-
-        ps.close();
-    } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla categoría");
+        return categorias;
     }
-    return categorias;
-}
 }
